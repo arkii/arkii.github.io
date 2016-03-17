@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在docker中使用cron | Tranquility Garden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="docker crond解决方案容器技术给我们带来极大便利的同时也带来一些必须要做的改变，比如以前在应用服务器中运行的cron定时任务就不能用原有的方式运行。本文基于centos，介绍如何解决使用容器技术时的定时任务问题。
+具体思路就是：在你的应用环境image上面再commit一层crond1.封装一个应用image2.封装一个crond image，但是以应用image为base
+假设已有的应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在docker中使用cron">
+<meta property="og:url" content="http://blog.wuliwala.net/2015/01/12/run-crond-in-container/index.html">
+<meta property="og:site_name" content="Tranquility Garden">
+<meta property="og:description" content="docker crond解决方案容器技术给我们带来极大便利的同时也带来一些必须要做的改变，比如以前在应用服务器中运行的cron定时任务就不能用原有的方式运行。本文基于centos，介绍如何解决使用容器技术时的定时任务问题。
+具体思路就是：在你的应用环境image上面再commit一层crond1.封装一个应用image2.封装一个crond image，但是以应用image为base
+假设已有的应">
+<meta property="og:updated_time" content="2016-01-25T11:18:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在docker中使用cron">
+<meta name="twitter:description" content="docker crond解决方案容器技术给我们带来极大便利的同时也带来一些必须要做的改变，比如以前在应用服务器中运行的cron定时任务就不能用原有的方式运行。本文基于centos，介绍如何解决使用容器技术时的定时任务问题。
+具体思路就是：在你的应用环境image上面再commit一层crond1.封装一个应用image2.封装一个crond image，但是以应用image为base
+假设已有的应">
+  
+    <link rel="alternate" href="/atom.xml" title="Tranquility Garden" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+<!--  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72217808-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tranquility Garden</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/arkii">GitHub</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/arkii">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.wuliwala.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-run-crond-in-container" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/12/run-crond-in-container/" class="article-date">
+  <time datetime="2015-01-11T17:52:35.000Z" itemprop="datePublished">2015-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在docker中使用cron
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="docker-crond解决方案"><a href="#docker-crond解决方案" class="headerlink" title="docker crond解决方案"></a>docker crond解决方案</h2><p>容器技术给我们带来极大便利的同时也带来一些必须要做的改变，比如以前在应用服务器中运行的cron定时任务就不能用原有的方式运行。<br>本文基于centos，介绍如何解决使用容器技术时的定时任务问题。</p>
+<p>具体思路就是：<br>在你的应用环境image上面再commit一层crond<br>1.封装一个应用image<br>2.封装一个crond image，但是以应用image为base</p>
+<p>假设已有的应用环境image为 arkii/lamp 是我的 php运行环境</p>
+<p>mkdir build &amp;&amp; cd build<br>cat Dockerfile</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span>        arii/lamp</span><br><span class="line"><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</span><br><span class="line"><span class="keyword">RUN</span>         <span class="bash">yum -y install vixie-cron supervisor &amp;&amp; yum clean all &amp;&amp; rm <span class="_">-f</span> /var/<span class="built_in">log</span>/yum.log</span><br><span class="line"></span><span class="keyword">RUN</span>         <span class="bash">sed -ie <span class="string">'/pam_loginuid/d'</span> /etc/pam.d/crond</span><br><span class="line"></span><span class="keyword">ADD</span>         <span class="bash">supervisord.conf /etc/supervisord.conf</span><br><span class="line"></span><span class="keyword">CMD</span>         <span class="bash">[<span class="string">"/usr/bin/supervisord"</span>, <span class="string">"-c"</span>, <span class="string">"/etc/supervisord.conf"</span>]</span></span><br></pre></td></tr></table></figure>
+<p>cat supervisord.conf</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[supervisord]</span></span><br><span class="line"><span class="attr">nodaemon</span>=<span class="literal">true</span></span><br><span class="line"><span class="section">[program:crond]</span></span><br><span class="line"><span class="attr">command</span>=/usr/sbin/crond -n</span><br><span class="line"><span class="attr">log_stdout</span>=<span class="literal">true</span>             </span><br><span class="line"><span class="attr">log_stderr</span>=<span class="literal">true</span>             </span><br><span class="line"><span class="attr">logfile</span>=/db/logs/crond.log  </span><br><span class="line"><span class="attr">logfile_maxbytes</span>=<span class="number">512</span>MB</span><br><span class="line"><span class="attr">logfile_backups</span>=<span class="number">10</span></span><br><span class="line"><span class="section"></span><br><span class="line">[program:crontab]</span></span><br><span class="line"><span class="attr">command</span>=/usr/bin/crontab /db/config/crontab</span><br></pre></td></tr></table></figure>
+<p>从宿主机启动crond容器</p>
+<p>宿主机中</p>
+<p>日志目录/db/logs</p>
+<p>crontab文件存放位置/db/app/config/crontab</p>
+<p>在宿主机中修改/db/app/config/crontab 容器中inotify机制会自动更新crontab，不需重启容器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">APPNAME=<span class="string">'crond-in-container'</span></span><br><span class="line">APPID=$(docker ps| grep <span class="variable">$&#123;APPNAME&#125;</span> | awk <span class="string">'&#123;print$1&#125;'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$&#123;APPID&#125;</span> ]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;APPNAME&#125;</span> not running ..."</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    docker stop <span class="variable">$&#123;APPID&#125;</span></span><br><span class="line">    docker rm <span class="variable">$&#123;APPID&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">docker run <span class="_">-d</span> --name=<span class="variable">$&#123;APPNAME&#125;</span> \</span><br><span class="line">-v /db/logs:/db/logs \</span><br><span class="line">-v /db/app/config/crontab:/db/config/crontab \</span><br><span class="line">arkii/crond</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/01/12/run-crond-in-container/" data-id="cilufobv90011iss6szcvaf1p" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/01/12/run-crond-in-container/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/12/dnspod-ddns/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用dnspod实现动态dns
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/01/wall-e-web-deployment/">Wall-E web deployment</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/15/ionic-web-app-dev/">ionic hybrid app development</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/25/bitbar-plugin-icinga-overview/">BitBar plugin icinga2 overview</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/sysops/" style="font-size: 10px;">sysops</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 arkii<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/arkii" class="mobile-nav-link">GitHub</a>
+  
+    <a href="https://hub.docker.com/u/arkii" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'blog-arkii';
+  
+  var disqus_url = 'http://blog.wuliwala.net/2015/01/12/run-crond-in-container/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

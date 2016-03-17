@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>icinga2集成pnp4nagios | Tranquility Garden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PNP4nagioscp -r modules/* /usr/share/icingaweb2/modules/ln -s /usr/local/pnp4nagios/etc/* /etc/pnp4nagios/#vim /etc/pnp4nagios/npcd.cfguser = icingagroup = icingalog_type = filelog_file = /usr/local/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="icinga2集成pnp4nagios">
+<meta property="og:url" content="http://blog.wuliwala.net/2015/08/24/icinga2-pnp4nagios/index.html">
+<meta property="og:site_name" content="Tranquility Garden">
+<meta property="og:description" content="PNP4nagioscp -r modules/* /usr/share/icingaweb2/modules/ln -s /usr/local/pnp4nagios/etc/* /etc/pnp4nagios/#vim /etc/pnp4nagios/npcd.cfguser = icingagroup = icingalog_type = filelog_file = /usr/local/">
+<meta property="og:image" content="http://blog.wuliwala.net/images/2015/08/icinga2-pnp4nagios-ifio-2-1.png">
+<meta property="og:updated_time" content="2016-01-25T11:18:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="icinga2集成pnp4nagios">
+<meta name="twitter:description" content="PNP4nagioscp -r modules/* /usr/share/icingaweb2/modules/ln -s /usr/local/pnp4nagios/etc/* /etc/pnp4nagios/#vim /etc/pnp4nagios/npcd.cfguser = icingagroup = icingalog_type = filelog_file = /usr/local/">
+<meta name="twitter:image" content="http://blog.wuliwala.net/images/2015/08/icinga2-pnp4nagios-ifio-2-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Tranquility Garden" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+<!--  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72217808-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tranquility Garden</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/arkii">GitHub</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/arkii">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.wuliwala.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-icinga2-pnp4nagios" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/24/icinga2-pnp4nagios/" class="article-date">
+  <time datetime="2015-08-23T23:31:06.000Z" itemprop="datePublished">2015-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      icinga2集成pnp4nagios
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/images/2015/08/icinga2-pnp4nagios-ifio-2-1.png" alt="alt"></p>
+<h1 id="PNP4nagios"><a href="#PNP4nagios" class="headerlink" title="PNP4nagios"></a>PNP4nagios</h1><p><code>cp -r modules/* /usr/share/icingaweb2/modules/</code><br><code>ln -s /usr/local/pnp4nagios/etc/* /etc/pnp4nagios/</code><br><code>#vim /etc/pnp4nagios/npcd.cfg</code><br><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">user</span> = icinga</span><br><span class="line"><span class="attr">group</span> = icinga</span><br><span class="line"><span class="attr">log_type</span> = file</span><br><span class="line"><span class="attr">log_file</span> = /usr/local/pnp4nagios/var/npcd.log</span><br><span class="line"><span class="attr">max_logfile_size</span> = <span class="number">10485760</span></span><br><span class="line"><span class="attr">log_level</span> = <span class="number">0</span> #debug时打开</span><br><span class="line"><span class="attr">perfdata_file_run_cmd</span> = /usr/local/pnp4nagios/libexec/process_perfdata.pl</span><br><span class="line"><span class="attr">perfdata_file_run_cmd_args</span> = --bulk</span><br><span class="line"><span class="attr">identify_npcd</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">npcd_max_threads</span> = <span class="number">5</span></span><br><span class="line"><span class="attr">sleep_time</span> = <span class="number">15</span></span><br><span class="line"><span class="attr">load_threshold</span> = <span class="number">0.0</span></span><br><span class="line"><span class="attr">pid_file</span>=/var/run/npcd.pid</span><br><span class="line"><span class="attr">perfdata_file</span> = /usr/local/pnp4nagios/var/perfdata.dump</span><br><span class="line"><span class="attr">perfdata_spool_dir</span> = /var/spool/icinga2/perfdata</span><br><span class="line"><span class="attr">perfdata_spool_filename</span> = perfdata</span><br><span class="line"><span class="attr">perfdata_file_processing_interval</span> = <span class="number">15</span></span><br></pre></td></tr></table></figure></p>
+<p><code>#vim /etc/pnp4nagios/process_perfdata.cfg</code></p>
+<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line"><span class="attr">TIMEOUT</span> = <span class="number">15</span></span><br><span class="line"><span class="attr">USE_RRDs</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">RRDPATH</span> = /usr/local/pnp4nagios/var/perfdata</span><br><span class="line"><span class="attr">RRDTOOL</span> = /usr/bin/rrdtool</span><br><span class="line"><span class="attr">CFG_DIR</span> = /usr/local/pnp4nagios/etc</span><br><span class="line"><span class="attr">RRD_STORAGE_TYPE</span> = SINGLE</span><br><span class="line"><span class="attr">RRD_HEARTBEAT</span> = <span class="number">8460</span></span><br><span class="line"><span class="attr">RRA_CFG</span> = /usr/local/pnp4nagios/etc/rra.cfg</span><br><span class="line"><span class="attr">RRA_STEP</span> = <span class="number">60</span></span><br><span class="line"><span class="attr">LOG_FILE</span> = /usr/local/pnp4nagios/var/perfdata.log</span><br><span class="line"><span class="attr">LOG_LEVEL</span> = <span class="number">0</span> <span class="comment">#debug时打开</span></span><br><span class="line"><span class="attr">XML_ENC</span> = UTF-<span class="number">8</span></span><br><span class="line"><span class="attr">XML_UPDATE_DELAY</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">RRD_DAEMON_OPTS</span> = </span><br><span class="line"><span class="attr">STATS_DIR</span> = /usr/local/pnp4nagios/var/stats</span><br><span class="line"><span class="attr">PREFORK</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">GEARMAN_HOST</span> = localhost:<span class="number">4730</span></span><br><span class="line"><span class="attr">REQUESTS_PER_CHILD</span> = <span class="number">10000</span></span><br><span class="line"><span class="attr">ENCRYPTION</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">KEY</span> = should_be_changed</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">`<span class="comment">#vim /etc/icinga2/features-enabled/perfdata.conf`</span></span><br></pre></td></tr></table></figure>
+<p>library “perfdata”<br>object PerfdataWriter “perfdata” {<br>  service_format_template = “DATATYPE::SERVICEPERFDATA\tTIMET::$icinga.timet$\tHOSTNAME::$host.name$\tSERVICEDESC::$service.name$\tSERVICEPERFDATA::$service.<br>  perfdata$\tSERVICECHECKCOMMAND::$service.check_command$$pnp_check_arg1$\tHOSTSTATE::$host.state$\tHOSTSTATETYPE::$host.state_type$\tSERVICESTATE::$service.<br>  state$\tSERVICESTATETYPE::$service.state_type$”<br>}<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">`# vim /etc/icinga2/<span class="keyword">conf</span>.<span class="keyword">d</span>/templates.<span class="keyword">conf</span>`</span><br></pre></td></tr></table></figure></p>
+<p>template Service “pnp-svc” {<br>  action_url = “/pnp4nagios/graph?host=$HOSTNAME$&amp;srv=$SERVICEDESC$”<br>  vars.pnp_check_arg1 = “”<br>}<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">`#vim /etc/icinga2/<span class="keyword">conf</span>.<span class="keyword">d</span>/services.<span class="keyword">conf</span>`</span><br></pre></td></tr></table></figure></p>
+<p>apply Service “nrpe_traffic” {<br>  import “generic-service”<br>  import “pnp-svc”<br>  check_command = “nrpe”<br>  assign where host.name == “kddi-pxe”<br>  assign where host.name == “kddi-deploy”<br>  vars.nrpe_timeout = 240<br>  vars.nrpe_command = “check_traffic”<br>  vars.pnp_check_arg1 = “!$nrpe_command$”<br>}<br><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">`#vim <span class="regexp">/usr/</span>local<span class="regexp">/pnp4nagios/</span>etc<span class="regexp">/check_commands/</span>nrpe.cfg`</span><br></pre></td></tr></table></figure></p>
+<p>CUSTOM_TEMPLATE = 0,1<br>DATATYPE = GAUGE<br>USE_MAX_ON_CREATE = 0<br><figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">`#vim /usr/local/pnp4nagios/var/perfdata/kddi-deploy/nrpe_traffic.xml`  </span><br><span class="line"></span><br><span class="line">看这个值  </span><br><span class="line"></span><br><span class="line">`&lt;TEMPLATE&gt;nrpe_check_traffic&lt;/TEMPLATE&gt;`  </span><br><span class="line"></span><br><span class="line">然后根据xml中的名字创建模板  </span><br><span class="line"></span><br><span class="line">`#vim /usr/local/pnp4nagios/share/templates/nrpe_check_traffic.php`</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?php<br>#</p>
+<h1 id="Copyright-c-2006-2010-Joerg-Linge-http-www-pnp4nagios-org"><a href="#Copyright-c-2006-2010-Joerg-Linge-http-www-pnp4nagios-org" class="headerlink" title="Copyright (c) 2006-2010 Joerg Linge (http://www.pnp4nagios.org)"></a>Copyright (c) 2006-2010 Joerg Linge (<a href="http://www.pnp4nagios.org" target="_blank" rel="external">http://www.pnp4nagios.org</a>)</h1><h1 id="Plugin-check-bmon"><a href="#Plugin-check-bmon" class="headerlink" title="Plugin: check_bmon"></a>Plugin: check_bmon</h1><h1 id="Output-TRAFFIC-OK-in-131-9Bps-out-185Bps"><a href="#Output-TRAFFIC-OK-in-131-9Bps-out-185Bps" class="headerlink" title="Output: TRAFFIC OK|in=131.9Bps; out=185Bps;"></a>Output: TRAFFIC OK|in=131.9Bps; out=185Bps;</h1><p>$opt[1] = “–vertical-label \”Bytes/s\” –title \”$servicedesc\” “;</p>
+<p>$def[1]  = “DEF:var1=$RRDFILE[1]:$DS[1]:AVERAGE “ ;<br>$def[1] .= “DEF:var2=$RRDFILE[2]:$DS[2]:AVERAGE “ ;<br>$def[1] .= “CDEF:var3=var2,-1,* “ ;<br>$def[1] .= “AREA:var1#00ff00:\”in\” “ ;<br>$def[1] .= “GPRINT:var1:LAST:\”%.1lf %SBytes last\” “ ;<br>$def[1] .= “GPRINT:var1:AVERAGE:\”%.1lf %SBytes avg\” “ ;<br>$def[1] .= “GPRINT:var1:MAX:\”%.1lf %SBytes max\n\” “ ;</p>
+<h1 id="def-1-“AREA-var2-0066FF-”out-”-“"><a href="#def-1-“AREA-var2-0066FF-”out-”-“" class="headerlink" title="$def[1] .= “AREA:var2#0066FF:\”out\” “ ;"></a>$def[1] .= “AREA:var2#0066FF:\”out\” “ ;</h1><p>$def[1] .= “AREA:var3#0066FF:\”out\” “ ;<br>$def[1] .= “GPRINT:var2:LAST:\”%.1lf %SBytes last\” “ ;<br>$def[1] .= “GPRINT:var2:AVERAGE:\”%.1lf %SBytes avg\” “ ;<br>$def[1] .= “GPRINT:var2:MAX:\”%.1lf %SBytes max\” “;<br>?&gt;<br>```<br>pnp template 文档<br><a href="https://docs.pnp4nagios.org/pnp-0.6/tpl_custom" target="_blank" rel="external">https://docs.pnp4nagios.org/pnp-0.6/tpl_custom</a><br>icinga2官方集成pnp4nagios模板攻略<br><a href="http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/addons-plugins?highlight-search=pnp4nagios#addons-graphing-pnp-custom-templates" target="_blank" rel="external">http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/addons-plugins?highlight-search=pnp4nagios#addons-graphing-pnp-custom-templates</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/08/24/icinga2-pnp4nagios/" data-id="cilufobuu000qiss6ifr76syf" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/08/24/icinga2-pnp4nagios/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/24/cygwin-mysqld/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          cygwin下安装mysqld
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/21/cacti-add-multi-devices-graphs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">cacti批量添加device和graph</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/01/wall-e-web-deployment/">Wall-E web deployment</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/15/ionic-web-app-dev/">ionic hybrid app development</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/25/bitbar-plugin-icinga-overview/">BitBar plugin icinga2 overview</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/sysops/" style="font-size: 10px;">sysops</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 arkii<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/arkii" class="mobile-nav-link">GitHub</a>
+  
+    <a href="https://hub.docker.com/u/arkii" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'blog-arkii';
+  
+  var disqus_url = 'http://blog.wuliwala.net/2015/08/24/icinga2-pnp4nagios/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

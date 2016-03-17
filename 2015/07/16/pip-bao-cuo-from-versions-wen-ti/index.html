@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>pip 报错from versions: 问题 | Tranquility Garden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="pip升级到6\7版本后，使用自搭建mirror的报错问题
+pip_pypy install FlaskYou are using pip version 7.0.1, however version 7.1.0 is available.You should consider upgrading via the &apos;pip install --upgrade pip&apos; command.Collec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pip 报错from versions: 问题">
+<meta property="og:url" content="http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/index.html">
+<meta property="og:site_name" content="Tranquility Garden">
+<meta property="og:description" content="pip升级到6\7版本后，使用自搭建mirror的报错问题
+pip_pypy install FlaskYou are using pip version 7.0.1, however version 7.1.0 is available.You should consider upgrading via the &apos;pip install --upgrade pip&apos; command.Collec">
+<meta property="og:updated_time" content="2016-01-25T11:18:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pip 报错from versions: 问题">
+<meta name="twitter:description" content="pip升级到6\7版本后，使用自搭建mirror的报错问题
+pip_pypy install FlaskYou are using pip version 7.0.1, however version 7.1.0 is available.You should consider upgrading via the &apos;pip install --upgrade pip&apos; command.Collec">
+  
+    <link rel="alternate" href="/atom.xml" title="Tranquility Garden" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+<!--  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72217808-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tranquility Garden</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/arkii">GitHub</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/arkii">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.wuliwala.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-pip-bao-cuo-from-versions-wen-ti" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/16/pip-bao-cuo-from-versions-wen-ti/" class="article-date">
+  <time datetime="2015-07-15T23:16:41.000Z" itemprop="datePublished">2015-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pip 报错from versions: 问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>pip升级到6\7版本后，使用自搭建mirror的报错问题</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">pip_pypy <span class="keyword">install</span> Flask</span><br><span class="line">You <span class="keyword">are</span> <span class="keyword">using</span> pip <span class="keyword">version</span> <span class="number">7.0</span><span class="number">.1</span>, however <span class="keyword">version</span> <span class="number">7.1</span><span class="number">.0</span> <span class="keyword">is</span> available.</span><br><span class="line">You should <span class="keyword">consider</span> upgrading via the <span class="string">'pip install --upgrade pip'</span> command.</span><br><span class="line">Collecting Flask</span><br><span class="line">  The repository located <span class="keyword">at</span> mirrors.zol.com.cn <span class="keyword">is</span> <span class="keyword">not</span> a trusted <span class="keyword">or</span> secure host <span class="keyword">and</span> <span class="keyword">is</span> being ignored. <span class="keyword">If</span> this repository <span class="keyword">is</span> available via HTTPS it <span class="keyword">is</span> recommended <span class="keyword">to</span> <span class="keyword">use</span> HTTPS instead, otherwise you may silence this <span class="keyword">warning</span> <span class="keyword">and</span> <span class="keyword">allow</span> it anyways <span class="keyword">with</span> <span class="string">'--trusted-host mirrors.zol.com.cn'</span>.</span><br><span class="line">  Could <span class="keyword">not</span> find a <span class="keyword">version</span> that satisfies the requirement Flask (<span class="keyword">from</span> <span class="keyword">versions</span>: )</span><br><span class="line"><span class="keyword">No</span> matching distribution <span class="keyword">found</span> <span class="keyword">for</span> Flask</span><br></pre></td></tr></table></figure>
+<p>主要是这句：<br>Could not find a version that satisfies the requirement Flask (from versions: )<br>No matching distribution found for Flask</p>
+<p>困扰了好久，google也不到答案。 </p>
+<p>其实这样使用就可以了：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">pip_pypy --trusted-host mirrors<span class="selector-class">.zol</span><span class="selector-class">.com</span><span class="selector-class">.cn</span> install Flask</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/" data-id="cilufobv6000yiss6z56r9xf9" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iptables NAT 动态切换 IP
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/14/centos6-ruby-gems-an-zhuang/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CentOS6 ruby gems 安装</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/01/wall-e-web-deployment/">Wall-E web deployment</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/15/ionic-web-app-dev/">ionic hybrid app development</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/25/bitbar-plugin-icinga-overview/">BitBar plugin icinga2 overview</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/sysops/" style="font-size: 10px;">sysops</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 arkii<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/arkii" class="mobile-nav-link">GitHub</a>
+  
+    <a href="https://hub.docker.com/u/arkii" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'blog-arkii';
+  
+  var disqus_url = 'http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tranquility Garden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Focus on Python Cloud Container DevOps.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tranquility Garden">
+<meta property="og:url" content="http://blog.wuliwala.net/page/3/index.html">
+<meta property="og:site_name" content="Tranquility Garden">
+<meta property="og:description" content="Focus on Python Cloud Container DevOps.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tranquility Garden">
+<meta name="twitter:description" content="Focus on Python Cloud Container DevOps.">
+  
+    <link rel="alternate" href="/atom.xml" title="Tranquility Garden" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+<!--  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72217808-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tranquility Garden</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/arkii">GitHub</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/arkii">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.wuliwala.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-pip-bao-cuo-from-versions-wen-ti" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/16/pip-bao-cuo-from-versions-wen-ti/" class="article-date">
+  <time datetime="2015-07-15T23:16:41.000Z" itemprop="datePublished">2015-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/16/pip-bao-cuo-from-versions-wen-ti/">pip 报错from versions: 问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>pip升级到6\7版本后，使用自搭建mirror的报错问题</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">pip_pypy <span class="keyword">install</span> Flask</span><br><span class="line">You <span class="keyword">are</span> <span class="keyword">using</span> pip <span class="keyword">version</span> <span class="number">7.0</span><span class="number">.1</span>, however <span class="keyword">version</span> <span class="number">7.1</span><span class="number">.0</span> <span class="keyword">is</span> available.</span><br><span class="line">You should <span class="keyword">consider</span> upgrading via the <span class="string">'pip install --upgrade pip'</span> command.</span><br><span class="line">Collecting Flask</span><br><span class="line">  The repository located <span class="keyword">at</span> mirrors.zol.com.cn <span class="keyword">is</span> <span class="keyword">not</span> a trusted <span class="keyword">or</span> secure host <span class="keyword">and</span> <span class="keyword">is</span> being ignored. <span class="keyword">If</span> this repository <span class="keyword">is</span> available via HTTPS it <span class="keyword">is</span> recommended <span class="keyword">to</span> <span class="keyword">use</span> HTTPS instead, otherwise you may silence this <span class="keyword">warning</span> <span class="keyword">and</span> <span class="keyword">allow</span> it anyways <span class="keyword">with</span> <span class="string">'--trusted-host mirrors.zol.com.cn'</span>.</span><br><span class="line">  Could <span class="keyword">not</span> find a <span class="keyword">version</span> that satisfies the requirement Flask (<span class="keyword">from</span> <span class="keyword">versions</span>: )</span><br><span class="line"><span class="keyword">No</span> matching distribution <span class="keyword">found</span> <span class="keyword">for</span> Flask</span><br></pre></td></tr></table></figure>
+<p>主要是这句：<br>Could not find a version that satisfies the requirement Flask (from versions: )<br>No matching distribution found for Flask</p>
+<p>困扰了好久，google也不到答案。 </p>
+<p>其实这样使用就可以了：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">pip_pypy --trusted-host mirrors<span class="selector-class">.zol</span><span class="selector-class">.com</span><span class="selector-class">.cn</span> install Flask</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/" data-id="cilufobv6000yiss6z56r9xf9" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-centos6-ruby-gems-an-zhuang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/14/centos6-ruby-gems-an-zhuang/" class="article-date">
+  <time datetime="2015-07-14T04:54:43.000Z" itemprop="datePublished">2015-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/14/centos6-ruby-gems-an-zhuang/">CentOS6 ruby gems 安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>平时很少用到ruby，今天用到了，记录一下<br>ruby安装，并导入阿里云gems镜像</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">yum -y install ruby rubygems</span><br><span class="line">gem <span class="keyword">source</span> -r https:<span class="comment">//rubygems.org/</span></span><br><span class="line">gem <span class="keyword">source</span> -a http:<span class="comment">//mirrors.aliyun.com/rubygems/</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/" data-id="cilufobup000miss6ah07zkr3" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-centos6-pei-zhi-vagrant-virtualbox" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/" class="article-date">
+  <time datetime="2015-07-14T04:34:57.000Z" itemprop="datePublished">2015-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/">CentOS6 配置 vagrant + VirtualBox</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>安装vagrant1.7.2<br><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget http<span class="variable">s:</span>//<span class="keyword">dl</span>.bintray.<span class="keyword">com</span>/mitchellh/vagrant/vagrant_1.<span class="number">7.2</span>_x86_64.rpm</span><br><span class="line">rpm -ivh vagrant_1.<span class="number">7.2</span>_x86_64.rpm</span><br></pre></td></tr></table></figure></p>
+<p>安装VirtualBox 4.2<br><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="meta"># curl http:<span class="comment">//download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo &gt;/etc/yum.repos.d/virtualbox.repo</span></span></span><br><span class="line">yum -y install gcc make dkms libGL libXmu libXt SDL SDL-devel SDL-<span class="keyword">static</span> kernel-devel libpng libXcursor libXinerama fontconfig-devel freetype-devel VirtualBox<span class="number">-4.2</span></span><br></pre></td></tr></table></figure></p>
+<p>安装VitrualBox中的重要提示信息<br><figure class="highlight oxygene"><table><tr><td class="code"><pre><span class="line">reating <span class="keyword">group</span> <span class="string">'vboxusers'</span>. VM users must be member <span class="keyword">of</span> that <span class="keyword">group</span>!</span><br></pre></td></tr></table></figure></p>
+<p>启用dbus<br><figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">chkconfig messagebus <span class="keyword">on</span></span><br></pre></td></tr></table></figure></p>
+<p>如果执行VirtualBox报如下错误<br><figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">No precompiled <span class="built_in">module</span> <span class="keyword">for</span> <span class="keyword">this</span> kernel found -- trying <span class="keyword">to</span> build one. Messages</span><br><span class="line">emitted during <span class="built_in">module</span> compilation will be logged <span class="keyword">to</span> /<span class="keyword">var</span>/log/vbox-install.log.</span><br></pre></td></tr></table></figure></p>
+<p>查看日志可发现</p>
+<figure class="highlight gauss"><table><tr><td class="code"><pre><span class="line">Makefile:<span class="number">185</span>: *** <span class="built_in">Error</span>: unable to find the sources of your current Linux kernel. Specify KERN_DIR=&lt;directory&gt; <span class="keyword">and</span> <span class="keyword">run</span> <span class="built_in">Make</span> again.  <span class="keyword">Stop</span>.</span><br></pre></td></tr></table></figure>
+<p>然后执行<br><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"># KERN_DIR=<span class="regexp">/usr/</span>src<span class="regexp">/kernels/</span><span class="number">2.6</span>.<span class="number">32</span>-<span class="number">504.23</span>.<span class="number">4</span>.el6.x86_64 <span class="regexp">/etc/i</span>nit.d<span class="regexp">/vboxdrv setup</span></span><br></pre></td></tr></table></figure></p>
+<p>运行过程中输出如下<br><figure class="highlight accesslog"><table><tr><td class="code"><pre><span class="line">Stopping VirtualBox kernel modules <span class="string">[  OK  ]</span></span><br><span class="line">Uninstalling old VirtualBox DKMS kernel modules <span class="string">[  OK  ]</span></span><br><span class="line">Trying to register the VirtualBox kernel modules using DKMS <span class="string">[  OK  ]</span></span><br><span class="line">Starting VirtualBox kernel modules <span class="string">[  OK  ]</span></span><br></pre></td></tr></table></figure></p>
+<p>然后重启系统<br><figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">VBoxManage <span class="built_in">list</span> vms</span><br><span class="line">VBoxManage <span class="built_in">list</span> runningvms</span><br></pre></td></tr></table></figure></p>
+<p>vagrant安装爬 墙 插件<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">https_proxy=<span class="string">https:</span><span class="comment">//yourporxy:3128 http_proxy=http://yourporxy:3128 vagrant plugin install vagrant-proxyconf</span></span><br></pre></td></tr></table></figure></p>
+<p>vi Vagrantfile<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">config<span class="selector-class">.proxy</span><span class="selector-class">.http</span>     = <span class="string">"http://yourporxy:3128"</span></span><br><span class="line">config<span class="selector-class">.proxy</span><span class="selector-class">.https</span>    = <span class="string">"https://yourporxy:3128"</span></span><br><span class="line">config<span class="selector-class">.proxy</span><span class="selector-class">.no_proxy</span> = <span class="string">"localhost,127.0.0.1"</span></span><br></pre></td></tr></table></figure></p>
+<p>vagrant的box文件可以通过迅雷加速下载到本地硬盘，然后通过命令导入，可节省大量时间<br><figure class="highlight processing"><table><tr><td class="code"><pre><span class="line">vagrant <span class="built_in">box</span> <span class="built_in">add</span> --name <span class="string">"centos-6.5-i386-vbox"</span> centos<span class="number">-65</span>-i386-vbox.<span class="built_in">box</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/" data-id="cilufobtu0006iss6ht02unk8" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-osvan-zhuang-ce-shi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/09/osvan-zhuang-ce-shi/" class="article-date">
+  <time datetime="2015-07-08T20:07:54.000Z" itemprop="datePublished">2015-07-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/09/osvan-zhuang-ce-shi/">OSv安装测试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line">curl https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/cloudius-systems/capstan/master/scripts/download &gt;&gt;./</span> installcapstan</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># sh installcapstan </span></span><br><span class="line">Downloading Capstan binary: http:<span class="regexp">//</span>osv.capstan.s3.amazonaws.com/capstan/v0<span class="number">.1</span><span class="number">.8</span>/linux_amd64/capstan</span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span> <span class="number">100.0</span>%</span><br></pre></td></tr></table></figure>
+<p>执行命令<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# capstan </span><br><span class="line">NAME:</span><br><span class="line">   capstan - pack, ship, and run applications in light-weight VMs</span><br><span class="line"></span><br><span class="line">USAGE:</span><br><span class="line">   capstan [global options] command [command options] [arguments...]</span><br><span class="line"></span><br><span class="line">VERSION:</span><br><span class="line">   v0.1.8</span><br><span class="line"></span><br><span class="line">COMMANDS:</span><br><span class="line">   info		<span class="keyword">show</span> disk image information</span><br><span class="line">   <span class="keyword">import</span>	<span class="keyword">import</span> an image <span class="keyword">to</span> the <span class="keyword">local</span> repository</span><br><span class="line">   pull		pull an image <span class="keyword">from</span> a repository</span><br><span class="line">   rmi		<span class="keyword">delete</span> an image <span class="keyword">from</span> a repository</span><br><span class="line">   run		launch a VM. You may pass the image <span class="keyword">name</span> <span class="keyword">as</span> the <span class="keyword">first</span> argument.</span><br><span class="line">   <span class="keyword">build</span>	<span class="keyword">build</span> an image</span><br><span class="line">   images, i	<span class="keyword">list</span> images</span><br><span class="line">   <span class="keyword">search</span>	<span class="keyword">search</span> a remote images</span><br><span class="line">   instances, I	<span class="keyword">list</span> instances</span><br><span class="line">   <span class="keyword">stop</span>		<span class="keyword">stop</span> an <span class="keyword">instance</span></span><br><span class="line">   <span class="keyword">delete</span>	<span class="keyword">delete</span> an <span class="keyword">instance</span></span><br><span class="line">   <span class="keyword">help</span>, h	Shows a <span class="keyword">list</span> <span class="keyword">of</span> commands <span class="keyword">or</span> <span class="keyword">help</span> <span class="keyword">for</span> one command</span><br><span class="line">   </span><br><span class="line"><span class="keyword">GLOBAL</span> OPTIONS:</span><br><span class="line">   <span class="comment">--help, -h		show help</span></span><br><span class="line">   <span class="comment">--version, -v	print the version</span></span><br></pre></td></tr></table></figure></p>
+<p>搜索官方镜像<br><figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="meta"># capstan search</span></span><br><span class="line"><span class="built_in">Name</span>                           Description                                        Version                   Created        </span><br><span class="line">cloudius/osv-base              OSv base <span class="built_in">image</span> <span class="keyword">for</span> developers                      v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">29</span>:<span class="number">46</span></span><br><span class="line">cloudius/osv-cassandra         Apache Cassandra/OSv                               v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">38</span>:<span class="number">48</span></span><br><span class="line">cloudius/osv-crash             OSv/CRaSH shell <span class="keyword">for</span> developers                     v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">35</span>:<span class="number">59</span></span><br><span class="line">cloudius/osv-iperf             iperf/OSv                                          v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">40</span>:<span class="number">46</span></span><br><span class="line">cloudius/osv-memcached-opt     OSv memcached server (optimized)                   v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">41</span>:<span class="number">14</span></span><br><span class="line">cloudius/osv-node              Node/OSv                                           v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">35</span>:<span class="number">30</span></span><br><span class="line">cloudius/osv-openjdk           OpenJDK <span class="number">7</span>/OSv base <span class="built_in">image</span> <span class="keyword">for</span> developers            v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">32</span>:<span class="number">52</span></span><br><span class="line">cloudius/osv-openjdk8          OpenJDK <span class="number">8</span>/OSv base <span class="built_in">image</span> <span class="keyword">for</span> developers            v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">33</span>:<span class="number">57</span></span><br><span class="line">cloudius/osv-redis-memonly     Redis (<span class="built_in">in</span>-memory only)                             v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">41</span>:<span class="number">45</span></span><br><span class="line">cloudius/osv-tomcat            Apache Tomcat/OSv                                  v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">39</span>:<span class="number">48</span></span><br><span class="line">cloudius/osv                   OSv <span class="keyword">with</span> shell <span class="keyword">for</span> users                           v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">36</span>:<span class="number">59</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/" data-id="cilufobv4000xiss619twnrgd" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux-hp-ilo-ming-ling-xing-gong-ju" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/" class="article-date">
+  <time datetime="2015-07-08T00:25:41.000Z" itemprop="datePublished">2015-07-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/">Linux命令行获取HP iLo配置信息</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>安装命令行工具</p>
+<pre><code>#yum install hponcfg
+</code></pre><p>测试一下</p>
+<pre><code>#hponcfg -g
+</code></pre><p>输出如下<br><figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">HP Lights-<span class="keyword">Out</span> Online Configuration utility</span><br><span class="line">Version <span class="number">4.1.</span><span class="number">0</span> Date <span class="number">1</span>/<span class="number">3</span>/<span class="number">2013</span> (c) Hewlett-Packard Company, <span class="number">2013</span></span><br><span class="line">Firmware Revision = <span class="number">1.81</span> Device <span class="keyword">type</span> = iLO <span class="number">2</span> Driver <span class="keyword">name</span> = hpilo</span><br><span class="line">Host Information:</span><br><span class="line">                        Server <span class="keyword">Name</span>: DL380G5PXXXX</span><br><span class="line">                        Server <span class="keyword">Number</span>: <span class="number">000000000</span></span><br></pre></td></tr></table></figure></p>
+<p>编辑一个xml文件<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># cat getinfo.xml</span><br><span class="line"><span class="tag">&lt;<span class="name">RIBCL</span> <span class="attr">VERSION</span>=<span class="string">"2.0"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">LOGIN</span> <span class="attr">USER_LOGIN</span>=<span class="string">'yourusername'</span> <span class="attr">PASSWORD</span>=<span class="string">'yourpassword'</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">RIB_INFO</span> <span class="attr">MODE</span>=<span class="string">"read"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">GET_NETWORK_SETTINGS</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">RIB_INFO</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">LOGIN</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">RIBCL</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>执行命令</p>
+<pre><code>#hponcfg -f getinfo.xml
+</code></pre><p>输出如下<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">HP Lights-Out Online Configuration utility</span><br><span class="line">Version 4.1.0 Date 1/3/2013 (c) Hewlett-Packard Company, 2013</span><br><span class="line">Firmware Revision = 1.81 Device type = iLO 2 Driver name = hpilo</span><br><span class="line"><span class="tag">&lt;<span class="name">GET_NETWORK_SETTINGS</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ENABLE_NIC</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SHARED_NETWORK_PORT</span> <span class="attr">VALUE</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">VLAN</span> <span class="attr">ENABLED</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">VLAN_ID</span> <span class="attr">VALUE</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SPEED_AUTOSELECT</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">NIC_SPEED</span> <span class="attr">VALUE</span>=<span class="string">"10"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">FULL_DUPLEX</span> <span class="attr">VALUE</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_ENABLE</span> <span class="attr">VALUE</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_GATEWAY</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_DNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_WINS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_STATIC_ROUTE</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_DOMAIN_NAME</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">REG_WINS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">REG_DDNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PING_GATEWAY</span> <span class="attr">VALUE</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">MAC_ADDRESS</span> <span class="attr">VALUE</span>=<span class="string">"00:1e:0b:d9:a8:7a"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IP_ADDRESS</span> <span class="attr">VALUE</span>=<span class="string">"10.15.xxx.xxx"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SUBNET_MASK</span> <span class="attr">VALUE</span>=<span class="string">"255.255.254.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">GATEWAY_IP_ADDRESS</span> <span class="attr">VALUE</span>=<span class="string">"10.15.xxx.1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DNS_NAME</span> <span class="attr">VALUE</span>=<span class="string">"ILOCNGxxxxxxx"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DOMAIN_NAME</span> <span class="attr">VALUE</span>=<span class="string">""</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PRIM_DNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SEC_DNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TER_DNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PRIM_WINS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SEC_WINS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">STATIC_ROUTE_1</span> <span class="attr">DEST</span>=<span class="string">"0.0.0.0"</span></span><br><span class="line">                    <span class="attr">GATEWAY</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">STATIC_ROUTE_2</span> <span class="attr">DEST</span>=<span class="string">"0.0.0.0"</span></span><br><span class="line">                    <span class="attr">GATEWAY</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">STATIC_ROUTE_3</span> <span class="attr">DEST</span>=<span class="string">"0.0.0.0"</span></span><br><span class="line">                    <span class="attr">GATEWAY</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">GET_NETWORK_SETTINGS</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/" data-id="cilufobuy000uiss65lqrlxcw" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dell-ipxe" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/03/dell-ipxe/" class="article-date">
+  <time datetime="2015-07-02T22:16:53.000Z" itemprop="datePublished">2015-07-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/03/dell-ipxe/">DELL 部分型号 iPXE 不兼容问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>DELL R710 服务器iPXE启动报错问题，报错信息如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">1<span class="selector-class">.0</span><span class="selector-class">.0</span>(<span class="selector-tag">f557</span>)</span><br><span class="line"><span class="selector-tag">Link</span><span class="selector-pseudo">:up</span></span><br><span class="line"><span class="selector-tag">Configuring</span> (<span class="selector-tag">net0</span>)…… <span class="selector-tag">Error</span> 0<span class="selector-tag">x040ee119</span> </span><br><span class="line"><span class="selector-tag">No</span> <span class="selector-tag">more</span> <span class="selector-tag">network</span> <span class="selector-tag">devices</span></span><br></pre></td></tr></table></figure>
+<p>在官网可以看到错误代码文档，以及可能的问题分析，还有直达源码的链接。<br><a href="http://ipxe.org/err/040ee1" target="_blank" rel="external">http://ipxe.org/err/040ee1</a></p>
+<p>解决方案是升级 引导文件undionly.kpxe</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">yum -y install lzma xz-devel xz-libs lzip syslinux cdw</span><br><span class="line">git clone <span class="string">http:</span><span class="comment">//git.ipxe.org/ipxe.git</span></span><br><span class="line">cd ipxe<span class="regexp">/src/</span></span><br><span class="line">make</span><br><span class="line">cp bin<span class="regexp">/undionly.kpxe /</span>home<span class="regexp">/service/</span>PXE/</span><br></pre></td></tr></table></figure>
+<p>把文件替换旧版本即可</p>
+<p>重启服务器，网络引导成功</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/03/dell-ipxe/" data-id="cilufobu1000aiss6qbnaplwa" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/03/dell-ipxe/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-squid" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/06/23/squid/" class="article-date">
+  <time datetime="2015-06-23T02:12:00.000Z" itemprop="datePublished">2015-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/23/squid/">使用squid代理rsync</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于新IDC和老IDC需要迁移部分数据，但新老两个IDC之间网络目前还没打通，但办公室网络两边都可以连通。<br>于是用squid搭个代理来同步数据。</p>
+<p>office 10.21.2.2 squid proxy<br>老IDC  10.15.3.8 rsync src<br>新IDC  10.19.1.3 rsync dst</p>
+<p>office的服务器10.21.2.2上搭建squid服务<br>yum install -y squid<br>vim /etc/squid/squid.conf<br>在配置文件最前面添加<br><figure class="highlight elm"><table><tr><td class="code"><pre><span class="line"><span class="title">acl</span> idc_rule src <span class="number">10.19</span><span class="number">.1</span><span class="number">.0</span>/<span class="number">22</span></span><br><span class="line"><span class="title">acl</span> <span class="type">SSL_port</span> <span class="keyword">port</span> 873 # for rsync  </span><br><span class="line"><span class="title">acl</span> <span class="type">Safe_port</span> <span class="keyword">port</span> 873 # for rsync  </span><br><span class="line"><span class="title">visible_hostname</span> localhost</span><br><span class="line"><span class="title">http_access</span> allow idc_rule</span><br></pre></td></tr></table></figure></p>
+<p>service squid restart</p>
+<p>在新idc的机器10.19.1.3上，运行下面命令<br>export RSYNC_PROXY=”10.21.2.2:3128”<br>rsync -avz –progress 10.15.3.8::iso/ ./</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/06/23/squid/" data-id="cilufobvc0014iss6h94xdynr" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/06/23/squid/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/" class="article-date">
+  <time datetime="2015-06-23T01:30:53.000Z" itemprop="datePublished">2015-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/">32位 XP server2003 连接vmware vCenter ESXi 5.5以上版本失败问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>vSphere Client and vSphere PowerCLI may fail to connect to vCenter Server 5.5 due to a Handshake failure (2049143)</p>
+<p>连到esxi 5.5 或 vCenter 5.5都要增加<cipherlist>ALL</cipherlist></p>
+<p>F2 ，输入账号密码<br>进入Troubleshooting Options<br>EnableSSH</p>
+<p>ssh 到 ESXi<br>cd /etc/vmware/rhttpproxy/<br>cp config.xml config_bak.xml<br>修改 config.xml ：vi config.xml<br>找到 <vmacore> 的 <ssl> 配置段<br>加上一行：<cipherlist>ALL</cipherlist></ssl></vmacore></p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="params">&lt;ssl&gt;</span></span><br><span class="line">          <span class="params">&lt;doVersionCheck&gt;</span> false <span class="params">&lt;/doVersionCheck&gt;</span></span><br><span class="line">          <span class="params">&lt;useCompression&gt;</span>true<span class="params">&lt;/useCompression&gt;</span></span><br><span class="line">          <span class="params">&lt;libraryPath&gt;</span><span class="meta-keyword">/lib/</span><span class="params">&lt;/libraryPath&gt;</span></span><br><span class="line">          <span class="params">&lt;cipherList&gt;</span>ALL<span class="params">&lt;/cipherList&gt;</span></span><br><span class="line"><span class="params">&lt;/ssl&gt;</span></span><br></pre></td></tr></table></figure>
+<p>保存后重启服务：/etc/init.d/rhttpproxy restart</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/" data-id="cilufobtm0002iss61kmquwf2" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/" class="article-date">
+  <time datetime="2015-06-15T02:46:31.000Z" itemprop="datePublished">2015-06-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/">CentOS 6.x git 1.7 clone gitlab 验证失败</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近要用测试机（CentOS6)测试项目代码，代码放在gitlab。<br>yum安装的git版本是1.7.1，在clone gitlab repo的时候，报如下错误。</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="string">error:</span> The requested URL returned <span class="string">error:</span> <span class="number">401</span> Unauthorized <span class="keyword">while</span> accessing <span class="string">https:</span><span class="comment">//gitlab.com/arkii/xxx.git/info/refs</span></span><br><span class="line"><span class="string">fatal:</span> HTTP request failed</span><br></pre></td></tr></table></figure>
+<p>解决办法是升级git版本到2以上。<br>升级过程如下</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">wget https://github.com/git/git/archive/v2.4.3.tar.gz</span><br><span class="line">yum -y <span class="keyword">install</span> curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc xmlto docbook2x docbook2X</span><br><span class="line">tar -zxf v2<span class="number">.4</span><span class="number">.3</span>.tar.gz</span><br><span class="line">cd git<span class="number">-2.4</span><span class="number">.3</span></span><br><span class="line">make configure</span><br><span class="line">./configure <span class="comment">--prefix=/usr/local/git2.4.3</span></span><br><span class="line">make -j8 all doc info</span><br><span class="line">make <span class="keyword">install</span> <span class="keyword">install</span>-doc <span class="keyword">install</span>-html <span class="keyword">install</span>-info</span><br><span class="line"><span class="keyword">ln</span> -s /usr/<span class="keyword">local</span>/git2<span class="number">.4</span><span class="number">.3</span>/<span class="keyword">bin</span>/git /usr/<span class="keyword">bin</span>/</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/" data-id="cilufobts0005iss62h6vvqnr" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/" class="article-date">
+  <time datetime="2015-05-24T18:45:27.000Z" itemprop="datePublished">2015-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/">禁用chrome增强型书签管理器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一直开着chrome自动更新，突然前段时间书签管理器变了，习惯之前的树形，书签都归类好了，突然来一简单粗暴的，还不习惯，每次添加都新书签都觉得好难用。</p>
+<p>先关了吧，过一阵再研究。</p>
+<p>打开 chrome://flags/#enhanced-bookmarks-experiment</p>
+<p>设置为“Disabled”</p>
+<p>重启chrome</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/" data-id="cilufobuw000siss6lumlqhwg" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-docker-statsd-influxdb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/12/docker-statsd-influxdb/" class="article-date">
+  <time datetime="2015-05-12T00:05:39.000Z" itemprop="datePublished">2015-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/12/docker-statsd-influxdb/">docker-statsd-influxdb</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文介绍如何用docker封装一个支持graphite和influxdb作为后端数据存储的statsd image。</p>
+<p>最近折腾监控系统<br>选用statsd作为数据代理，用于接收各种agent发来的读数，然后存到influxdb中。<br>statsd 目前在github上star有7500+。</p>
+<p>注意:<br>使用statsd数据刷到influxdb中有10秒钟延迟，这是由于statsd的机制。</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/etsy/statsd.git</span><br></pre></td></tr></table></figure>
+<p>Dockerfile<br><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cat Dockerfile </span></span><br><span class="line"><span class="keyword">FROM</span>        arkii/node:slim</span><br><span class="line"><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</span><br><span class="line"><span class="keyword">COPY</span>        <span class="bash">./statsd /statsd</span><br><span class="line"></span><span class="keyword">ADD</span>         <span class="bash">config.js /statsd/config.js</span><br><span class="line"></span><span class="keyword">RUN</span>         <span class="bash"><span class="built_in">echo</span> <span class="string">'Asia/Shanghai'</span> &gt; /etc/timezone &amp;&amp; /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; <span class="built_in">cd</span> /statsd &amp;&amp; npm install statsd-influxdb-backend</span><br><span class="line"></span><span class="keyword">CMD</span>         <span class="bash">/statsd/bin/statsd <span class="string">"<span class="variable">$&#123;CONFIG_PATH:=/statsd/config.js&#125;</span>"</span></span><br><span class="line"></span><span class="keyword">EXPOSE</span>      <span class="number">8125</span>/udp <span class="number">8126</span>/tcp</span><br></pre></td></tr></table></figure></p>
+<p>docker-compose/fig 配置文件<br><figure class="highlight haml"><table><tr><td class="code"><pre><span class="line"># cat fig.yml </span><br><span class="line">statsd:</span><br><span class="line">  image: arkii/statsd:influxdb</span><br><span class="line">  dns: 172.17.42.1</span><br><span class="line">  ports:</span><br><span class="line">    -<span class="ruby"> <span class="string">"8125:8125/udp"</span></span><br><span class="line"></span>    -<span class="ruby"> <span class="string">"8126:8126/tcp"</span></span><br><span class="line"></span>  environment:</span><br><span class="line">    -<span class="ruby"> PATH=<span class="regexp">/sbin:/usr</span><span class="regexp">/sbin:/bin</span><span class="symbol">:/usr/bin</span><span class="symbol">:/usr/local/bin</span></span><br><span class="line"></span>    -<span class="ruby"> INFLUXDB_HOST=<span class="number">10.21</span>.<span class="number">9.61</span></span><br><span class="line"></span>    -<span class="ruby"> STATSD_DEBUG=<span class="keyword">true</span></span></span><br></pre></td></tr></table></figure></p>
+<p>启动脚本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cat service.sh </span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">sysctl -w net.nf_conntrack_max=655360</span><br><span class="line">sysctl -w vm.max_map_count=262144</span><br><span class="line"><span class="built_in">ulimit</span> -n 65536</span><br><span class="line">/usr/bin/fig up <span class="_">-d</span> --allow-insecure-ssl</span><br></pre></td></tr></table></figure></p>
+<p>statsd配置文件，支持启动时指定变量<br><figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cat config.js </span></span><br><span class="line">&#123;<span class="comment"></span><br><span class="line">//  graphitePort: 2003,</span><span class="comment"></span><br><span class="line">//  graphiteHost: "graphite.example.com",</span></span><br><span class="line">  port: <span class="number">8125</span>,<span class="comment"></span><br><span class="line">//  backends: [ "./backends/graphite", "statsd-influxdb-backend" ],</span></span><br><span class="line">  debug: <span class="built_in">process</span>.env.STATSD_DEBUG || <span class="literal">false</span>,</span><br><span class="line">  backends: [ <span class="string">"statsd-influxdb-backend"</span> ],</span><br><span class="line">  influxdb: &#123;</span><br><span class="line">    host: <span class="built_in">process</span>.env.INFLUXDB_HOST || <span class="string">'127.0.0.1'</span>,  <span class="comment"> // InfluxDB host. (default 127.0.0.1)</span></span><br><span class="line">    port: <span class="built_in">process</span>.env.INFLUXDB_PORT || <span class="number">8086</span>,         <span class="comment"> // InfluxDB port. (default 8086)</span></span><br><span class="line">    <span class="built_in">version</span>: <span class="number">0.8</span>,                                    <span class="comment"> // InfluxDB port. (default 0.8)</span></span><br><span class="line">    ssl: <span class="literal">false</span>,                                      <span class="comment"> // InfluxDB is hosted over SSL. (default false)</span></span><br><span class="line">    database: <span class="built_in">process</span>.env.INFLUXDB_DB || <span class="string">"statsd"</span>,   <span class="comment"> // InfluxDB database instance. (required)</span></span><br><span class="line">    username: <span class="built_in">process</span>.env.INFLUXDB_USER || <span class="string">"root"</span>,   <span class="comment"> // InfluxDB database username. (required)</span></span><br><span class="line">    password: <span class="built_in">process</span>.env.INFLUXDB_PASS || <span class="string">"root"</span>,   <span class="comment"> // InfluxDB database password. (required)</span></span><br><span class="line">    flush: &#123;</span><br><span class="line">      enable: <span class="literal">true</span>      <span class="comment"> // Enable regular flush strategy. (default true)</span></span><br><span class="line">    &#125;,</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      enable: <span class="literal">false</span>,      <span class="comment"> // Enable the proxy strategy. (default false)</span></span><br><span class="line">      suffix: <span class="string">'raw'</span>,      <span class="comment"> // Metric name suffix. (default 'raw')</span></span><br><span class="line">      flushInterval: <span class="number">1000</span> <span class="comment"> // Flush interval for the internal buffer.</span></span><br><span class="line">                          <span class="comment"> // (default 1000)</span></span><br><span class="line">    &#125;,</span><br><span class="line">    includeStatsdMetrics: <span class="literal">false</span>,<span class="comment"> // Send internal statsd metrics to InfluxDB. (default false)</span></span><br><span class="line">    includeInfluxdbMetrics: <span class="literal">false</span><span class="comment"> // Send internal backend metrics to InfluxDB. (default false)</span></span><br><span class="line">                                 <span class="comment"> // Requires includeStatsdMetrics to be enabled.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>启动容器<br><figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line">./<span class="class"><span class="keyword">service</span>.<span class="title">sh</span></span></span><br></pre></td></tr></table></figure></p>
+<p>查看容器日志和debug信息<br><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">fig</span> logs</span><br></pre></td></tr></table></figure></p>
+<p>直接使用我的镜像<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker pull arkii/<span class="string">statsd:</span>influxdb</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/etsy/statsd" target="_blank" rel="external">statsd项目地址</a></p>
+<p><a href="https://github.com/bernd/statsd-influxdb-backend" target="_blank" rel="external">statsd-influxdb-backend项目地址</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/" data-id="cilufobua000ciss6iwh0t6wj" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/23/hello-world/" class="article-date">
+  <time datetime="2015-01-23T07:33:55.000Z" itemprop="datePublished">2015-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/23/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(data, key)</span>:</span></span><br><span class="line">    <span class="string">"""docstring for query"""</span></span><br><span class="line">    pattern = re.compile(key, re.IGNORECASE)</span><br><span class="line">    records = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> data.items():</span><br><span class="line">        match = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> pattern.match(k):</span><br><span class="line">            match = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> v.items():</span><br><span class="line">            <span class="keyword">if</span> isinstance(y, list):</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> y:</span><br><span class="line">                    <span class="keyword">if</span> pattern.match(i):</span><br><span class="line">                        match = <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> pattern.match(x):</span><br><span class="line">                    match = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> match:</span><br><span class="line">            <span class="keyword">if</span> records.get(k):</span><br><span class="line">                records[k] = v</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                records.setdefault(k, v)</span><br><span class="line">    <span class="keyword">return</span> records</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/01/23/hello-world/" data-id="cilufobui000hiss69w1l8hzu" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/01/23/hello-world/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dnspod-ddns" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/12/dnspod-ddns/" class="article-date">
+  <time datetime="2015-01-12T01:48:05.000Z" itemprop="datePublished">2015-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/12/dnspod-ddns/">使用dnspod实现动态dns</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近家里换了联通的30M带宽，刚好可以在家里电脑上搭个网站。</p>
+<p>域名是托管在dnspod上。</p>
+<p>用python写了个程序，获取公网IP，并调用dnspod的API，来更新dns记录。</p>
+<p>DNSPod 貌似现在更改了 API 接口了，会自动读取请求主机的 IP 并且更新记录。</p>
+<ul>
+<li><p>注意事项：</p>
+<ul>
+<li>如果1小时之内，提交了超过5次没有任何变动的记录修改请求，该记录会被系统锁定1小时，不允许再次修改，所以在开发和测试的过程中，请自行处理IP变动，仅在本地IP发生变动的情况下才调用本接口。</li>
+<li>如何理解没有任何变动的记录修改请求？比如原记录值已经是 1.1.1.1，新的请求还要求修改为 1.1.1.1。</li>
+</ul>
+</li>
+</ul>
+<p>替换上你的Email，密码，域名ID，记录ID等参数，就可以运行了。 会在后台一直运行，每隔30秒检查一遍IP，如果修改了就更新IP。</p>
+<p>获得domain_id可以用curl</p>
+<pre><code>curl -k https://dnsapi.cn/Domain.List -d &quot;login_email=xxx&amp;login_password=xxx&quot;
+</code></pre><p>获得record_id类似</p>
+<pre><code>curl -k https://dnsapi.cn/Record.List -d &quot;login_email=xxx&amp;login_password=xxx&amp;domain_id=xxx&quot;
+</code></pre><p><a href="https://github.com/ARKII/dnspod-ddns" target="_blank" rel="external">下载</a></p>
+<p><a href="https://www.dnspod.cn/docs/records.html#dns" target="_blank" rel="external">dnspod api文档</a></p>
+<p><a href="https://gist.github.com/chuangbo/833369" target="_blank" rel="external">参考</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/01/12/dnspod-ddns/" data-id="cilufobu7000biss6k29n97z9" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/01/12/dnspod-ddns/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-run-crond-in-container" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/12/run-crond-in-container/" class="article-date">
+  <time datetime="2015-01-11T17:52:35.000Z" itemprop="datePublished">2015-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/12/run-crond-in-container/">在docker中使用cron</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="docker-crond解决方案"><a href="#docker-crond解决方案" class="headerlink" title="docker crond解决方案"></a>docker crond解决方案</h2><p>容器技术给我们带来极大便利的同时也带来一些必须要做的改变，比如以前在应用服务器中运行的cron定时任务就不能用原有的方式运行。<br>本文基于centos，介绍如何解决使用容器技术时的定时任务问题。</p>
+<p>具体思路就是：<br>在你的应用环境image上面再commit一层crond<br>1.封装一个应用image<br>2.封装一个crond image，但是以应用image为base</p>
+<p>假设已有的应用环境image为 arkii/lamp 是我的 php运行环境</p>
+<p>mkdir build &amp;&amp; cd build<br>cat Dockerfile</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span>        arii/lamp</span><br><span class="line"><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</span><br><span class="line"><span class="keyword">RUN</span>         <span class="bash">yum -y install vixie-cron supervisor &amp;&amp; yum clean all &amp;&amp; rm <span class="_">-f</span> /var/<span class="built_in">log</span>/yum.log</span><br><span class="line"></span><span class="keyword">RUN</span>         <span class="bash">sed -ie <span class="string">'/pam_loginuid/d'</span> /etc/pam.d/crond</span><br><span class="line"></span><span class="keyword">ADD</span>         <span class="bash">supervisord.conf /etc/supervisord.conf</span><br><span class="line"></span><span class="keyword">CMD</span>         <span class="bash">[<span class="string">"/usr/bin/supervisord"</span>, <span class="string">"-c"</span>, <span class="string">"/etc/supervisord.conf"</span>]</span></span><br></pre></td></tr></table></figure>
+<p>cat supervisord.conf</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[supervisord]</span></span><br><span class="line"><span class="attr">nodaemon</span>=<span class="literal">true</span></span><br><span class="line"><span class="section">[program:crond]</span></span><br><span class="line"><span class="attr">command</span>=/usr/sbin/crond -n</span><br><span class="line"><span class="attr">log_stdout</span>=<span class="literal">true</span>             </span><br><span class="line"><span class="attr">log_stderr</span>=<span class="literal">true</span>             </span><br><span class="line"><span class="attr">logfile</span>=/db/logs/crond.log  </span><br><span class="line"><span class="attr">logfile_maxbytes</span>=<span class="number">512</span>MB</span><br><span class="line"><span class="attr">logfile_backups</span>=<span class="number">10</span></span><br><span class="line"><span class="section"></span><br><span class="line">[program:crontab]</span></span><br><span class="line"><span class="attr">command</span>=/usr/bin/crontab /db/config/crontab</span><br></pre></td></tr></table></figure>
+<p>从宿主机启动crond容器</p>
+<p>宿主机中</p>
+<p>日志目录/db/logs</p>
+<p>crontab文件存放位置/db/app/config/crontab</p>
+<p>在宿主机中修改/db/app/config/crontab 容器中inotify机制会自动更新crontab，不需重启容器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">APPNAME=<span class="string">'crond-in-container'</span></span><br><span class="line">APPID=$(docker ps| grep <span class="variable">$&#123;APPNAME&#125;</span> | awk <span class="string">'&#123;print$1&#125;'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$&#123;APPID&#125;</span> ]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;APPNAME&#125;</span> not running ..."</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    docker stop <span class="variable">$&#123;APPID&#125;</span></span><br><span class="line">    docker rm <span class="variable">$&#123;APPID&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">docker run <span class="_">-d</span> --name=<span class="variable">$&#123;APPNAME&#125;</span> \</span><br><span class="line">-v /db/logs:/db/logs \</span><br><span class="line">-v /db/app/config/crontab:/db/config/crontab \</span><br><span class="line">arkii/crond</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/01/12/run-crond-in-container/" data-id="cilufobv90011iss6szcvaf1p" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/01/12/run-crond-in-container/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/01/wall-e-web-deployment/">Wall-E web deployment</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/15/ionic-web-app-dev/">ionic hybrid app development</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/25/bitbar-plugin-icinga-overview/">BitBar plugin icinga2 overview</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/sysops/" style="font-size: 10px;">sysops</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 arkii<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/arkii" class="mobile-nav-link">GitHub</a>
+  
+    <a href="https://hub.docker.com/u/arkii" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'blog-arkii';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

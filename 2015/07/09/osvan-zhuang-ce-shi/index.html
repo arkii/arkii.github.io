@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>OSv安装测试 | Tranquility Garden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="curl https://raw.githubusercontent.com/cloudius-systems/capstan/master/scripts/download &amp;gt;&amp;gt;./ installcapstan[root@localhost ~]# sh installcapstan Downloading Capstan binary: http://osv.capstan.s3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSv安装测试">
+<meta property="og:url" content="http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/index.html">
+<meta property="og:site_name" content="Tranquility Garden">
+<meta property="og:description" content="curl https://raw.githubusercontent.com/cloudius-systems/capstan/master/scripts/download &amp;gt;&amp;gt;./ installcapstan[root@localhost ~]# sh installcapstan Downloading Capstan binary: http://osv.capstan.s3">
+<meta property="og:updated_time" content="2016-01-25T11:18:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OSv安装测试">
+<meta name="twitter:description" content="curl https://raw.githubusercontent.com/cloudius-systems/capstan/master/scripts/download &amp;gt;&amp;gt;./ installcapstan[root@localhost ~]# sh installcapstan Downloading Capstan binary: http://osv.capstan.s3">
+  
+    <link rel="alternate" href="/atom.xml" title="Tranquility Garden" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+<!--  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72217808-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tranquility Garden</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/arkii">GitHub</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/arkii">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.wuliwala.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-osvan-zhuang-ce-shi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/09/osvan-zhuang-ce-shi/" class="article-date">
+  <time datetime="2015-07-08T20:07:54.000Z" itemprop="datePublished">2015-07-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OSv安装测试
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line">curl https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/cloudius-systems/capstan/master/scripts/download &gt;&gt;./</span> installcapstan</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># sh installcapstan </span></span><br><span class="line">Downloading Capstan binary: http:<span class="regexp">//</span>osv.capstan.s3.amazonaws.com/capstan/v0<span class="number">.1</span><span class="number">.8</span>/linux_amd64/capstan</span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span> <span class="number">100.0</span>%</span><br></pre></td></tr></table></figure>
+<p>执行命令<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# capstan </span><br><span class="line">NAME:</span><br><span class="line">   capstan - pack, ship, and run applications in light-weight VMs</span><br><span class="line"></span><br><span class="line">USAGE:</span><br><span class="line">   capstan [global options] command [command options] [arguments...]</span><br><span class="line"></span><br><span class="line">VERSION:</span><br><span class="line">   v0.1.8</span><br><span class="line"></span><br><span class="line">COMMANDS:</span><br><span class="line">   info		<span class="keyword">show</span> disk image information</span><br><span class="line">   <span class="keyword">import</span>	<span class="keyword">import</span> an image <span class="keyword">to</span> the <span class="keyword">local</span> repository</span><br><span class="line">   pull		pull an image <span class="keyword">from</span> a repository</span><br><span class="line">   rmi		<span class="keyword">delete</span> an image <span class="keyword">from</span> a repository</span><br><span class="line">   run		launch a VM. You may pass the image <span class="keyword">name</span> <span class="keyword">as</span> the <span class="keyword">first</span> argument.</span><br><span class="line">   <span class="keyword">build</span>	<span class="keyword">build</span> an image</span><br><span class="line">   images, i	<span class="keyword">list</span> images</span><br><span class="line">   <span class="keyword">search</span>	<span class="keyword">search</span> a remote images</span><br><span class="line">   instances, I	<span class="keyword">list</span> instances</span><br><span class="line">   <span class="keyword">stop</span>		<span class="keyword">stop</span> an <span class="keyword">instance</span></span><br><span class="line">   <span class="keyword">delete</span>	<span class="keyword">delete</span> an <span class="keyword">instance</span></span><br><span class="line">   <span class="keyword">help</span>, h	Shows a <span class="keyword">list</span> <span class="keyword">of</span> commands <span class="keyword">or</span> <span class="keyword">help</span> <span class="keyword">for</span> one command</span><br><span class="line">   </span><br><span class="line"><span class="keyword">GLOBAL</span> OPTIONS:</span><br><span class="line">   <span class="comment">--help, -h		show help</span></span><br><span class="line">   <span class="comment">--version, -v	print the version</span></span><br></pre></td></tr></table></figure></p>
+<p>搜索官方镜像<br><figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="meta"># capstan search</span></span><br><span class="line"><span class="built_in">Name</span>                           Description                                        Version                   Created        </span><br><span class="line">cloudius/osv-base              OSv base <span class="built_in">image</span> <span class="keyword">for</span> developers                      v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">29</span>:<span class="number">46</span></span><br><span class="line">cloudius/osv-cassandra         Apache Cassandra/OSv                               v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">38</span>:<span class="number">48</span></span><br><span class="line">cloudius/osv-crash             OSv/CRaSH shell <span class="keyword">for</span> developers                     v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">35</span>:<span class="number">59</span></span><br><span class="line">cloudius/osv-iperf             iperf/OSv                                          v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">40</span>:<span class="number">46</span></span><br><span class="line">cloudius/osv-memcached-opt     OSv memcached server (optimized)                   v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">41</span>:<span class="number">14</span></span><br><span class="line">cloudius/osv-node              Node/OSv                                           v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">35</span>:<span class="number">30</span></span><br><span class="line">cloudius/osv-openjdk           OpenJDK <span class="number">7</span>/OSv base <span class="built_in">image</span> <span class="keyword">for</span> developers            v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">32</span>:<span class="number">52</span></span><br><span class="line">cloudius/osv-openjdk8          OpenJDK <span class="number">8</span>/OSv base <span class="built_in">image</span> <span class="keyword">for</span> developers            v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">33</span>:<span class="number">57</span></span><br><span class="line">cloudius/osv-redis-memonly     Redis (<span class="built_in">in</span>-memory only)                             v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">41</span>:<span class="number">45</span></span><br><span class="line">cloudius/osv-tomcat            Apache Tomcat/OSv                                  v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">39</span>:<span class="number">48</span></span><br><span class="line">cloudius/osv                   OSv <span class="keyword">with</span> shell <span class="keyword">for</span> users                           v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">36</span>:<span class="number">59</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/" data-id="cilufobv4000xiss619twnrgd" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CentOS6 配置 vagrant + VirtualBox
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux命令行获取HP iLo配置信息</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/01/wall-e-web-deployment/">Wall-E web deployment</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/15/ionic-web-app-dev/">ionic hybrid app development</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/25/bitbar-plugin-icinga-overview/">BitBar plugin icinga2 overview</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/sysops/" style="font-size: 10px;">sysops</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 arkii<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/arkii" class="mobile-nav-link">GitHub</a>
+  
+    <a href="https://hub.docker.com/u/arkii" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'blog-arkii';
+  
+  var disqus_url = 'http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
