@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wuliwala.net/"/>
-  <updated>2016-03-14T11:13:16.000Z</updated>
+  <updated>2016-03-21T07:07:08.000Z</updated>
   <id>http://blog.wuliwala.net/</id>
   
   <author>
@@ -14,6 +14,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>segmentfault「我是工具控」分享</title>
+    <link href="http://blog.wuliwala.net/2016/03/19/segmentfault-tools-sharing/"/>
+    <id>http://blog.wuliwala.net/2016/03/19/segmentfault-tools-sharing/</id>
+    <published>2016-03-19T09:42:00.000Z</published>
+    <updated>2016-03-21T07:07:08.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;segmentfault-我是工具控-分享&quot;&gt;&lt;a href=&quot;#segmentfault-我是工具控-分享&quot; class=&quot;headerlink&quot; title=&quot;segmentfault[我是工具控]分享&quot;&gt;&lt;/a&gt;segmentfault[我是工具控]分享&lt;/h2&gt;&lt;p&gt; &lt;strong&gt;运维团队中的开发，4年运维工作经验，去年转开发。主要开发语言python，偶尔写shell、javascript.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我的工具箱可能跟别人不太一样&lt;br&gt;大家装机必备的就不提了&lt;/p&gt;
+&lt;h3 id=&quot;命令行工具&quot;&gt;&lt;a href=&quot;#命令行工具&quot; class=&quot;headerlink&quot; title=&quot;命令行工具&quot;&gt;&lt;/a&gt;命令行工具&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ag&lt;/strong&gt; 搜索代码炒鸡快！&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;httpie&lt;/strong&gt; 人类用的http测试工具&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;jq&lt;/strong&gt; 格式化json用的，跟&lt;code&gt;python -m json.tool&lt;/code&gt;相比，是彩色的&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;cowsay&lt;/strong&gt; &lt;strong&gt;lolcat&lt;/strong&gt; 好玩的，不解释&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;生活-效率&quot;&gt;&lt;a href=&quot;#生活-效率&quot; class=&quot;headerlink&quot; title=&quot;生活/效率&quot;&gt;&lt;/a&gt;生活/效率&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Keynote&lt;/strong&gt; 特别喜欢苹果的这款产品，简洁易用，码农也能做出很好的幻灯片。曾用它做演讲稿，从产品、前端那里赢得3次分享、项目评比冠军。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MacDown&lt;/strong&gt; 以前用Mou，后来发现MacDown，代码着色要比Mou好很多，配合&lt;strong&gt;Hexo&lt;/strong&gt;，也能用来写博客。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;eWallet&lt;/strong&gt; 管理密码的，从windows就开始用，Mac平台也有。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MindNode&lt;/strong&gt; 看图，不解释&lt;img src=&quot;/images/2016/03/19/mindnode.png&quot; alt=&quot;mindnode&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;编辑器&quot;&gt;&lt;a href=&quot;#编辑器&quot; class=&quot;headerlink&quot; title=&quot;编辑器&quot;&gt;&lt;/a&gt;编辑器&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;MacVim&lt;/strong&gt;今年开始学习，平时一般用它，写写shell脚本、python小程序；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atom&lt;/strong&gt;项目用它，写前端不要太爽。&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;TextMate&lt;/strong&gt;&lt;/em&gt; 刚从windows换到Mac的时候非常怀念极轻量的&lt;strong&gt;Editplus&lt;/strong&gt;，用了一阵，也还不错，今年主要学习vim，所以不用了。&lt;/li&gt;
+&lt;li&gt;我不用 &lt;strong&gt;oh~my~zsh&lt;/strong&gt; 我用&lt;strong&gt;bash-it&lt;/strong&gt; ，因为做了4年运维，对bash较熟，用过oh~my~zsh，感觉各种行为好怪异，简直无法愉快玩耍。&lt;br&gt;自己改的bash主题&lt;img src=&quot;/images/2016/03/19/bash-it.png&quot; alt=&quot;bash-it&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;vim 插件，一天可是说不完的。。。&lt;/p&gt;
+&lt;figure class=&quot;highlight sml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;VundleVim&lt;/span&gt;/&lt;span class=&quot;type&quot;&gt;Vundle&lt;/span&gt;.vim&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;Valloric&lt;/span&gt;/&lt;span class=&quot;type&quot;&gt;YouCompleteMe&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;scrooloose&lt;/span&gt;/nerdtree&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;scrooloose&lt;/span&gt;/nerdcommenter&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;scrooloose&lt;/span&gt;/syntastic&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;vim&lt;/span&gt;-airline/vim-airline&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;vim&lt;/span&gt;-airline/vim-airline-themes&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;vim&lt;/span&gt;-scripts/indentpython.vim&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;nvie&lt;/span&gt;/vim-flake8&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;Xuyuanp&lt;/span&gt;/nerdtree-git-plugin&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;xolox&lt;/span&gt;/vim-misc&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;xolox&lt;/span&gt;/vim-session&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;Chiel92&lt;/span&gt;/vim-autoformat&#39;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Atom插件&lt;/p&gt;
+&lt;figure class=&quot;highlight vim&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;atom-beautify&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;atom-&lt;span class=&quot;keyword&quot;&gt;sync&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;color-picker&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;file&lt;/span&gt;-icons&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git-control&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git-status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;linter&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;linter-jshint&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;linter-pep8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;linter-&lt;span class=&quot;keyword&quot;&gt;python&lt;/span&gt;-pep8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;minimap&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;python&lt;/span&gt;-tools&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tree-&lt;span class=&quot;keyword&quot;&gt;view&lt;/span&gt;-git-status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;vim&lt;/span&gt;-&lt;span class=&quot;keyword&quot;&gt;mode&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;工位无码图&quot;&gt;&lt;a href=&quot;#工位无码图&quot; class=&quot;headerlink&quot; title=&quot;工位无码图&quot;&gt;&lt;/a&gt;工位无码图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/2016/03/19/seat.jpeg&quot; alt=&quot;工位无码图&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文参与了 SegmentFault&lt;a href=&quot;https://segmentfault.com/a/1190000004537274&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;「我是工具控」&lt;/a&gt;分享，如果你也手持利器，那就一起来分享吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;segmentfault-我是工具控-分享&quot;&gt;&lt;a href=&quot;#segmentfault-我是工具控-分享&quot; class=&quot;headerlink&quot; title=&quot;segmentfault[我是工具控]分享&quot;&gt;&lt;/a&gt;segmentfault[我是工具控]分享&lt;/
+    
+    </summary>
+    
+    
+      <category term="dev" scheme="http://blog.wuliwala.net/tags/dev/"/>
+    
+      <category term="tools" scheme="http://blog.wuliwala.net/tags/tools/"/>
+    
+  </entry>
   
   <entry>
     <title>Migration From Subversion(svn) to Git</title>
@@ -555,29 +605,6 @@ RSYSLOGEOF
     <summary type="html">
     
       &lt;p&gt;vmware 的 ESXi服务器是不带包管理系统的，也不带任何编译工具，所以遇到需要安装软件的情况，需要其他Linux环境来编译跨平台二进制文件。&lt;br&gt;本文主要讲述在CentOS下给ESXi服务器编译ipmitool。&lt;br&gt;&lt;figure class=&quot;highligh
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>cygwin下安装mysqld</title>
-    <link href="http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/"/>
-    <id>http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/</id>
-    <published>2015-08-24T05:12:40.000Z</published>
-    <updated>2016-01-25T11:18:39.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;安装mysql&quot;&gt;&lt;a href=&quot;#安装mysql&quot; class=&quot;headerlink&quot; title=&quot;安装mysql&quot;&gt;&lt;/a&gt;安装mysql&lt;/h3&gt;&lt;p&gt;首先运行cygwin_setup，选装包：&lt;br&gt;mysql （客户端）&lt;br&gt;mysqld （服务端）&lt;/p&gt;
-&lt;h3 id=&quot;执行命令&quot;&gt;&lt;a href=&quot;#执行命令&quot; class=&quot;headerlink&quot; title=&quot;执行命令&quot;&gt;&lt;/a&gt;执行命令&lt;/h3&gt;&lt;p&gt;&lt;code&gt;#mysql_install_db&lt;/code&gt;&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Installing MySQL system tables...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;OK&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Filling &lt;span class=&quot;keyword&quot;&gt;help&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;tables&lt;/span&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;OK&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;To&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;start&lt;/span&gt; mysqld &lt;span class=&quot;keyword&quot;&gt;at&lt;/span&gt; boot &lt;span class=&quot;keyword&quot;&gt;time&lt;/span&gt; you have &lt;span class=&quot;keyword&quot;&gt;to&lt;/span&gt; copy&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;support-files/mysql.&lt;span class=&quot;keyword&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;to&lt;/span&gt; the &lt;span class=&quot;keyword&quot;&gt;right&lt;/span&gt; place &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; your &lt;span class=&quot;keyword&quot;&gt;system&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;PLEASE REMEMBER &lt;span class=&quot;keyword&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;SET&lt;/span&gt; A &lt;span class=&quot;keyword&quot;&gt;PASSWORD&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;FOR&lt;/span&gt; THE MySQL root &lt;span class=&quot;keyword&quot;&gt;USER&lt;/span&gt; !&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;To&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt; so, &lt;span class=&quot;keyword&quot;&gt;start&lt;/span&gt; the &lt;span class=&quot;keyword&quot;&gt;server&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt; issue the &lt;span class=&quot;keyword&quot;&gt;following&lt;/span&gt; commands:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/usr/&lt;span class=&quot;keyword&quot;&gt;bin&lt;/span&gt;/mysqladmin -u root &lt;span class=&quot;keyword&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;new-password&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/usr/&lt;span class=&quot;keyword&quot;&gt;bin&lt;/span&gt;/mysqladmin -u root -h brix &lt;span class=&quot;keyword&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;new-password&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Alternatively you can run:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/usr/&lt;span class=&quot;keyword&quot;&gt;bin&lt;/span&gt;/mysql_secure_installation&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;which will also give you the &lt;span class=&quot;keyword&quot;&gt;option&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; removing the &lt;span class=&quot;keyword&quot;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;databases&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; anonymous &lt;span class=&quot;keyword&quot;&gt;user&lt;/span&gt; created &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;default&lt;/span&gt;.  This &lt;span class=&quot;keyword&quot;&gt;is&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;strongly recommended &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; production servers.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;See the &lt;span class=&quot;keyword&quot;&gt;manual&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; more instructions.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;You can &lt;span class=&quot;keyword&quot;&gt;start&lt;/span&gt; the MySQL daemon &lt;span class=&quot;keyword&quot;&gt;with&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd /usr ; /usr/bin/mysqld_safe &amp;amp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;You can test the MySQL daemon with mysql-test-run.pl&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd /usr/mysql-test ; perl mysql-test-run.pl&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Please report any problems at http://bugs.mysql.com/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;启动mysqld服务&quot;&gt;&lt;a href=&quot;#启动mysqld服务&quot; class=&quot;headerlink&quot; title=&quot;启动mysqld服务&quot;&gt;&lt;/a&gt;启动mysqld服务&lt;/h3&gt;&lt;p&gt;执行&lt;code&gt;cd /usr ; /usr/bin/mysqld_safe &amp;amp;&lt;/code&gt;启动mysql的守护进程。&lt;br&gt;执行&lt;code&gt;mysql_secure_installation&lt;/code&gt;，设置root用户的密码，配置一些安全选项。&lt;/p&gt;
-&lt;p&gt;基本上mysql就安装完了，以后就可以用下面两条命令开启和关闭mysql守护进程：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;mysqld_safe &amp;amp;&lt;/code&gt;&lt;br&gt;&lt;code&gt;mysqladmin -u root -p shutdown&lt;/code&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;安装mysql&quot;&gt;&lt;a href=&quot;#安装mysql&quot; class=&quot;headerlink&quot; title=&quot;安装mysql&quot;&gt;&lt;/a&gt;安装mysql&lt;/h3&gt;&lt;p&gt;首先运行cygwin_setup，选装包：&lt;br&gt;mysql （客户端）&lt;br&gt;mysqld （服务
     
     </summary>
     
