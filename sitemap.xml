@@ -65,13 +65,6 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/</loc>
-    
-    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.wuliwala.net/2015/07/03/dell-ipxe/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
@@ -79,14 +72,14 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/01/12/dnspod-ddns/</loc>
+    <loc>http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/</loc>
+    <loc>http://blog.wuliwala.net/2015/01/12/dnspod-ddns/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -107,6 +100,13 @@
   </url>
   
   <url>
+    <loc>http://blog.wuliwala.net/2015/08/06/gitlab-service-deploy/</loc>
+    
+    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.wuliwala.net/2015/11/19/gitlab-ci-and-runner/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
@@ -114,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/</loc>
+    <loc>http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/08/06/gitlab-service-deploy/</loc>
+    <loc>http://blog.wuliwala.net/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -163,7 +163,7 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/08/10/icinga2-my-notification/</loc>
+    <loc>http://blog.wuliwala.net/2015/12/09/icinga2-influxdb-grafana-integration/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -184,14 +184,14 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/08/21/cacti-add-multi-devices-graphs/</loc>
+    <loc>http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/</loc>
+    <loc>http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -205,14 +205,14 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/</loc>
+    <loc>http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/</loc>
+    <loc>http://blog.wuliwala.net/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -240,14 +240,14 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/09/08/pnp4nagioszi-dong-diao-zheng-shu-zhi/</loc>
+    <loc>http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/</loc>
+    <loc>http://blog.wuliwala.net/2015/09/08/pnp4nagioszi-dong-diao-zheng-shu-zhi/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -261,14 +261,7 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
-    
-    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/</loc>
+    <loc>http://blog.wuliwala.net/2015/08/21/cacti-add-multi-devices-graphs/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -289,14 +282,14 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/08/18/ssh-automatic/</loc>
+    <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/11/27/when-a-man-loves-a-woman/</loc>
+    <loc>http://blog.wuliwala.net/2015/08/18/ssh-automatic/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -331,7 +324,14 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/12/09/icinga2-influxdb-grafana-integration/</loc>
+    <loc>http://blog.wuliwala.net/2015/11/27/when-a-man-loves-a-woman/</loc>
+    
+    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.wuliwala.net/2015/08/10/icinga2-my-notification/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
