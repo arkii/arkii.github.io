@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.wuliwala.net/2016/02/15/ionic-web-app-dev/</loc>
+    
+    <lastmod>2016-03-23T06:55:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.wuliwala.net/2016/03/19/segmentfault-tools-sharing/</loc>
     
     <lastmod>2016-03-21T07:07:08.000Z</lastmod>
@@ -51,21 +58,7 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2016/02/15/ionic-web-app-dev/</loc>
-    
-    <lastmod>2016-03-04T07:02:19.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/</loc>
-    
-    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.wuliwala.net/2015/07/03/dell-ipxe/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -79,7 +72,21 @@
   </url>
   
   <url>
+    <loc>http://blog.wuliwala.net/2015/07/03/dell-ipxe/</loc>
+    
+    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.wuliwala.net/2015/01/12/dnspod-ddns/</loc>
+    
+    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -100,13 +107,6 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/08/06/gitlab-service-deploy/</loc>
-    
-    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.wuliwala.net/2015/11/19/gitlab-ci-and-runner/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
@@ -114,14 +114,7 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/</loc>
-    
-    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.wuliwala.net/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/</loc>
+    <loc>http://blog.wuliwala.net/2015/08/06/gitlab-service-deploy/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -129,6 +122,13 @@
   
   <url>
     <loc>http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/</loc>
+    
+    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.wuliwala.net/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -191,7 +191,7 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/</loc>
+    <loc>http://blog.wuliwala.net/2015/08/21/cacti-add-multi-devices-graphs/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -205,13 +205,6 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/</loc>
-    
-    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.wuliwala.net/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
@@ -219,7 +212,7 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/</loc>
+    <loc>http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -233,14 +226,14 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/</loc>
+    <loc>http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/</loc>
+    <loc>http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -254,6 +247,13 @@
   </url>
   
   <url>
+    <loc>http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/</loc>
+    
+    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.wuliwala.net/2015/01/12/run-crond-in-container/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
@@ -261,7 +261,14 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/08/21/cacti-add-multi-devices-graphs/</loc>
+    <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
+    
+    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -282,13 +289,6 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
-    
-    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.wuliwala.net/2015/08/18/ssh-automatic/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
@@ -303,13 +303,6 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/07/23/vmware-esxi-jian-kong/</loc>
-    
-    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.wuliwala.net/2015/08/04/centos6-update-kernel-to-3-10/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
@@ -317,7 +310,7 @@
   </url>
   
   <url>
-    <loc>http://blog.wuliwala.net/2015/07/24/yuman-zhuang-dellguan-fang-openipmishi-bai-wen-ti/</loc>
+    <loc>http://blog.wuliwala.net/2015/07/23/vmware-esxi-jian-kong/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
@@ -325,6 +318,13 @@
   
   <url>
     <loc>http://blog.wuliwala.net/2015/11/27/when-a-man-loves-a-woman/</loc>
+    
+    <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.wuliwala.net/2015/07/24/yuman-zhuang-dellguan-fang-openipmishi-bai-wen-ti/</loc>
     
     <lastmod>2016-01-25T11:18:39.000Z</lastmod>
     
