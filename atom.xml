@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wuliwala.net/"/>
-  <updated>2016-04-01T03:22:53.000Z</updated>
+  <updated>2016-04-01T03:30:26.000Z</updated>
   <id>http://blog.wuliwala.net/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.wuliwala.net/2016/03/29/learning-elasticsearch/"/>
     <id>http://blog.wuliwala.net/2016/03/29/learning-elasticsearch/</id>
     <published>2016-03-29T02:42:00.000Z</published>
-    <updated>2016-04-01T03:22:53.000Z</updated>
+    <updated>2016-04-01T03:30:26.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;Learning-ElasticSearch&quot;&gt;&lt;a href=&quot;#Learning-ElasticSearch&quot; class=&quot;headerlink&quot; title=&quot;Learning ElasticSearch&quot;&gt;&lt;/a&gt;Learning ElasticSearch&lt;/h2&gt;&lt;p&gt;最近在学习ElasticSearch，从底层的Lucene开始了解&lt;br&gt;特别推荐这两本书，非常非常感谢社区的贡献，有机会还是支持出版的纸质书籍&lt;br&gt;这篇文章等于是对这两本书阅读后做了摘要，方便零基础的用户快速上手ElasticSearch&lt;br&gt;&lt;a href=&quot;https://github.com/looly/elasticsearch-definitive-guide-cn&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Elasticsearch 权威指南（中文版）&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.gitbook.com/book/chenryn/kibana-guide-cn/details&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ELKstack 中文指南（ElasticSearch章节）&lt;/a&gt;  &lt;/p&gt;
 &lt;h3 id=&quot;ES-vs-SQL&quot;&gt;&lt;a href=&quot;#ES-vs-SQL&quot; class=&quot;headerlink&quot; title=&quot;ES vs SQL&quot;&gt;&lt;/a&gt;ES vs SQL&lt;/h3&gt;&lt;table&gt;
@@ -50,10 +50,12 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;Elasticsearch集群可以包含多个索引(indices)（数据库），每一个索引可以包含多个类型(types)（表），每一个类型包含多个文档(documents)（行），然后每个文档包含多个字段(Fields)（列）。  &lt;/p&gt;
-&lt;p&gt;###「索引」含义的区分&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;你可能已经注意到索引(index)这个词在Elasticsearch中有着不同的含义，所以有必要在此做一下区分:&lt;br&gt;索引（名词） 如上文所述，一个索引(index)就像是传统关系数据库中的数据库，它是相关文档存储的地方，index的复数是indices 或indexes。&lt;br&gt;索引（动词） 「索引一个文档」表示把一个文档存储到索引（名词）里，以便它可以被检索或者查询。这很像SQL中的INSERT关键字，差别是，如果文档已经存在，新的文档将覆盖旧的文档。&lt;br&gt;倒排索引 传统数据库为特定列增加一个索引，例如B-Tree索引来加速检索。Elasticsearch和Lucene使用一种叫做倒排索引(inverted index)的数据结构来达到相同目的。   &lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;h3 id=&quot;“索引”含义的区分&quot;&gt;&lt;a href=&quot;#“索引”含义的区分&quot; class=&quot;headerlink&quot; title=&quot;“索引”含义的区分&quot;&gt;&lt;/a&gt;“索引”含义的区分&lt;/h3&gt;&lt;p&gt;你可能已经注意到索引(index)这个词在Elasticsearch中有着不同的含义，所以有必要在此做一下区分:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;索引（名词） 如上文所述，一个索引(index)就像是传统关系数据库中的数据库，它是相关文档存储的地方，index的复数是indices 或indexes。  &lt;/li&gt;
+&lt;li&gt;索引（动词） 「索引一个文档」表示把一个文档存储到索引（名词）里，以便它可以被检索或者查询。这很像SQL中的INSERT关键字，差别是，如果文档已经存在，新的文档将覆盖旧的文档。  &lt;/li&gt;
+&lt;li&gt;倒排索引 传统数据库为特定列增加一个索引，例如B-Tree索引来加速检索。Elasticsearch和Lucene使用一种叫做倒排索引(inverted index)的数据结构来达到相同目的。   &lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&quot;Excerise&quot;&gt;&lt;a href=&quot;#Excerise&quot; class=&quot;headerlink&quot; title=&quot;Excerise&quot;&gt;&lt;/a&gt;Excerise&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Ping &amp;amp; Server info&lt;/p&gt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http http://127.0.0.1:9200/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &quot;cluster_name&quot;: &quot;elasticsearch&quot;, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &quot;name&quot;: &quot;Goliath&quot;, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &quot;status&quot;: 200, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &quot;tagline&quot;: &quot;You Know, for Search&quot;, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &quot;version&quot;: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &quot;build_hash&quot;: &quot;c88f77ffc81301dfa9dfd81ca2232f09588bd512&quot;, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &quot;build_snapshot&quot;: false, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &quot;build_timestamp&quot;: &quot;2015-02-19T13:05:36Z&quot;, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &quot;lucene_version&quot;: &quot;4.10.3&quot;, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &quot;number&quot;: &quot;1.4.4&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
