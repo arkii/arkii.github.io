@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wuliwala.net/"/>
-  <updated>2016-04-01T03:30:26.000Z</updated>
+  <updated>2016-04-08T11:29:38.000Z</updated>
   <id>http://blog.wuliwala.net/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SuperMicro Auto Deploy</title>
+    <link href="http://blog.wuliwala.net/2016/04/07/supermicro_auto_deploy/"/>
+    <id>http://blog.wuliwala.net/2016/04/07/supermicro_auto_deploy/</id>
+    <published>2016-04-07T10:42:00.000Z</published>
+    <updated>2016-04-08T11:29:38.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;SuperMicro-Auto-Deploy&quot;&gt;&lt;a href=&quot;#SuperMicro-Auto-Deploy&quot; class=&quot;headerlink&quot; title=&quot;SuperMicro Auto Deploy&quot;&gt;&lt;/a&gt;SuperMicro Auto Deploy&lt;/h2&gt;&lt;h3 id=&quot;SMCIPMITool-Usage&quot;&gt;&lt;a href=&quot;#SMCIPMITool-Usage&quot; class=&quot;headerlink&quot; title=&quot;SMCIPMITool Usage&quot;&gt;&lt;/a&gt;SMCIPMITool Usage&lt;/h3&gt;&lt;h4 id=&quot;Query-FRU-info&quot;&gt;&lt;a href=&quot;#Query-FRU-info&quot; class=&quot;headerlink&quot; title=&quot;Query FRU info&quot;&gt;&lt;/a&gt;Query FRU info&lt;/h4&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SMCIPMITool 10.0.0.100 ADMIN ADMIN ipmi fru&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;:&amp;lt;&amp;lt;EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Getting FRU ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Chassis Type (CT)              = Other (01h)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Chassis Part Number (CP)       = CSE-217HQ-XXXX&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Chassis Serial Number (CS)     = C2170FE0XXXX&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Board mfg. Date/Time (BDT)     = 1996/01/01 00:00:00 (00 00 00)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Board Manufacturer Name (BM)   = Supermicro&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Board Product Name (BPN)       = &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Board Serial Number (BS)       = VM15CSXXXX&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Board Part Number (BP)         = X10DRT-H&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Board FRU File ID              = &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Product Manufacturer Name (PM) = Supermicro&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Product Name (PN)              = &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Product PartModel Number (PPM) = SYS-2028TR-H72R&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Product Version (PV)           = &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Product Serial Number (PS)     = S173440XXXXXXX&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Product Asset Tag (PAT)        = &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Product FRU File ID            = &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EOF&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;Set-Next-Boot-from-PXE&quot;&gt;&lt;a href=&quot;#Set-Next-Boot-from-PXE&quot; class=&quot;headerlink&quot; title=&quot;Set Next Boot from PXE&quot;&gt;&lt;/a&gt;Set Next Boot from PXE&lt;/h4&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;:&amp;lt;&amp;lt;EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;For bootoption index :&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1: PXE              2:  Hard-drive&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3: CD/DVD           4:  Bios&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5: USB KEY          6:  USB HDD&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7: USB Floppy       8:  USB CD/DVD&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9: UEFI Hard-drive  10: UEFI CD/DVD&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11: UEFI USB KEY    12: UEFI USB HDD&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13: UEFI USB CD/DVD    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SMCIPMITool 10.0.0.100 ADMIN ADMIN ipmi power bootoption 1 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SMCIPMITool 10.0.0.100 ADMIN ADMIN ipmi power reset&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;:&amp;lt;&amp;lt;EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3.39.2 wsiso mount&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Use this &lt;span class=&quot;built_in&quot;&gt;command&lt;/span&gt; to mount an ISO file.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Usage:wsiso mount &amp;lt;IP&amp;gt; &amp;lt;path&amp;gt; [username] [password]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      IP: IP or domain name of share host&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      path: path to iso file&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      username: username of share host (optional)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      password: password of share host (optional)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      Ex 1: mount linux.iso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       wsiso mount 192.168.1.100 /iso/linux.iso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      Ex 2: mount linux.iso with username and password&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       wsiso mount 192.168.1.100 /iso/linux.iso admin admin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      * Use one ISO file at a time. Make sure umount existing ISO before mount new ISO&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    file&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      * This &lt;span class=&quot;built_in&quot;&gt;command&lt;/span&gt; is available &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; X9 and X10 platform with SFT-OOB-LIC node&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    product key&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EOF&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;RAID-Configuration&quot;&gt;&lt;a href=&quot;#RAID-Configuration&quot; class=&quot;headerlink&quot; title=&quot;RAID Configuration&quot;&gt;&lt;/a&gt;RAID Configuration&lt;/h3&gt;&lt;p&gt;&lt;code&gt;&amp;lt;Ctrl&amp;gt; - &amp;lt;Y&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;strong&gt;LSI Preboot CLI&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# pager 20 lines per page&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;PDList a0 page20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# create one raid0 ld with one disk&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;C&lt;span class=&quot;built_in&quot;&gt;fg&lt;/span&gt;LdAdd r0 [252:0] a0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;issues&quot;&gt;&lt;a href=&quot;#issues&quot; class=&quot;headerlink&quot; title=&quot;issues&quot;&gt;&lt;/a&gt;issues&lt;/h3&gt;&lt;p&gt;错误信息为:&lt;br&gt;&lt;code&gt;PXE-E7B: Missing MTFTP server IP address&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;Cisco设备是PortFast&lt;br&gt;Huawei设备里是&lt;br&gt;临时关掉生成树&lt;br&gt;&lt;code&gt;stp disable&lt;/code&gt;&lt;br&gt;或者标记为边界端口&lt;br&gt;&lt;code&gt;stp edged-port enable&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;other-resources&quot;&gt;&lt;a href=&quot;#other-resources&quot; class=&quot;headerlink&quot; title=&quot;other resources&quot;&gt;&lt;/a&gt;other resources&lt;/h3&gt;&lt;h4 id=&quot;boot-ipxe&quot;&gt;&lt;a href=&quot;#boot-ipxe&quot; class=&quot;headerlink&quot; title=&quot;boot.ipxe&quot;&gt;&lt;/a&gt;boot.ipxe&lt;/h4&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http://10.0.0.9/cgi-bin/pxe.py?mac=&lt;span class=&quot;variable&quot;&gt;$&amp;#123;netX/mac&amp;#125;&lt;/span&gt;&amp;amp;manufacturer=&lt;span class=&quot;variable&quot;&gt;$&amp;#123;manufacturer&amp;#125;&lt;/span&gt;&amp;amp;product=&lt;span class=&quot;variable&quot;&gt;$&amp;#123;product&amp;#125;&lt;/span&gt;&amp;amp;serial=&lt;span class=&quot;variable&quot;&gt;$&amp;#123;serial&amp;#125;&lt;/span&gt;&amp;amp;bserial=&lt;span class=&quot;variable&quot;&gt;$&amp;#123;smbios/board-serial:string&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;WS-Management&quot;&gt;&lt;a href=&quot;#WS-Management&quot; class=&quot;headerlink&quot; title=&quot;WS-Management&quot;&gt;&lt;/a&gt;WS-Management&lt;/h4&gt;&lt;p&gt;&lt;code&gt;wsman identify -h 10.0.0.100 -P 5985 -u ADMIN -p ADMIN&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;flashrom&quot;&gt;&lt;a href=&quot;#flashrom&quot; class=&quot;headerlink&quot; title=&quot;flashrom&quot;&gt;&lt;/a&gt;flashrom&lt;/h4&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# flashrom-0.9.9 install&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install -y zlib-devel libpciaccess-devel pciutils-devel libusb1-devel             &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;make DESTDIR=/usr install&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;Intel-BootUtil&quot;&gt;&lt;a href=&quot;#Intel-BootUtil&quot; class=&quot;headerlink&quot; title=&quot;Intel BootUtil&quot;&gt;&lt;/a&gt;Intel BootUtil&lt;/h4&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum install -y make gcc perl kernel-devel&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;./install &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;./bootutil64e &lt;span class=&quot;_&quot;&gt;-e&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;:&amp;lt;&amp;lt;EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Intel(R) Ethernet Flash Firmware Utility&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;BootUtil version 1.5.94.2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Copyright (C) 2003-2015 Intel Corporation&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;NIC= 1 MACAddress=0CC47AB4C12E&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;NIC= 2 MACAddress=0CC47AB4C12F&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Port Network Address Location Series  WOL Flash Firmware                Version&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;==== =============== ======== ======= === ============================= =======&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  1   0CC47AB4C12E     1:00.0 Gigabit YES FLASH Not Present&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  2   0CC47AB4C12F     1:00.1 Gigabit NO  FLASH Not Present&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;./bootutil64e -nic 1 -saveimage -file 0CC47AB4C12E.rom&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;./bootutil64e -nic 1 -saveimage -file 80861521.rom&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;SerialNumber&quot;&gt;&lt;a href=&quot;#SerialNumber&quot; class=&quot;headerlink&quot; title=&quot;SerialNumber&quot;&gt;&lt;/a&gt;SerialNumber&lt;/h4&gt;&lt;p&gt;&lt;code&gt;dmidecode -s baseboard-serial-number&lt;/code&gt; instead of &lt;code&gt;dmidecode -s system-serial-number&lt;/code&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;SuperMicro-Auto-Deploy&quot;&gt;&lt;a href=&quot;#SuperMicro-Auto-Deploy&quot; class=&quot;headerlink&quot; title=&quot;SuperMicro Auto Deploy&quot;&gt;&lt;/a&gt;SuperMicro Auto Depl
+    
+    </summary>
+    
+      <category term="Automatic" scheme="http://blog.wuliwala.net/categories/Automatic/"/>
+    
+    
+      <category term="sysops" scheme="http://blog.wuliwala.net/tags/sysops/"/>
+    
+      <category term="ipmi" scheme="http://blog.wuliwala.net/tags/ipmi/"/>
+    
+      <category term="pxe" scheme="http://blog.wuliwala.net/tags/pxe/"/>
+    
+      <category term="dhcp" scheme="http://blog.wuliwala.net/tags/dhcp/"/>
+    
+  </entry>
   
   <entry>
     <title>Learning ElasticSearch</title>
@@ -716,27 +755,6 @@ RSYSLOGEOF
     <summary type="html">
     
       &lt;p&gt;最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。&lt;br&gt;期间从头学习了syslog rsyslog。&lt;br&gt;有几个比较重要的概念: facility, input module。&lt;br&gt;input module使用了imfile，功能为：将文本文件读
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>vmware esxi log server</title>
-    <link href="http://blog.wuliwala.net/2015/08/31/set-esxi-log-server/"/>
-    <id>http://blog.wuliwala.net/2015/08/31/set-esxi-log-server/</id>
-    <published>2015-08-30T23:48:32.000Z</published>
-    <updated>2016-01-25T11:18:39.000Z</updated>
-    
-    <content type="html">&lt;p&gt;ESXi client –&amp;gt; Configuration –&amp;gt; Advanced Settings –&amp;gt; Syslog –&amp;gt; Syslog.global.logHost=udp://your-syslog-server:514  &lt;/p&gt;
-&lt;p&gt;ESXi client –&amp;gt; Configuration –&amp;gt; Security Profile –&amp;gt; Firewall –&amp;gt; Properties –&amp;gt; √ syslog&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;ESXi client –&amp;gt; Configuration –&amp;gt; Advanced Settings –&amp;gt; Syslog –&amp;gt; Syslog.global.logHost=udp://your-syslog-server:514  &lt;/p&gt;
-&lt;p&gt;ES
     
     </summary>
     
