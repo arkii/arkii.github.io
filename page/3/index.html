@@ -117,9 +117,11 @@ ga('send', 'pageview');
 </ul>
 <h2 id="installation"><a href="#installation" class="headerlink" title="installation"></a>installation</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># download jre package from java archive website</span></span><br><span class="line">rpm -ivh jre-8u65-linux-x64.rpm</span><br><span class="line">wget https://searchcode.com/static/searchcode-server-community.tar.gz</span><br><span class="line">tar xf searchcode-server-community.tar.gz</span><br><span class="line">searchcode-server-community/release</span><br><span class="line">java -jar searchcode-1.0.0.jar</span><br></pre></td></tr></table></figure>
 <p><strong>visit <a href="http://yourserverip:8080/" target="_blank" rel="external">http://yourserverip:8080/</a></strong>  </p>
-<h2 id="use-my-docker-image"><a href="#use-my-docker-image" class="headerlink" title="use my docker image"></a>use my docker image</h2><p>run image directly  </p>
+<h2 id="use-my-docker-image"><a href="#use-my-docker-image" class="headerlink" title="use my docker image"></a>use my docker image</h2><h3 id="fresh-image-auto-build-and-keep-fresh-depend-on-author’s-api"><a href="#fresh-image-auto-build-and-keep-fresh-depend-on-author’s-api" class="headerlink" title="fresh image auto-build and keep fresh, depend on author’s api"></a>fresh image auto-build and keep fresh, depend on author’s api</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -p 8080:8080 <span class="_">-d</span> docker.io/arkii/searchcode-server-community</span><br></pre></td></tr></table></figure>
+<p>run image directly  </p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -p 8080:8080 <span class="_">-d</span> docker.io/arkii/searchcode-server</span><br></pre></td></tr></table></figure>
-<p>or run image with docker-compose<br>docker-compose.yml<br><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">searchcode:</span></span><br><span class="line"><span class="attr">  image:</span> arkii/searchcode-server</span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/index:/srv/index</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/repo:/srv/repo</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.properties:/srv/searchcode.properties</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.sqlite:/srv/searchcode.sqlite</span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"8080:8080/tcp"</span></span><br></pre></td></tr></table></figure></p>
+<p>or run image with docker-compose<br>docker-compose.yml</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">searchcode:</span></span><br><span class="line"><span class="attr">  image:</span> arkii/searchcode-server</span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/index:/srv/index</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/repo:/srv/repo</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.properties:/srv/searchcode.properties</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.sqlite:/srv/searchcode.sqlite</span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"8080:8080/tcp"</span></span><br></pre></td></tr></table></figure>
 <p><strong>visit <a href="http://yourdockerserverip:8080/" target="_blank" rel="external">http://yourdockerserverip:8080/</a></strong>  </p>
 <p>To administer your searchcode server instance you need to click on the Admin link in the top right.<br>Enter the default password <strong>Adm1n234</strong></p>
 <h2 id="Dockerfiles"><a href="#Dockerfiles" class="headerlink" title="Dockerfiles"></a>Dockerfiles</h2><p><strong>build JRE 8u65 image</strong></p>
@@ -130,7 +132,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2016/03/08/searchcode-server-community-deploy/" data-id="cimvgdxhy0012g9s6unr8hfum" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2016/03/08/searchcode-server-community-deploy/" data-id="cimym8zdx0011qh5okaaez19m" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2016/03/08/searchcode-server-community-deploy/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -180,7 +182,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2016/03/01/wall-e-web-deployment/" data-id="cimvgdxi70019g9s6mr7oxzc6" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2016/03/01/wall-e-web-deployment/" data-id="cimym8ze40018qh5offch1jnb" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2016/03/01/wall-e-web-deployment/#disqus_thread" class="article-comment-link">Comments</a>
       
