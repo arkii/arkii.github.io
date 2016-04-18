@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tranquility Garden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Focus on Python Cloud Container DevOps.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tranquility Garden">
+<meta property="og:url" content="http://blog.wuliwala.net/page/14/index.html">
+<meta property="og:site_name" content="Tranquility Garden">
+<meta property="og:description" content="Focus on Python Cloud Container DevOps.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tranquility Garden">
+<meta name="twitter:description" content="Focus on Python Cloud Container DevOps.">
+  
+    <link rel="alternate" href="http://blog.wuliwala.net/atom.xml" title="Tranquility Garden" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+<!--  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72217808-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tranquility Garden</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="http://blog.wuliwala.net">Home</a>
+        
+          <a class="main-nav-link" href="http://blog.wuliwala.net/archives">Archives</a>
+        
+          <a class="main-nav-link" href="http://blog.wuliwala.net/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/arkii">GitHub</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/arkii">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="http://blog.wuliwala.net/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.wuliwala.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-icinga2-my-notification" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/10/icinga2-my-notification/" class="article-date">
+  <time datetime="2015-08-10T02:54:36.000Z" itemprop="datePublished">2015-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/10/icinga2-my-notification/">icinga2添加自定义通知插件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>添加模板<br>/etc/icinga2/conf.d/templates.conf<br><figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">template Notification <span class="string">"wechat-host-notification"</span> &#123;</span><br><span class="line">  <span class="attr">command</span> = <span class="string">"wechat-host-notification"</span></span><br><span class="line">  <span class="attr">states</span> = [ Up, Down ]</span><br><span class="line">  <span class="attr">types</span> = [ Problem, Recovery ]</span><br><span class="line">  <span class="attr">period</span> = <span class="string">"24x7"</span></span><br><span class="line">&#125;</span><br><span class="line">template Notification <span class="string">"wechat-service-notification"</span> &#123;</span><br><span class="line">  <span class="attr">command</span> = <span class="string">"wechat-service-notification"</span></span><br><span class="line">  <span class="attr">states</span> = [ OK, Warning, Critical, Unknown ]</span><br><span class="line">  <span class="attr">types</span> = [ Problem, Recovery ]</span><br><span class="line">  <span class="attr">period</span> = <span class="string">"24x7"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>添加command<br>/etc/icinga2/conf.d/commands.conf<br><figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">object NotificationCommand <span class="string">"wechat-host-notification"</span> &#123;</span><br><span class="line">  <span class="built_in">import</span> <span class="string">"plugin-notification-command"</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">command</span> = [ SysconfDir + <span class="string">"/icinga2/scripts/wechat-host-notification.sh"</span> ]</span><br><span class="line"></span><br><span class="line">  <span class="attr">env</span> = &#123;</span><br><span class="line">    <span class="attr">NOTIFICATIONTYPE</span> = <span class="string">"$notification.type$"</span></span><br><span class="line">    <span class="attr">HOSTALIAS</span> = <span class="string">"$host.display_name$"</span></span><br><span class="line">    <span class="attr">HOSTADDRESS</span> = <span class="string">"$address$"</span></span><br><span class="line">    <span class="attr">HOSTSTATE</span> = <span class="string">"$host.state$"</span></span><br><span class="line">    <span class="attr">LONGDATETIME</span> = <span class="string">"$icinga.long_date_time$"</span></span><br><span class="line">    <span class="attr">SHORTDATETIME</span> = <span class="string">"$icinga.short_date_time$"</span></span><br><span class="line">    <span class="attr">TIME</span> = <span class="string">"$icinga.time$"</span></span><br><span class="line">    <span class="attr">HOSTOUTPUT</span> = <span class="string">"$host.output$"</span></span><br><span class="line">    <span class="attr">NOTIFICATIONAUTHORNAME</span> = <span class="string">"$notification.author$"</span></span><br><span class="line">    <span class="attr">NOTIFICATIONCOMMENT</span> = <span class="string">"$notification.comment$"</span></span><br><span class="line">    <span class="attr">HOSTDISPLAYNAME</span> = <span class="string">"$host.display_name$"</span></span><br><span class="line">    <span class="attr">USEREMAIL</span> = <span class="string">"$user.email$"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">object NotificationCommand <span class="string">"wechat-service-notification"</span> &#123;</span><br><span class="line">  <span class="built_in">import</span> <span class="string">"plugin-notification-command"</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">command</span> = [ SysconfDir + <span class="string">"/icinga2/scripts/wechat-service-notification.sh"</span> ]</span><br><span class="line"></span><br><span class="line">  <span class="attr">env</span> = &#123;</span><br><span class="line">    <span class="attr">NOTIFICATIONTYPE</span> = <span class="string">"$notification.type$"</span></span><br><span class="line">    <span class="attr">SERVICEDESC</span> = <span class="string">"$service.name$"</span></span><br><span class="line">    <span class="attr">HOSTALIAS</span> = <span class="string">"$host.display_name$"</span></span><br><span class="line">    <span class="attr">HOSTADDRESS</span> = <span class="string">"$address$"</span></span><br><span class="line">    <span class="attr">SERVICESTATE</span> = <span class="string">"$service.state$"</span></span><br><span class="line">    <span class="attr">LONGDATETIME</span> = <span class="string">"$icinga.long_date_time$"</span></span><br><span class="line">    <span class="attr">SHORTDATETIME</span> = <span class="string">"$icinga.short_date_time$"</span></span><br><span class="line">    <span class="attr">TIME</span> = <span class="string">"$icinga.time$"</span></span><br><span class="line">    <span class="attr">SERVICEOUTPUT</span> = <span class="string">"$service.output$"</span></span><br><span class="line">    <span class="attr">NOTIFICATIONAUTHORNAME</span> = <span class="string">"$notification.author$"</span></span><br><span class="line">    <span class="attr">NOTIFICATIONCOMMENT</span> = <span class="string">"$notification.comment$"</span></span><br><span class="line">    <span class="attr">HOSTDISPLAYNAME</span> = <span class="string">"$host.display_name$"</span></span><br><span class="line">    <span class="attr">SERVICEDISPLAYNAME</span> = <span class="string">"$service.display_name$"</span></span><br><span class="line">    <span class="attr">USEREMAIL</span> = <span class="string">"$user.email$"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注册通知到主机和服务<br>/etc/icinga2/conf.d/notifications.conf<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">apply Notification <span class="string">"wechat-icingaadmin"</span> to Host &#123;</span><br><span class="line">  import <span class="string">"wechat-host-notification"</span></span><br><span class="line">  user_groups = host<span class="selector-class">.vars</span><span class="selector-class">.notification</span><span class="selector-class">.mail</span><span class="selector-class">.groups</span></span><br><span class="line">  assign where host<span class="selector-class">.vars</span><span class="selector-class">.notification</span><span class="selector-class">.mail</span></span><br><span class="line">  interval = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">apply Notification <span class="string">"wechat-icingaadmin"</span> to Service &#123;</span><br><span class="line">  import <span class="string">"wechat-service-notification"</span></span><br><span class="line">  user_groups = host<span class="selector-class">.vars</span><span class="selector-class">.notification</span><span class="selector-class">.mail</span><span class="selector-class">.groups</span></span><br><span class="line">  assign where host<span class="selector-class">.vars</span><span class="selector-class">.notification</span><span class="selector-class">.mail</span></span><br><span class="line">  interval = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>路径/etc/icinga2/scripts  </p>
+<p><code># cat wechat-host-notification.sh</code>  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">template=\`cat &lt;&lt;TEMPLATE</span><br><span class="line"><span class="variable">$SHORTDATETIME</span>|<span class="variable">$HOSTALIAS</span>|<span class="variable">$HOSTADDRESS</span>|<span class="variable">$HOSTSTATE</span>|<span class="variable">$HOSTOUTPUT</span></span><br><span class="line">TEMPLATE</span><br><span class="line">\`</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/send_wechat.py <span class="variable">$USEREMAIL</span> <span class="string">"<span class="variable">$template</span>"</span></span><br></pre></td></tr></table></figure>
+<p><code># cat wechat-service-notification.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">template=\`cat &lt;&lt;TEMPLATE</span><br><span class="line"><span class="variable">$SHORTDATETIME</span>|<span class="variable">$HOSTALIAS</span>|<span class="variable">$HOSTADDRESS</span>|<span class="variable">$SERVICEDESC</span>|<span class="variable">$SERVICESTATE</span>|<span class="variable">$SERVICEOUTPUT</span></span><br><span class="line">TEMPLATE</span><br><span class="line">\`</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/send_wechat.py <span class="variable">$USEREMAIL</span> <span class="string">"<span class="variable">$template</span>"</span></span><br></pre></td></tr></table></figure>
+<p>检查配置文件<br>icinga2 daemon -C</p>
+<p>重启icinga2</p>
+<p>service icinga2 restart</p>
+<p>相关资料：  <a href="http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/migration" target="_blank" rel="external">http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/migration</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/08/10/icinga2-my-notification/" data-id="cin5p1n2p000nqq5oqlejdwng" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/08/10/icinga2-my-notification/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mp4box-concat-mp4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/07/mp4box-concat-mp4/" class="article-date">
+  <time datetime="2015-08-06T23:22:14.000Z" itemprop="datePublished">2015-08-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/07/mp4box-concat-mp4/">OSX下合并MP4文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>brew install mp4box</code><br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">MP4Box -cat 1.mp4 -cat 2.mp4 -cat 3.mp4 output.mp4</span><br><span class="line">Appending file 1.mp4</span><br><span class="line">No suitable destination track found - creating new one (<span class="built_in">type</span> vide)</span><br><span class="line">No suitable destination track found - creating new one (<span class="built_in">type</span> soun)</span><br><span class="line">Appending file 2.mp4                             </span><br><span class="line">Appending file 3.mp4                             </span><br><span class="line">Saving to output.mp4: 0.500 secs Interleaving</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/08/07/mp4box-concat-mp4/" data-id="cin5p1n33000wqq5oaye7urpl" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/08/07/mp4box-concat-mp4/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/13/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/15/">Next &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/29/learning-elasticsearch/">Learning ElasticSearch</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/19/segmentfault-tools-sharing/">segmentfault「我是工具控」分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 arkii<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="http://blog.wuliwala.net" class="mobile-nav-link">Home</a>
+  
+    <a href="http://blog.wuliwala.net/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="http://blog.wuliwala.net/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/arkii" class="mobile-nav-link">GitHub</a>
+  
+    <a href="https://hub.docker.com/u/arkii" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'blog-arkii';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
