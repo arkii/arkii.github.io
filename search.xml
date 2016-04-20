@@ -5,8 +5,8 @@
     
     <entry>
       <title><![CDATA[Upgrade influxdb from v0.9 to v0.12]]></title>
-      <url>http://blog.wuliwala.net/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/</url>
-      <content type="html"><![CDATA[<h2 id="Upgrade-influxdb-from-v0-9-to-v0-12"><a href="#Upgrade-influxdb-from-v0-9-to-v0-12" class="headerlink" title="Upgrade influxdb from v0.9 to v0.12"></a>Upgrade influxdb from v0.9 to v0.12</h2><h4 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h4><table>
+      <url>http://blog.wuliwala.net/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.10/</url>
+      <content type="html"><![CDATA[<h2 id="Upgrade-influxdb-from-v0-9-to-v0-10"><a href="#Upgrade-influxdb-from-v0-9-to-v0-10" class="headerlink" title="Upgrade influxdb from v0.9 to v0.10"></a>Upgrade influxdb from v0.9 to v0.10</h2><h4 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h4><table>
 <thead>
 <tr>
 <th>Comparison</th>
