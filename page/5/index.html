@@ -82,6 +82,61 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-bitbar-plugin-icinga-overview" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/25/bitbar-plugin-icinga-overview/" class="article-date">
+  <time datetime="2016-01-25T02:42:00.000Z" itemprop="datePublished">2016-01-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/gadget/">gadget</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/25/bitbar-plugin-icinga-overview/">BitBar plugin icinga2 overview</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MacBitBar-Plugin-icinga2-api-overview-py"><a href="#MacBitBar-Plugin-icinga2-api-overview-py" class="headerlink" title="MacBitBar Plugin icinga2-api-overview.py"></a>MacBitBar Plugin icinga2-api-overview.py</h1><p>Plugin to show icinga2 tactical overview, developed by python, in order to use this plugin, you should enable icinga2-api first.  </p>
+<h2 id="Screenshot"><a href="#Screenshot" class="headerlink" title="Screenshot"></a>Screenshot</h2><p><a href="/images/2016/01/25/macbitbar-icinga-overview-480p.mp4">screencast here</a><br><img src="/images/2016/01/25/icinga2-api-overview.png" alt="">  </p>
+<h2 id="Install-MacBitBar"><a href="#Install-MacBitBar" class="headerlink" title="Install MacBitBar"></a>Install MacBitBar</h2><p>Download the latest package from site below<br><a href="https://github.com/matryer/bitbar/releases" target="_blank" rel="external">https://github.com/matryer/bitbar/releases</a><br>Or install it by brew cask<br><code>brew cask install bitbar</code></p>
+<h2 id="Get-plugin"><a href="#Get-plugin" class="headerlink" title="Get plugin"></a>Get plugin</h2><p><a href="https://github.com/arkii/gadgets/blob/master/Utility/BitBar/icinga2-api-overview.py" target="_blank" rel="external">https://github.com/arkii/gadgets/blob/master/Utility/BitBar/icinga2-api-overview.py</a>  </p>
+<h2 id="Install-Plugin"><a href="#Install-Plugin" class="headerlink" title="Install Plugin"></a>Install Plugin</h2><p>Just download the plugin of your choice into your BitBar plugins directory and choose Refresh from one of the BitBar menu.  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x icinga2-api-overview.py</span><br><span class="line"><span class="built_in">cd</span> Plugins/Enabled</span><br><span class="line"><span class="comment"># Enable uptime plugin and change update interval to 30 seconds</span></span><br><span class="line">ln <span class="_">-s</span> ../Utility/icinga2-api-overview.py icinga.30s.py</span><br></pre></td></tr></table></figure>
+<h2 id="Other-plugins-built-by-me"><a href="#Other-plugins-built-by-me" class="headerlink" title="Other plugins built by me"></a>Other plugins built by me</h2><p><a href="https://github.com/arkii/gadgets/blob/master/Utility/BitBar/" target="_blank" rel="external">https://github.com/arkii/gadgets/Utility/BitBar/</a></p>
+<h2 id="MacBitBar"><a href="#MacBitBar" class="headerlink" title="MacBitBar"></a>MacBitBar</h2><p><img src="/images/2016/01/25/bitbar-logo@2x.png" alt=""><br>The BitBar app lets you put the output from any script or program right in your Mac OS X menu bar. And it’s completely free. An impressive number of plugins have already been contributed by a wide range of developers just like you, and this site makes it easy to find them.  </p>
+<p>Homepage:<br><a href="https://getbitbar.com" target="_blank" rel="external">https://getbitbar.com</a><br>Projects:<br><a href="https://github.com/matryer/bitbar" target="_blank" rel="external">BitBar</a><br><a href="https://github.com/matryer/bitbar-plugins" target="_blank" rel="external">BitBar-Plugins</a>  </p>
+<h2 id="NagBar"><a href="#NagBar" class="headerlink" title="NagBar"></a>NagBar</h2><p><img src="/images/2016/01/25/nagbarapp.png" alt=""><br>NagBar is a freeware Nagios, Icinga and Thruk monitoring client which runs in the status bar and give updates about the monitored services. NagBar is a Mac OS X native application created using the Cocoa framework.  </p>
+<p>Homepage:<br><a href="https://sites.google.com/site/nagbarapp/" target="_blank" rel="external">https://sites.google.com/site/nagbarapp/</a><br>Screenshots:<br><a href="https://sites.google.com/site/nagbarapp/screenshots" target="_blank" rel="external">https://sites.google.com/site/nagbarapp/screenshots</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2016/01/25/bitbar-plugin-icinga-overview/" data-id="cin8i2el50003h65ou4cpnge1" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2016/01/25/bitbar-plugin-icinga-overview/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/monitoring/">monitoring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sysops/">sysops</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-icinga2-influxdb-grafana-integration" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/09/icinga2-influxdb-grafana-integration/" class="article-date">
@@ -130,48 +185,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/12/09/icinga2-influxdb-grafana-integration/" data-id="cin5p1n2r000oqq5o1emg4lxy" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/12/09/icinga2-influxdb-grafana-integration/" data-id="cin8i2em7000nh65oiczpnouh" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/12/09/icinga2-influxdb-grafana-integration/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-how-to-build-tinycorelinux-docker-image" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/07/how-to-build-tinycorelinux-docker-image/" class="article-date">
-  <time datetime="2015-12-07T02:14:57.000Z" itemprop="datePublished">2015-12-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/07/how-to-build-tinycorelinux-docker-image/">how to build tinycorelinux docker image</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="how-to-build-tinycorelinux-docker-image"><a href="#how-to-build-tinycorelinux-docker-image" class="headerlink" title="how to build tinycorelinux docker image"></a>how to build tinycorelinux docker image</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http://tinycorelinux.net/6.x/x86_64/release/distribution_files/corepure64.gz</span><br><span class="line">mkdir chroot</span><br><span class="line">gunzip corepure64.gz</span><br><span class="line">cd chroot/</span><br><span class="line">cpio -i &lt; ../corepure64</span><br><span class="line">cd ..</span><br><span class="line">tar -C chroot -c . | docker import - tinycorelinux</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/" data-id="cin5p1n2j000hqq5ol7ti5poi" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -197,6 +213,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/">Upgrade influxdb from v0.9 to v0.12</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
           </li>
         
@@ -212,10 +232,6 @@ ga('send', 'pageview');
             <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
           </li>
         
-          <li>
-            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -225,7 +241,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
     </div>
   </div>
 
@@ -234,7 +250,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -244,7 +260,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 

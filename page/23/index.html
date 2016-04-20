@@ -82,6 +82,48 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/" class="article-date">
+  <time datetime="2015-06-15T02:46:31.000Z" itemprop="datePublished">2015-06-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/">CentOS 6.x git 1.7 clone gitlab 验证失败</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近要用测试机（CentOS6)测试项目代码，代码放在gitlab。<br>yum安装的git版本是1.7.1，在clone gitlab repo的时候，报如下错误。</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="string">error:</span> The requested URL returned <span class="string">error:</span> <span class="number">401</span> Unauthorized <span class="keyword">while</span> accessing <span class="string">https:</span><span class="comment">//gitlab.com/arkii/xxx.git/info/refs</span></span><br><span class="line"><span class="string">fatal:</span> HTTP request failed</span><br></pre></td></tr></table></figure>
+<p>解决办法是升级git版本到2以上。<br>升级过程如下</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">wget https://github.com/git/git/archive/v2.4.3.tar.gz</span><br><span class="line">yum -y <span class="keyword">install</span> curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc xmlto docbook2x docbook2X</span><br><span class="line">tar -zxf v2<span class="number">.4</span><span class="number">.3</span>.tar.gz</span><br><span class="line">cd git<span class="number">-2.4</span><span class="number">.3</span></span><br><span class="line">make configure</span><br><span class="line">./configure <span class="comment">--prefix=/usr/local/git2.4.3</span></span><br><span class="line">make -j8 all doc info</span><br><span class="line">make <span class="keyword">install</span> <span class="keyword">install</span>-doc <span class="keyword">install</span>-html <span class="keyword">install</span>-info</span><br><span class="line"><span class="keyword">ln</span> -s /usr/<span class="keyword">local</span>/git2<span class="number">.4</span><span class="number">.3</span>/<span class="keyword">bin</span>/git /usr/<span class="keyword">bin</span>/</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/" data-id="cin8i2el40002h65ofxffshq7" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/" class="article-date">
@@ -113,60 +155,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/" data-id="cin5p1n2z000tqq5oj1bp91gp" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/" data-id="cin8i2eme000sh65omqsk0c7j" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-docker-statsd-influxdb" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/05/12/docker-statsd-influxdb/" class="article-date">
-  <time datetime="2015-05-12T00:05:39.000Z" itemprop="datePublished">2015-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/12/docker-statsd-influxdb/">docker-statsd-influxdb</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文介绍如何用docker封装一个支持graphite和influxdb作为后端数据存储的statsd image。</p>
-<p>最近折腾监控系统<br>选用statsd作为数据代理，用于接收各种agent发来的读数，然后存到influxdb中。<br>statsd 目前在github上star有7500+。</p>
-<p>注意:<br>使用statsd数据刷到influxdb中有10秒钟延迟，这是由于statsd的机制。</p>
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/etsy/statsd.git</span><br></pre></td></tr></table></figure>
-<p>Dockerfile<br><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cat Dockerfile </span></span><br><span class="line"><span class="keyword">FROM</span>        arkii/node:slim</span><br><span class="line"><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</span><br><span class="line"><span class="keyword">COPY</span>        <span class="bash">./statsd /statsd</span><br><span class="line"></span><span class="keyword">ADD</span>         <span class="bash">config.js /statsd/config.js</span><br><span class="line"></span><span class="keyword">RUN</span>         <span class="bash"><span class="built_in">echo</span> <span class="string">'Asia/Shanghai'</span> &gt; /etc/timezone &amp;&amp; /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; <span class="built_in">cd</span> /statsd &amp;&amp; npm install statsd-influxdb-backend</span><br><span class="line"></span><span class="keyword">CMD</span>         <span class="bash">/statsd/bin/statsd <span class="string">"<span class="variable">$&#123;CONFIG_PATH:=/statsd/config.js&#125;</span>"</span></span><br><span class="line"></span><span class="keyword">EXPOSE</span>      <span class="number">8125</span>/udp <span class="number">8126</span>/tcp</span><br></pre></td></tr></table></figure></p>
-<p>docker-compose/fig 配置文件<br><figure class="highlight haml"><table><tr><td class="code"><pre><span class="line"># cat fig.yml </span><br><span class="line">statsd:</span><br><span class="line">  image: arkii/statsd:influxdb</span><br><span class="line">  dns: 172.17.42.1</span><br><span class="line">  ports:</span><br><span class="line">    -<span class="ruby"> <span class="string">"8125:8125/udp"</span></span><br><span class="line"></span>    -<span class="ruby"> <span class="string">"8126:8126/tcp"</span></span><br><span class="line"></span>  environment:</span><br><span class="line">    -<span class="ruby"> PATH=<span class="regexp">/sbin:/usr</span><span class="regexp">/sbin:/bin</span><span class="symbol">:/usr/bin</span><span class="symbol">:/usr/local/bin</span></span><br><span class="line"></span>    -<span class="ruby"> INFLUXDB_HOST=<span class="number">10.21</span>.<span class="number">9.61</span></span><br><span class="line"></span>    -<span class="ruby"> STATSD_DEBUG=<span class="keyword">true</span></span></span><br></pre></td></tr></table></figure></p>
-<p>启动脚本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cat service.sh </span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">sysctl -w net.nf_conntrack_max=655360</span><br><span class="line">sysctl -w vm.max_map_count=262144</span><br><span class="line"><span class="built_in">ulimit</span> -n 65536</span><br><span class="line">/usr/bin/fig up <span class="_">-d</span> --allow-insecure-ssl</span><br></pre></td></tr></table></figure></p>
-<p>statsd配置文件，支持启动时指定变量<br><figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cat config.js </span></span><br><span class="line">&#123;<span class="comment"></span><br><span class="line">//  graphitePort: 2003,</span><span class="comment"></span><br><span class="line">//  graphiteHost: "graphite.example.com",</span></span><br><span class="line">  port: <span class="number">8125</span>,<span class="comment"></span><br><span class="line">//  backends: [ "./backends/graphite", "statsd-influxdb-backend" ],</span></span><br><span class="line">  debug: <span class="built_in">process</span>.env.STATSD_DEBUG || <span class="literal">false</span>,</span><br><span class="line">  backends: [ <span class="string">"statsd-influxdb-backend"</span> ],</span><br><span class="line">  influxdb: &#123;</span><br><span class="line">    host: <span class="built_in">process</span>.env.INFLUXDB_HOST || <span class="string">'127.0.0.1'</span>,  <span class="comment"> // InfluxDB host. (default 127.0.0.1)</span></span><br><span class="line">    port: <span class="built_in">process</span>.env.INFLUXDB_PORT || <span class="number">8086</span>,         <span class="comment"> // InfluxDB port. (default 8086)</span></span><br><span class="line">    <span class="built_in">version</span>: <span class="number">0.8</span>,                                    <span class="comment"> // InfluxDB port. (default 0.8)</span></span><br><span class="line">    ssl: <span class="literal">false</span>,                                      <span class="comment"> // InfluxDB is hosted over SSL. (default false)</span></span><br><span class="line">    database: <span class="built_in">process</span>.env.INFLUXDB_DB || <span class="string">"statsd"</span>,   <span class="comment"> // InfluxDB database instance. (required)</span></span><br><span class="line">    username: <span class="built_in">process</span>.env.INFLUXDB_USER || <span class="string">"root"</span>,   <span class="comment"> // InfluxDB database username. (required)</span></span><br><span class="line">    password: <span class="built_in">process</span>.env.INFLUXDB_PASS || <span class="string">"root"</span>,   <span class="comment"> // InfluxDB database password. (required)</span></span><br><span class="line">    flush: &#123;</span><br><span class="line">      enable: <span class="literal">true</span>      <span class="comment"> // Enable regular flush strategy. (default true)</span></span><br><span class="line">    &#125;,</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      enable: <span class="literal">false</span>,      <span class="comment"> // Enable the proxy strategy. (default false)</span></span><br><span class="line">      suffix: <span class="string">'raw'</span>,      <span class="comment"> // Metric name suffix. (default 'raw')</span></span><br><span class="line">      flushInterval: <span class="number">1000</span> <span class="comment"> // Flush interval for the internal buffer.</span></span><br><span class="line">                          <span class="comment"> // (default 1000)</span></span><br><span class="line">    &#125;,</span><br><span class="line">    includeStatsdMetrics: <span class="literal">false</span>,<span class="comment"> // Send internal statsd metrics to InfluxDB. (default false)</span></span><br><span class="line">    includeInfluxdbMetrics: <span class="literal">false</span><span class="comment"> // Send internal backend metrics to InfluxDB. (default false)</span></span><br><span class="line">                                 <span class="comment"> // Requires includeStatsdMetrics to be enabled.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>启动容器<br><figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line">./<span class="class"><span class="keyword">service</span>.<span class="title">sh</span></span></span><br></pre></td></tr></table></figure></p>
-<p>查看容器日志和debug信息<br><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">fig</span> logs</span><br></pre></td></tr></table></figure></p>
-<p>直接使用我的镜像<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker pull arkii/<span class="string">statsd:</span>influxdb</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://github.com/etsy/statsd" target="_blank" rel="external">statsd项目地址</a></p>
-<p><a href="https://github.com/bernd/statsd-influxdb-backend" target="_blank" rel="external">statsd-influxdb-backend项目地址</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/" data-id="cin5p1n29000cqq5osulh07pu" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -192,6 +183,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/">Upgrade influxdb from v0.9 to v0.12</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
           </li>
         
@@ -207,10 +202,6 @@ ga('send', 'pageview');
             <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
           </li>
         
-          <li>
-            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -220,7 +211,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
     </div>
   </div>
 
@@ -229,7 +220,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -239,7 +230,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 

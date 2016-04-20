@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>rsyslog收集本地系统和服务日志到logstash | Tranquility Garden</title>
+  <title>Tag: graphing | Tranquility Garden</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。期间从头学习了syslog rsyslog。有几个比较重要的概念: facility, input module。input module使用了imfile，功能为：将文本文件读取到rsyslog。将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。我使用local3作为所有服务软">
-<meta property="og:type" content="article">
-<meta property="og:title" content="rsyslog收集本地系统和服务日志到logstash">
-<meta property="og:url" content="http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/index.html">
+  <meta name="description" content="Focus on Python Cloud Container DevOps.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tranquility Garden">
+<meta property="og:url" content="http://blog.wuliwala.net/tags/graphing/index.html">
 <meta property="og:site_name" content="Tranquility Garden">
-<meta property="og:description" content="最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。期间从头学习了syslog rsyslog。有几个比较重要的概念: facility, input module。input module使用了imfile，功能为：将文本文件读取到rsyslog。将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。我使用local3作为所有服务软">
-<meta property="og:updated_time" content="2016-01-25T11:18:39.000Z">
+<meta property="og:description" content="Focus on Python Cloud Container DevOps.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rsyslog收集本地系统和服务日志到logstash">
-<meta name="twitter:description" content="最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。期间从头学习了syslog rsyslog。有几个比较重要的概念: facility, input module。input module使用了imfile，功能为：将文本文件读取到rsyslog。将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。我使用local3作为所有服务软">
+<meta name="twitter:title" content="Tranquility Garden">
+<meta name="twitter:description" content="Focus on Python Cloud Container DevOps.">
   
     <link rel="alternate" href="http://blog.wuliwala.net/atom.xml" title="Tranquility Garden" type="application/atom+xml">
   
@@ -81,80 +80,40 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-rsyslog-send-locallog-to-logstash" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/07/rsyslog-send-locallog-to-logstash/" class="article-date">
-  <time datetime="2015-09-07T01:54:24.000Z" itemprop="datePublished">2015-09-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      rsyslog收集本地系统和服务日志到logstash
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/" class="archive-article-date">
+  <time datetime="2016-04-12T06:42:00.000Z" itemprop="datePublished">Apr 12</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/">Upgrade influxdb from v0.9 to v0.12</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。<br>期间从头学习了syslog rsyslog。<br>有几个比较重要的概念: facility, input module。<br>input module使用了imfile，功能为：将文本文件读取到rsyslog。<br>将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。<br>我使用local3作为所有服务软件的facility配置。主要是为了便于日志归集，因为默认情况下读取文件的内容会记录到本机/var/log/messages一份。<br>步骤如下<br>首先增加rsyslog主配置文件:<br><code>sed -i -e &#39;/\/var\/log\/messages/s/^/&amp;local3.none\;/&#39; -e &#39;6a\$ModLoad imfile\n&#39; /etc/rsyslog.conf</code><br><code>echo &quot;if \$programname == &#39;service&#39; then @@elk.zol.com.cn&quot;  &gt;&gt;/etc/rsyslog.conf</code><br>添加Apache错误日志:  </p>
-<pre><code>cat &lt;&lt;-&quot;RSYSLOGEOF&quot; &gt;/etc/rsyslog.d/httpd.conf 
-$InputFileName /var/log/httpd/error_log
-$InputFileStateFile httpd_error.stat
-$InputFileTag service:
-$InputFileFacility local3
-$InputRunFileMonitor
-$InputFilePollingInterval 60
-RSYSLOGEOF
-</code></pre><p>重启rsyslog<br><code>service rsyslog restart</code></p>
-<p>然后，如果Apache服务报错，而且已经开启日志记录到/var/log/httpd/error_log，远端kibana界面中就能搜索到。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/" data-id="cin8i2eof0016h65ouobtcc0d" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/09/08/pnp4nagioszi-dong-diao-zheng-shu-zhi/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          pnp4nagios数值缩短问题
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/08/31/set-esxi-log-server/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vmware esxi log server</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
 </section>
         
           <aside id="sidebar">
@@ -249,13 +208,11 @@ RSYSLOGEOF
 <script>
   var disqus_shortname = 'blog-arkii';
   
-  var disqus_url = 'http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

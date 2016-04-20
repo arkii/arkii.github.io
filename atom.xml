@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wuliwala.net/"/>
-  <updated>2016-04-11T03:42:10.000Z</updated>
+  <updated>2016-04-20T06:50:05.000Z</updated>
   <id>http://blog.wuliwala.net/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Upgrade influxdb from v0.9 to v0.12</title>
+    <link href="http://blog.wuliwala.net/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/"/>
+    <id>http://blog.wuliwala.net/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/</id>
+    <published>2016-04-12T06:42:00.000Z</published>
+    <updated>2016-04-20T06:50:05.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Upgrade-influxdb-from-v0-9-to-v0-12&quot;&gt;&lt;a href=&quot;#Upgrade-influxdb-from-v0-9-to-v0-12&quot; class=&quot;headerlink&quot; title=&quot;Upgrade influxdb from v0.9 to v0.12&quot;&gt;&lt;/a&gt;Upgrade influxdb from v0.9 to v0.12&lt;/h2&gt;&lt;h4 id=&quot;Table&quot;&gt;&lt;a href=&quot;#Table&quot; class=&quot;headerlink&quot; title=&quot;Table&quot;&gt;&lt;/a&gt;Table&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Comparison&lt;/th&gt;
+&lt;th&gt;0.9&lt;/th&gt;
+&lt;th&gt;0.10&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;engine&lt;/td&gt;
+&lt;td&gt;b1\&lt;/td&gt;
+&lt;td&gt;bz1&lt;/td&gt;
+&lt;td&gt;tsm1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;upgrade-from-v0-9-to-v0-10&quot;&gt;&lt;a href=&quot;#upgrade-from-v0-9-to-v0-10&quot; class=&quot;headerlink&quot; title=&quot;upgrade from v0.9 to v0.10&quot;&gt;&lt;/a&gt;upgrade from v0.9 to v0.10&lt;/h3&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ influx_tsm -h&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;:&amp;lt;&amp;lt;DOC&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Usage: influx_tsm [options] &amp;lt;data-path&amp;gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Convert a database from b1 or bz1 format to tsm1 format.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;This tool will backup the directories before conversion (&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; not disabled).&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;The backed-up files must be removed manually, generally after starting up the&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;node again to make sure all of data has been converted correctly.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;To restore a backup:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Shut down the node, remove the converted directory, and&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  copy the backed-up directory to the original location.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Options:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  -backup=&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;: The location to backup up the current databases. Must not be within the data directory.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  -dbs=&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;: Comma-delimited list of databases to convert. Default is to convert all databases.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  -debug=&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;: If &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;, http debugging endpoints will be enabled on the given address&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  -interval=5s: How often status updates are printed.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  -nobackup=&lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;: Disable database backups. Not recommended.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  -parallel=&lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;: Perform parallel conversion. (up to GOMAXPROCS shards at once)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  -profile=&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;: CPU Profile location&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  -sz=2147483648: Maximum size of individual TSM files.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  -y=&lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;: Don&lt;span class=&quot;string&quot;&gt;&#39;t ask, just convert&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DOC&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ ls /var/lib/influxdb&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;data  hh  meta  wal&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ mkdir /tmp/influxdb_backup&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ influx_tsm -backup /tmp/influxdb_backup /var/lib/influxdb/data&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# If you wish to minimize the time conversion takes, enable parallel mode with -parallel:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ influx_tsm -parallel=true -backup /tmp/influxdb_backup /var/lib/influxdb/data&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;:&amp;lt;&amp;lt;OUTPUT&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2016/04/19 00:18:44.362167 Still Working: Completed Shards: 27/28 Points read/written: 4192583424/4192583424&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2016/04/19 00:18:49.362387 Still Working: Completed Shards: 27/28 Points read/written: 4192625739/4192625739&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2016/04/19 00:18:54.362674 Still Working: Completed Shards: 27/28 Points read/written: 4192700371/4192700371&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2016/04/19 00:18:59.362906 Still Working: Completed Shards: 27/28 Points read/written: 4192806162/4192806162&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2016/04/19 00:19:04.363121 Still Working: Completed Shards: 27/28 Points read/written: 4192911040/4192911040&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2016/04/19 00:19:09.363313 Still Working: Completed Shards: 27/28 Points read/written: 4192911040/4192911040&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2016/04/19 00:19:13.912142 Conversion of /data/data/icinga/default/136 successful (8h6m31.481348028s)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Summary statistics&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;========================================&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Databases converted:                 2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Shards converted:                    28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TSM files created:                   28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Points read:                         4192911040&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Points written:                      4192911040&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;NaN filtered:                        0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Inf filtered:                        0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Points without fields filtered:      0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Disk usage pre-conversion (bytes):   118480699392&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Disk usage post-conversion (bytes):  17643390726&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Reduction factor:                    85%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Bytes per TSM point:                 4.21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Total conversion time:               13h56m43.515786407s&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;OUTPUT&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;official-upgrading-guides&quot;&gt;&lt;a href=&quot;#official-upgrading-guides&quot; class=&quot;headerlink&quot; title=&quot;official upgrading guides&quot;&gt;&lt;/a&gt;official upgrading guides&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://docs.influxdata.com/influxdb/v0.10/administration/upgrading/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;v0.10/administration/upgrading/&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://docs.influxdata.com/influxdb/v0.11/administration/upgrading/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;v0.11/administration/upgrading/&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://docs.influxdata.com/influxdb/v0.12/administration/upgrading/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;v0.12/administration/upgrading/&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.slideshare.net/SeanBeckett4/influxdb-upgrade-to-010-considerations&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SeanBeckett4 influxdb-upgrade-to-010-considerations&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;Example-Migration-2&quot;&gt;&lt;a href=&quot;#Example-Migration-2&quot; class=&quot;headerlink&quot; title=&quot;Example Migration #2&quot;&gt;&lt;/a&gt;Example Migration #2&lt;/h4&gt;&lt;p&gt;Conditions: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Downtime is unacceptable  &lt;/li&gt;
+&lt;li&gt;Converting from 0.9  &lt;/li&gt;
+&lt;li&gt;Not clustered  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;Install 0.10.1 on top of 0.9 and restart&lt;/li&gt;
+&lt;li&gt;Copy “cold” B1/BZ1 shards to /tmp&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;./influx_tsm to convert cold shards influx_tsm -backup /tmp/influxdb_backup /tmp/data&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Remove cold B1/BZ1 shards and replace with converted TSM shards&lt;/li&gt;
+&lt;li&gt;Wait until current “hot” shards become “cold”, repeat steps 2-4 on newly cold shards&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Upgrade-influxdb-from-v0-9-to-v0-12&quot;&gt;&lt;a href=&quot;#Upgrade-influxdb-from-v0-9-to-v0-12&quot; class=&quot;headerlink&quot; title=&quot;Upgrade influxdb from 
+    
+    </summary>
+    
+    
+      <category term="monitoring" scheme="http://blog.wuliwala.net/tags/monitoring/"/>
+    
+      <category term="influxdb" scheme="http://blog.wuliwala.net/tags/influxdb/"/>
+    
+      <category term="graphing" scheme="http://blog.wuliwala.net/tags/graphing/"/>
+    
+  </entry>
   
   <entry>
     <title>SuperMicro Auto Deploy</title>
@@ -738,35 +794,6 @@
     <summary type="html">
     
       &lt;p&gt;其实就是指定rrdtool的一个参数 –units-exponent 0&lt;br&gt;&lt;code&gt;vim /usr/local/pnp4nagios/share/templates/get_cdn_bw_usage.php&lt;/code&gt;&lt;br&gt;&lt;figure class=&quot;hig
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>rsyslog收集本地系统和服务日志到logstash</title>
-    <link href="http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/"/>
-    <id>http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/</id>
-    <published>2015-09-07T01:54:24.000Z</published>
-    <updated>2016-01-25T11:18:39.000Z</updated>
-    
-    <content type="html">&lt;p&gt;最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。&lt;br&gt;期间从头学习了syslog rsyslog。&lt;br&gt;有几个比较重要的概念: facility, input module。&lt;br&gt;input module使用了imfile，功能为：将文本文件读取到rsyslog。&lt;br&gt;将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。&lt;br&gt;我使用local3作为所有服务软件的facility配置。主要是为了便于日志归集，因为默认情况下读取文件的内容会记录到本机/var/log/messages一份。&lt;br&gt;步骤如下&lt;br&gt;首先增加rsyslog主配置文件:&lt;br&gt;&lt;code&gt;sed -i -e &amp;#39;/\/var\/log\/messages/s/^/&amp;amp;local3.none\;/&amp;#39; -e &amp;#39;6a\$ModLoad imfile\n&amp;#39; /etc/rsyslog.conf&lt;/code&gt;&lt;br&gt;&lt;code&gt;echo &amp;quot;if \$programname == &amp;#39;service&amp;#39; then @@elk.zol.com.cn&amp;quot;  &amp;gt;&amp;gt;/etc/rsyslog.conf&lt;/code&gt;&lt;br&gt;添加Apache错误日志:  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cat &amp;lt;&amp;lt;-&amp;quot;RSYSLOGEOF&amp;quot; &amp;gt;/etc/rsyslog.d/httpd.conf 
-$InputFileName /var/log/httpd/error_log
-$InputFileStateFile httpd_error.stat
-$InputFileTag service:
-$InputFileFacility local3
-$InputRunFileMonitor
-$InputFilePollingInterval 60
-RSYSLOGEOF
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;重启rsyslog&lt;br&gt;&lt;code&gt;service rsyslog restart&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;然后，如果Apache服务报错，而且已经开启日志记录到/var/log/httpd/error_log，远端kibana界面中就能搜索到。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。&lt;br&gt;期间从头学习了syslog rsyslog。&lt;br&gt;有几个比较重要的概念: facility, input module。&lt;br&gt;input module使用了imfile，功能为：将文本文件读
     
     </summary>
     

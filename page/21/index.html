@@ -82,6 +82,53 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-linux-hp-ilo-ming-ling-xing-gong-ju" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/" class="article-date">
+  <time datetime="2015-07-08T00:25:41.000Z" itemprop="datePublished">2015-07-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/">Linux命令行获取HP iLo配置信息</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>安装命令行工具</p>
+<pre><code>#yum install hponcfg
+</code></pre><p>测试一下</p>
+<pre><code>#hponcfg -g
+</code></pre><p>输出如下<br><figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">HP Lights-<span class="keyword">Out</span> Online Configuration utility</span><br><span class="line">Version <span class="number">4.1.</span><span class="number">0</span> Date <span class="number">1</span>/<span class="number">3</span>/<span class="number">2013</span> (c) Hewlett-Packard Company, <span class="number">2013</span></span><br><span class="line">Firmware Revision = <span class="number">1.81</span> Device <span class="keyword">type</span> = iLO <span class="number">2</span> Driver <span class="keyword">name</span> = hpilo</span><br><span class="line">Host Information:</span><br><span class="line">                        Server <span class="keyword">Name</span>: DL380G5PXXXX</span><br><span class="line">                        Server <span class="keyword">Number</span>: <span class="number">000000000</span></span><br></pre></td></tr></table></figure></p>
+<p>编辑一个xml文件<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># cat getinfo.xml</span><br><span class="line"><span class="tag">&lt;<span class="name">RIBCL</span> <span class="attr">VERSION</span>=<span class="string">"2.0"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">LOGIN</span> <span class="attr">USER_LOGIN</span>=<span class="string">'yourusername'</span> <span class="attr">PASSWORD</span>=<span class="string">'yourpassword'</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">RIB_INFO</span> <span class="attr">MODE</span>=<span class="string">"read"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">GET_NETWORK_SETTINGS</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">RIB_INFO</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">LOGIN</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">RIBCL</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>执行命令</p>
+<pre><code>#hponcfg -f getinfo.xml
+</code></pre><p>输出如下<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">HP Lights-Out Online Configuration utility</span><br><span class="line">Version 4.1.0 Date 1/3/2013 (c) Hewlett-Packard Company, 2013</span><br><span class="line">Firmware Revision = 1.81 Device type = iLO 2 Driver name = hpilo</span><br><span class="line"><span class="tag">&lt;<span class="name">GET_NETWORK_SETTINGS</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ENABLE_NIC</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SHARED_NETWORK_PORT</span> <span class="attr">VALUE</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">VLAN</span> <span class="attr">ENABLED</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">VLAN_ID</span> <span class="attr">VALUE</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SPEED_AUTOSELECT</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">NIC_SPEED</span> <span class="attr">VALUE</span>=<span class="string">"10"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">FULL_DUPLEX</span> <span class="attr">VALUE</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_ENABLE</span> <span class="attr">VALUE</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_GATEWAY</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_DNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_WINS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_STATIC_ROUTE</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DHCP_DOMAIN_NAME</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">REG_WINS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">REG_DDNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"Y"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PING_GATEWAY</span> <span class="attr">VALUE</span>=<span class="string">"N"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">MAC_ADDRESS</span> <span class="attr">VALUE</span>=<span class="string">"00:1e:0b:d9:a8:7a"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IP_ADDRESS</span> <span class="attr">VALUE</span>=<span class="string">"10.15.xxx.xxx"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SUBNET_MASK</span> <span class="attr">VALUE</span>=<span class="string">"255.255.254.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">GATEWAY_IP_ADDRESS</span> <span class="attr">VALUE</span>=<span class="string">"10.15.xxx.1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DNS_NAME</span> <span class="attr">VALUE</span>=<span class="string">"ILOCNGxxxxxxx"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DOMAIN_NAME</span> <span class="attr">VALUE</span>=<span class="string">""</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PRIM_DNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SEC_DNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TER_DNS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PRIM_WINS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SEC_WINS_SERVER</span> <span class="attr">VALUE</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">STATIC_ROUTE_1</span> <span class="attr">DEST</span>=<span class="string">"0.0.0.0"</span></span><br><span class="line">                    <span class="attr">GATEWAY</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">STATIC_ROUTE_2</span> <span class="attr">DEST</span>=<span class="string">"0.0.0.0"</span></span><br><span class="line">                    <span class="attr">GATEWAY</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">STATIC_ROUTE_3</span> <span class="attr">DEST</span>=<span class="string">"0.0.0.0"</span></span><br><span class="line">                    <span class="attr">GATEWAY</span>=<span class="string">"0.0.0.0"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">GET_NETWORK_SETTINGS</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/" data-id="cin8i2emj000wh65oya0lqvx6" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/08/linux-hp-ilo-ming-ling-xing-gong-ju/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-dell-ipxe" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/03/dell-ipxe/" class="article-date">
@@ -115,52 +162,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/07/03/dell-ipxe/" data-id="cin5p1n27000bqq5o52txoxeq" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/07/03/dell-ipxe/" data-id="cin8i2elp000bh65oo7pzjtgj" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/07/03/dell-ipxe/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-squid" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/06/23/squid/" class="article-date">
-  <time datetime="2015-06-23T02:12:00.000Z" itemprop="datePublished">2015-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/23/squid/">使用squid代理rsync</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于新IDC和老IDC需要迁移部分数据，但新老两个IDC之间网络目前还没打通，但办公室网络两边都可以连通。<br>于是用squid搭个代理来同步数据。</p>
-<p>office 10.21.2.2 squid proxy<br>老IDC  10.15.3.8 rsync src<br>新IDC  10.19.1.3 rsync dst</p>
-<p>office的服务器10.21.2.2上搭建squid服务<br>yum install -y squid<br>vim /etc/squid/squid.conf<br>在配置文件最前面添加<br><figure class="highlight elm"><table><tr><td class="code"><pre><span class="line"><span class="title">acl</span> idc_rule src <span class="number">10.19</span><span class="number">.1</span><span class="number">.0</span>/<span class="number">22</span></span><br><span class="line"><span class="title">acl</span> <span class="type">SSL_port</span> <span class="keyword">port</span> 873 # for rsync  </span><br><span class="line"><span class="title">acl</span> <span class="type">Safe_port</span> <span class="keyword">port</span> 873 # for rsync  </span><br><span class="line"><span class="title">visible_hostname</span> localhost</span><br><span class="line"><span class="title">http_access</span> allow idc_rule</span><br></pre></td></tr></table></figure></p>
-<p>service squid restart</p>
-<p>在新idc的机器10.19.1.3上，运行下面命令<br>export RSYNC_PROXY=”10.21.2.2:3128”<br>rsync -avz –progress 10.15.3.8::iso/ ./</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/06/23/squid/" data-id="cin5p1n3l0016qq5o1vl07fxw" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/06/23/squid/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -186,6 +190,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/">Upgrade influxdb from v0.9 to v0.12</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
           </li>
         
@@ -201,10 +209,6 @@ ga('send', 'pageview');
             <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
           </li>
         
-          <li>
-            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -214,7 +218,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
     </div>
   </div>
 
@@ -223,7 +227,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -233,7 +237,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 

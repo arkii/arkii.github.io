@@ -3,18 +3,69 @@
 <head>
   <meta charset="utf-8">
   
-  <title>rsyslog收集本地系统和服务日志到logstash | Tranquility Garden</title>
+  <title>Upgrade influxdb from v0.9 to v0.12 | Tranquility Garden</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。期间从头学习了syslog rsyslog。有几个比较重要的概念: facility, input module。input module使用了imfile，功能为：将文本文件读取到rsyslog。将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。我使用local3作为所有服务软">
+  <meta name="description" content="Upgrade influxdb from v0.9 to v0.12Table
+
+
+Comparison
+0.9
+0.10
+
+
+
+
+engine
+b1\
+bz1
+tsm1
+
+
+
+upgrade from v0.9 to v0.10$ influx_tsm -h:&amp;lt;&amp;lt;DOCUsage: influx_tsm [options] &amp;lt;data-path&amp;gt; Convert a d">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rsyslog收集本地系统和服务日志到logstash">
-<meta property="og:url" content="http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/index.html">
+<meta property="og:title" content="Upgrade influxdb from v0.9 to v0.12">
+<meta property="og:url" content="http://blog.wuliwala.net/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/index.html">
 <meta property="og:site_name" content="Tranquility Garden">
-<meta property="og:description" content="最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。期间从头学习了syslog rsyslog。有几个比较重要的概念: facility, input module。input module使用了imfile，功能为：将文本文件读取到rsyslog。将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。我使用local3作为所有服务软">
-<meta property="og:updated_time" content="2016-01-25T11:18:39.000Z">
+<meta property="og:description" content="Upgrade influxdb from v0.9 to v0.12Table
+
+
+Comparison
+0.9
+0.10
+
+
+
+
+engine
+b1\
+bz1
+tsm1
+
+
+
+upgrade from v0.9 to v0.10$ influx_tsm -h:&amp;lt;&amp;lt;DOCUsage: influx_tsm [options] &amp;lt;data-path&amp;gt; Convert a d">
+<meta property="og:updated_time" content="2016-04-20T06:50:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rsyslog收集本地系统和服务日志到logstash">
-<meta name="twitter:description" content="最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。期间从头学习了syslog rsyslog。有几个比较重要的概念: facility, input module。input module使用了imfile，功能为：将文本文件读取到rsyslog。将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。我使用local3作为所有服务软">
+<meta name="twitter:title" content="Upgrade influxdb from v0.9 to v0.12">
+<meta name="twitter:description" content="Upgrade influxdb from v0.9 to v0.12Table
+
+
+Comparison
+0.9
+0.10
+
+
+
+
+engine
+b1\
+bz1
+tsm1
+
+
+
+upgrade from v0.9 to v0.10$ influx_tsm -h:&amp;lt;&amp;lt;DOCUsage: influx_tsm [options] &amp;lt;data-path&amp;gt; Convert a d">
   
     <link rel="alternate" href="http://blog.wuliwala.net/atom.xml" title="Tranquility Garden" type="application/atom+xml">
   
@@ -81,10 +132,10 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-rsyslog-send-locallog-to-logstash" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-upgrade_influxdb_from_v0.9_to_v0.12" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/07/rsyslog-send-locallog-to-logstash/" class="article-date">
-  <time datetime="2015-09-07T01:54:24.000Z" itemprop="datePublished">2015-09-07</time>
+    <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/" class="article-date">
+  <time datetime="2016-04-12T06:42:00.000Z" itemprop="datePublished">2016-04-12</time>
 </a>
     
   </div>
@@ -95,7 +146,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      rsyslog收集本地系统和服务日志到logstash
+      Upgrade influxdb from v0.9 to v0.12
     </h1>
   
 
@@ -103,45 +154,59 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。<br>期间从头学习了syslog rsyslog。<br>有几个比较重要的概念: facility, input module。<br>input module使用了imfile，功能为：将文本文件读取到rsyslog。<br>将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。<br>我使用local3作为所有服务软件的facility配置。主要是为了便于日志归集，因为默认情况下读取文件的内容会记录到本机/var/log/messages一份。<br>步骤如下<br>首先增加rsyslog主配置文件:<br><code>sed -i -e &#39;/\/var\/log\/messages/s/^/&amp;local3.none\;/&#39; -e &#39;6a\$ModLoad imfile\n&#39; /etc/rsyslog.conf</code><br><code>echo &quot;if \$programname == &#39;service&#39; then @@elk.zol.com.cn&quot;  &gt;&gt;/etc/rsyslog.conf</code><br>添加Apache错误日志:  </p>
-<pre><code>cat &lt;&lt;-&quot;RSYSLOGEOF&quot; &gt;/etc/rsyslog.d/httpd.conf 
-$InputFileName /var/log/httpd/error_log
-$InputFileStateFile httpd_error.stat
-$InputFileTag service:
-$InputFileFacility local3
-$InputRunFileMonitor
-$InputFilePollingInterval 60
-RSYSLOGEOF
-</code></pre><p>重启rsyslog<br><code>service rsyslog restart</code></p>
-<p>然后，如果Apache服务报错，而且已经开启日志记录到/var/log/httpd/error_log，远端kibana界面中就能搜索到。</p>
+        <h2 id="Upgrade-influxdb-from-v0-9-to-v0-12"><a href="#Upgrade-influxdb-from-v0-9-to-v0-12" class="headerlink" title="Upgrade influxdb from v0.9 to v0.12"></a>Upgrade influxdb from v0.9 to v0.12</h2><h4 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h4><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>0.9</th>
+<th>0.10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>engine</td>
+<td>b1\</td>
+<td>bz1</td>
+<td>tsm1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="upgrade-from-v0-9-to-v0-10"><a href="#upgrade-from-v0-9-to-v0-10" class="headerlink" title="upgrade from v0.9 to v0.10"></a>upgrade from v0.9 to v0.10</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ influx_tsm -h</span><br><span class="line">:&lt;&lt;DOC</span><br><span class="line">Usage: influx_tsm [options] &lt;data-path&gt; </span><br><span class="line"></span><br><span class="line">Convert a database from b1 or bz1 format to tsm1 format.</span><br><span class="line"></span><br><span class="line">This tool will backup the directories before conversion (<span class="keyword">if</span> not disabled).</span><br><span class="line">The backed-up files must be removed manually, generally after starting up the</span><br><span class="line">node again to make sure all of data has been converted correctly.</span><br><span class="line"></span><br><span class="line">To restore a backup:</span><br><span class="line">  Shut down the node, remove the converted directory, and</span><br><span class="line">  copy the backed-up directory to the original location.</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -backup=<span class="string">""</span>: The location to backup up the current databases. Must not be within the data directory.</span><br><span class="line">  -dbs=<span class="string">""</span>: Comma-delimited list of databases to convert. Default is to convert all databases.</span><br><span class="line">  -debug=<span class="string">""</span>: If <span class="built_in">set</span>, http debugging endpoints will be enabled on the given address</span><br><span class="line">  -interval=5s: How often status updates are printed.</span><br><span class="line">  -nobackup=<span class="literal">false</span>: Disable database backups. Not recommended.</span><br><span class="line">  -parallel=<span class="literal">false</span>: Perform parallel conversion. (up to GOMAXPROCS shards at once)</span><br><span class="line">  -profile=<span class="string">""</span>: CPU Profile location</span><br><span class="line">  -sz=2147483648: Maximum size of individual TSM files.</span><br><span class="line">  -y=<span class="literal">false</span>: Don<span class="string">'t ask, just convert</span><br><span class="line">DOC</span><br><span class="line"></span><br><span class="line">$ ls /var/lib/influxdb</span><br><span class="line">data  hh  meta  wal</span><br><span class="line"></span><br><span class="line">$ mkdir /tmp/influxdb_backup</span><br><span class="line"></span><br><span class="line">$ influx_tsm -backup /tmp/influxdb_backup /var/lib/influxdb/data</span><br><span class="line"></span><br><span class="line"># If you wish to minimize the time conversion takes, enable parallel mode with -parallel:</span><br><span class="line">$ influx_tsm -parallel=true -backup /tmp/influxdb_backup /var/lib/influxdb/data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">:&lt;&lt;OUTPUT</span><br><span class="line">2016/04/19 00:18:44.362167 Still Working: Completed Shards: 27/28 Points read/written: 4192583424/4192583424</span><br><span class="line">2016/04/19 00:18:49.362387 Still Working: Completed Shards: 27/28 Points read/written: 4192625739/4192625739</span><br><span class="line">2016/04/19 00:18:54.362674 Still Working: Completed Shards: 27/28 Points read/written: 4192700371/4192700371</span><br><span class="line">2016/04/19 00:18:59.362906 Still Working: Completed Shards: 27/28 Points read/written: 4192806162/4192806162</span><br><span class="line">2016/04/19 00:19:04.363121 Still Working: Completed Shards: 27/28 Points read/written: 4192911040/4192911040</span><br><span class="line">2016/04/19 00:19:09.363313 Still Working: Completed Shards: 27/28 Points read/written: 4192911040/4192911040</span><br><span class="line">2016/04/19 00:19:13.912142 Conversion of /data/data/icinga/default/136 successful (8h6m31.481348028s)</span><br><span class="line"></span><br><span class="line">Summary statistics</span><br><span class="line">========================================</span><br><span class="line">Databases converted:                 2</span><br><span class="line">Shards converted:                    28</span><br><span class="line">TSM files created:                   28</span><br><span class="line">Points read:                         4192911040</span><br><span class="line">Points written:                      4192911040</span><br><span class="line">NaN filtered:                        0</span><br><span class="line">Inf filtered:                        0</span><br><span class="line">Points without fields filtered:      0</span><br><span class="line">Disk usage pre-conversion (bytes):   118480699392</span><br><span class="line">Disk usage post-conversion (bytes):  17643390726</span><br><span class="line">Reduction factor:                    85%</span><br><span class="line">Bytes per TSM point:                 4.21</span><br><span class="line">Total conversion time:               13h56m43.515786407s</span><br><span class="line">OUTPUT</span></span><br></pre></td></tr></table></figure>
+<h3 id="official-upgrading-guides"><a href="#official-upgrading-guides" class="headerlink" title="official upgrading guides"></a>official upgrading guides</h3><p><a href="https://docs.influxdata.com/influxdb/v0.10/administration/upgrading/" target="_blank" rel="external">v0.10/administration/upgrading/</a><br><a href="https://docs.influxdata.com/influxdb/v0.11/administration/upgrading/" target="_blank" rel="external">v0.11/administration/upgrading/</a><br><a href="https://docs.influxdata.com/influxdb/v0.12/administration/upgrading/" target="_blank" rel="external">v0.12/administration/upgrading/</a><br><a href="http://www.slideshare.net/SeanBeckett4/influxdb-upgrade-to-010-considerations" target="_blank" rel="external">SeanBeckett4 influxdb-upgrade-to-010-considerations</a></p>
+<h4 id="Example-Migration-2"><a href="#Example-Migration-2" class="headerlink" title="Example Migration #2"></a>Example Migration #2</h4><p>Conditions: </p>
+<ul>
+<li>Downtime is unacceptable  </li>
+<li>Converting from 0.9  </li>
+<li>Not clustered  </li>
+</ul>
+<ol>
+<li>Install 0.10.1 on top of 0.9 and restart</li>
+<li>Copy “cold” B1/BZ1 shards to /tmp</li>
+<li>Run <code>./influx_tsm to convert cold shards influx_tsm -backup /tmp/influxdb_backup /tmp/data</code></li>
+<li>Remove cold B1/BZ1 shards and replace with converted TSM shards</li>
+<li>Wait until current “hot” shards become “cold”, repeat steps 2-4 on newly cold shards</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/" data-id="cin8i2eof0016h65ouobtcc0d" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/" data-id="cin8i2eoo001hh65o3jf1r0zg" class="article-share-link">Share</a>
       
-        <a href="http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.wuliwala.net/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/#disqus_thread" class="article-comment-link">Comments</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/graphing/">graphing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/influxdb/">influxdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/monitoring/">monitoring</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2015/09/08/pnp4nagioszi-dong-diao-zheng-shu-zhi/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          pnp4nagios数值缩短问题
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/31/set-esxi-log-server/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/04/07/supermicro_auto_deploy/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vmware esxi log server</div>
+      <div class="article-nav-title">SuperMicro Auto Deploy</div>
     </a>
   
 </nav>
@@ -249,7 +314,7 @@ RSYSLOGEOF
 <script>
   var disqus_shortname = 'blog-arkii';
   
-  var disqus_url = 'http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/';
+  var disqus_url = 'http://blog.wuliwala.net/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/';
   
   (function(){
     var dsq = document.createElement('script');

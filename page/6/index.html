@@ -82,6 +82,45 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-how-to-build-tinycorelinux-docker-image" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/07/how-to-build-tinycorelinux-docker-image/" class="article-date">
+  <time datetime="2015-12-07T02:14:57.000Z" itemprop="datePublished">2015-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/07/how-to-build-tinycorelinux-docker-image/">how to build tinycorelinux docker image</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="how-to-build-tinycorelinux-docker-image"><a href="#how-to-build-tinycorelinux-docker-image" class="headerlink" title="how to build tinycorelinux docker image"></a>how to build tinycorelinux docker image</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http://tinycorelinux.net/6.x/x86_64/release/distribution_files/corepure64.gz</span><br><span class="line">mkdir chroot</span><br><span class="line">gunzip corepure64.gz</span><br><span class="line">cd chroot/</span><br><span class="line">cpio -i &lt; ../corepure64</span><br><span class="line">cd ..</span><br><span class="line">tar -C chroot -c . | docker import - tinycorelinux</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/" data-id="cin8i2elz000ih65ogsxq0p68" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-how-to-configure-httpd-proxy-with-authentication" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/02/how-to-configure-httpd-proxy-with-authentication/" class="article-date">
@@ -112,49 +151,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/" data-id="cin5p1n2o000mqq5ocn9jps14" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/" data-id="cin8i2em0000jh65o2qekzd6m" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-how-to-configure-httpd-with-ldap-authentication" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/01/how-to-configure-httpd-with-ldap-authentication/" class="article-date">
-  <time datetime="2015-12-01T00:07:06.000Z" itemprop="datePublished">2015-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/01/how-to-configure-httpd-with-ldap-authentication/">how to configure httpd with ldap authentication</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="how-to-configure-httpd-with-ldap-authentication"><a href="#how-to-configure-httpd-with-ldap-authentication" class="headerlink" title="how to configure httpd with ldap authentication"></a>how to configure httpd with ldap authentication</h1><h2 id="httpd-2-4-ldap"><a href="#httpd-2-4-ldap" class="headerlink" title="httpd 2.4 ldap"></a>httpd 2.4 ldap</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LoadModule authn_core_module modules/mod_authn_core.so</span><br><span class="line">LoadModule authz_host_module modules/mod_authz_host.so</span><br><span class="line">LoadModule authz_user_module modules/mod_authz_user.so</span><br><span class="line">LoadModule authz_core_module modules/mod_authz_core.so</span><br><span class="line">LoadModule access_compat_module modules/mod_access_compat.so</span><br><span class="line">LoadModule auth_basic_module modules/mod_auth_basic.so</span><br><span class="line">LoadModule ldap_module modules/mod_ldap.so</span><br><span class="line">LoadModule authnz_ldap_module modules/mod_authnz_ldap.so</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:*&gt;</span><br><span class="line">ProxyPass / http://elk-kibana:5601/</span><br><span class="line">ProxyPassReverse / http://elk-kibana:5601/</span><br><span class="line"></span><br><span class="line">&lt;Proxy *&gt;</span><br><span class="line">Require all granted</span><br><span class="line"></span><br><span class="line"># LDAPSharedCacheSize 500000</span><br><span class="line"># LDAPCacheEntries 1024</span><br><span class="line"># LDAPCacheTTL 600</span><br><span class="line"># LDAPOpCacheEntries 1024</span><br><span class="line"># LDAPOpCacheTTL 600</span><br><span class="line">AuthType Basic</span><br><span class="line">AuthName &quot;Login with LDAP&quot;</span><br><span class="line">AuthBasicProvider ldap</span><br><span class="line">AuthLDAPURL &quot;ldap://&lt;YOUR LDAP SERVER&gt;:3268/OU=Offices,DC=company,DC=com?sAMAccountName?sub?(objectClass=person)&quot;</span><br><span class="line">AuthLDAPBindDN &quot;CN=Operator,OU=Service Accounts,DC=company,DC=com&quot;</span><br><span class="line">AuthLDAPBindPassword &lt;PUT Operator&apos;s PASSWORD HERE&gt;</span><br><span class="line">require valid-user</span><br><span class="line">&lt;/Proxy&gt; </span><br><span class="line"></span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="via-httpd-apache-org"><a href="#via-httpd-apache-org" class="headerlink" title="via:httpd.apache.org"></a>via:httpd.apache.org</h3><p><a href="https://httpd.apache.org/docs/2.4/mod/mod_ldap.html" target="_blank" rel="external">mod_ldap</a><br><a href="https://httpd.apache.org/docs/2.4/mod/mod_authnz_ldap.html" target="_blank" rel="external">mod_authnz_ldap</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/12/01/how-to-configure-httpd-with-ldap-authentication/" data-id="cin5p1n2m000lqq5odm2xzihw" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/12/01/how-to-configure-httpd-with-ldap-authentication/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -180,6 +179,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/">Upgrade influxdb from v0.9 to v0.12</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
           </li>
         
@@ -195,10 +198,6 @@ ga('send', 'pageview');
             <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
           </li>
         
-          <li>
-            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -208,7 +207,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
     </div>
   </div>
 
@@ -217,7 +216,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -227,7 +226,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 

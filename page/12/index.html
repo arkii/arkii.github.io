@@ -82,6 +82,48 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-compile-tool-for-esxi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/31/compile-tool-for-esxi/" class="article-date">
+  <time datetime="2015-08-30T22:18:17.000Z" itemprop="datePublished">2015-08-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/31/compile-tool-for-esxi/">给esxi编译ipmitool</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>vmware 的 ESXi服务器是不带包管理系统的，也不带任何编译工具，所以遇到需要安装软件的情况，需要其他Linux环境来编译跨平台二进制文件。<br>本文主要讲述在CentOS下给ESXi服务器编译ipmitool。<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">yum -y install autoconf make gcc gcc-c++ glibc glibc-<span class="keyword">static</span> glibc-devel libstdc++ libstdc++-devel</span><br><span class="line">wget <span class="string">http:</span><span class="comment">//nchc.dl.sourceforge.net/project/ipmitool/ipmitool/1.8.15/ipmitool-1.8.15.tar.bz2</span></span><br><span class="line">tar xvf ipmitool<span class="number">-1.8</span><span class="number">.15</span>.tar.bz2</span><br><span class="line">cd ipmitool<span class="number">-1.8</span><span class="number">.15</span></span><br><span class="line">./configure CFLAGS=-m32 LDFLAGS=-<span class="keyword">static</span></span><br><span class="line">make -j8</span><br><span class="line">scp src<span class="regexp">/ipmitool root@your-esxi-host-ip:/</span>opt/</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/opt # ./</span>ipmitool mc info</span><br><span class="line">Device <span class="string">ID                 :</span> <span class="number">32</span></span><br><span class="line">Device <span class="string">Revision           :</span> <span class="number">0</span></span><br><span class="line">Firmware <span class="string">Revision         :</span> <span class="number">1.50</span></span><br><span class="line">IPMI <span class="string">Version              :</span> <span class="number">2.0</span></span><br><span class="line">Manufacturer <span class="string">ID           :</span> <span class="number">674</span></span><br><span class="line">Manufacturer <span class="string">Name         :</span> DELL Inc</span><br><span class="line">Product <span class="string">ID                :</span> <span class="number">256</span> (<span class="number">0x0100</span>)</span><br><span class="line">Product <span class="string">Name              :</span> Unknown (<span class="number">0x100</span>)</span><br><span class="line">Device <span class="string">Available          :</span> yes</span><br><span class="line">Provides Device <span class="string">SDRs      :</span> yes</span><br><span class="line">Additional Device <span class="string">Support :</span></span><br><span class="line">    Sensor Device</span><br><span class="line">    SDR Repository Device</span><br><span class="line">    SEL Device</span><br><span class="line">    FRU Inventory Device</span><br><span class="line">    IPMB Event Receiver</span><br><span class="line">    Bridge</span><br><span class="line">    Chassis Device</span><br><span class="line">Aux Firmware Rev <span class="string">Info     :</span> </span><br><span class="line">    <span class="number">0x00</span></span><br><span class="line">    <span class="number">0x18</span></span><br><span class="line">    <span class="number">0x00</span></span><br><span class="line">    <span class="number">0x00</span></span><br></pre></td></tr></table></figure>
+<p><code>/opt # ./ipmitool lan print</code>  </p>
+<figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set</span> <span class="keyword">in</span> <span class="attribute">Progress</span>         : <span class="built_in">Set</span> Complete</span><br><span class="line">Auth Type <span class="attribute">Support</span>       : NONE MD2 MD5 PASSWORD </span><br><span class="line">Auth Type <span class="attribute">Enable</span>        : <span class="attribute">Callback</span> : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">User</span>     : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">Operator</span> : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">Admin</span>    : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">OEM</span>      : </span><br><span class="line">IP Address <span class="attribute">Source</span>       : Static Address</span><br><span class="line">IP <span class="attribute">Address</span>              : <span class="number">10.3</span><span class="number">.0</span><span class="number">.35</span></span><br><span class="line">Subnet <span class="attribute">Mask</span>             : <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></span><br><span class="line">MAC <span class="attribute">Address</span>             : <span class="attribute">e4</span>:<span class="number">5</span><span class="attribute">b</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span><br><span class="line">SNMP Community String</span>   : public</span><br><span class="line">IP <span class="attribute">Header</span>               : TTL=<span class="number">0x40</span> Flags=<span class="number">0x40</span> Precedence=<span class="number">0x00</span> TOS=<span class="number">0x10</span></span><br><span class="line">Default Gateway <span class="attribute">IP</span>      : <span class="number">10.3</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">Default Gateway <span class="attribute">MAC</span>     : <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">Backup Gateway <span class="attribute">IP</span>       : <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">Backup Gateway <span class="attribute">MAC</span>      : <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">802.1</span>q VLAN <span class="attribute">ID</span>          : Disabled</span><br><span class="line"><span class="number">802.1</span>q VLAN <span class="attribute">Priority</span>    : <span class="number">0</span></span><br><span class="line">RMCP+ Cipher <span class="attribute">Suites</span>     : <span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span></span><br><span class="line">Cipher Suite Priv <span class="attribute">Max</span>   : <span class="attribute">aaaaaaaaaaaaaaa</span></span><br><span class="line">                        :     X=Cipher Suite <span class="attribute">Unused</span></span><br><span class="line">                        :     c=<span class="attribute">CALLBACK</span></span><br><span class="line">                        :     u=<span class="attribute">USER</span></span><br><span class="line">                        :     o=<span class="attribute">OPERATOR</span></span><br><span class="line">                        :     a=<span class="attribute">ADMIN</span></span><br><span class="line">                        :     O=OEM</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/" data-id="cin8i2elj0007h65ouyjums3j" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-cygwin-mysqld" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/24/cygwin-mysqld/" class="article-date">
@@ -113,59 +155,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/" data-id="cin5p1n2f000eqq5ocgo2uv9w" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/" data-id="cin8i2ell0009h65oi12rwru2" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-icinga2-pnp4nagios" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/24/icinga2-pnp4nagios/" class="article-date">
-  <time datetime="2015-08-23T23:31:06.000Z" itemprop="datePublished">2015-08-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/24/icinga2-pnp4nagios/">icinga2集成pnp4nagios</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/2015/08/icinga2-pnp4nagios-ifio-2-1.png" alt="alt"></p>
-<h1 id="PNP4nagios"><a href="#PNP4nagios" class="headerlink" title="PNP4nagios"></a>PNP4nagios</h1><p><code>cp -r modules/* /usr/share/icingaweb2/modules/</code><br><code>ln -s /usr/local/pnp4nagios/etc/* /etc/pnp4nagios/</code><br><code>#vim /etc/pnp4nagios/npcd.cfg</code><br><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">user</span> = icinga</span><br><span class="line"><span class="attr">group</span> = icinga</span><br><span class="line"><span class="attr">log_type</span> = file</span><br><span class="line"><span class="attr">log_file</span> = /usr/local/pnp4nagios/var/npcd.log</span><br><span class="line"><span class="attr">max_logfile_size</span> = <span class="number">10485760</span></span><br><span class="line"><span class="attr">log_level</span> = <span class="number">0</span> #debug时打开</span><br><span class="line"><span class="attr">perfdata_file_run_cmd</span> = /usr/local/pnp4nagios/libexec/process_perfdata.pl</span><br><span class="line"><span class="attr">perfdata_file_run_cmd_args</span> = --bulk</span><br><span class="line"><span class="attr">identify_npcd</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">npcd_max_threads</span> = <span class="number">5</span></span><br><span class="line"><span class="attr">sleep_time</span> = <span class="number">15</span></span><br><span class="line"><span class="attr">load_threshold</span> = <span class="number">0.0</span></span><br><span class="line"><span class="attr">pid_file</span>=/var/run/npcd.pid</span><br><span class="line"><span class="attr">perfdata_file</span> = /usr/local/pnp4nagios/var/perfdata.dump</span><br><span class="line"><span class="attr">perfdata_spool_dir</span> = /var/spool/icinga2/perfdata</span><br><span class="line"><span class="attr">perfdata_spool_filename</span> = perfdata</span><br><span class="line"><span class="attr">perfdata_file_processing_interval</span> = <span class="number">15</span></span><br></pre></td></tr></table></figure></p>
-<p><code>#vim /etc/pnp4nagios/process_perfdata.cfg</code></p>
-<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line"><span class="attr">TIMEOUT</span> = <span class="number">15</span></span><br><span class="line"><span class="attr">USE_RRDs</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">RRDPATH</span> = /usr/local/pnp4nagios/var/perfdata</span><br><span class="line"><span class="attr">RRDTOOL</span> = /usr/bin/rrdtool</span><br><span class="line"><span class="attr">CFG_DIR</span> = /usr/local/pnp4nagios/etc</span><br><span class="line"><span class="attr">RRD_STORAGE_TYPE</span> = SINGLE</span><br><span class="line"><span class="attr">RRD_HEARTBEAT</span> = <span class="number">8460</span></span><br><span class="line"><span class="attr">RRA_CFG</span> = /usr/local/pnp4nagios/etc/rra.cfg</span><br><span class="line"><span class="attr">RRA_STEP</span> = <span class="number">60</span></span><br><span class="line"><span class="attr">LOG_FILE</span> = /usr/local/pnp4nagios/var/perfdata.log</span><br><span class="line"><span class="attr">LOG_LEVEL</span> = <span class="number">0</span> <span class="comment">#debug时打开</span></span><br><span class="line"><span class="attr">XML_ENC</span> = UTF-<span class="number">8</span></span><br><span class="line"><span class="attr">XML_UPDATE_DELAY</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">RRD_DAEMON_OPTS</span> = </span><br><span class="line"><span class="attr">STATS_DIR</span> = /usr/local/pnp4nagios/var/stats</span><br><span class="line"><span class="attr">PREFORK</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">GEARMAN_HOST</span> = localhost:<span class="number">4730</span></span><br><span class="line"><span class="attr">REQUESTS_PER_CHILD</span> = <span class="number">10000</span></span><br><span class="line"><span class="attr">ENCRYPTION</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">KEY</span> = should_be_changed</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">`<span class="comment">#vim /etc/icinga2/features-enabled/perfdata.conf`</span></span><br></pre></td></tr></table></figure>
-<p>library “perfdata”<br>object PerfdataWriter “perfdata” {<br>  service_format_template = “DATATYPE::SERVICEPERFDATA\tTIMET::$icinga.timet$\tHOSTNAME::$host.name$\tSERVICEDESC::$service.name$\tSERVICEPERFDATA::$service.<br>  perfdata$\tSERVICECHECKCOMMAND::$service.check_command$$pnp_check_arg1$\tHOSTSTATE::$host.state$\tHOSTSTATETYPE::$host.state_type$\tSERVICESTATE::$service.<br>  state$\tSERVICESTATETYPE::$service.state_type$”<br>}<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">`# vim /etc/icinga2/<span class="keyword">conf</span>.<span class="keyword">d</span>/templates.<span class="keyword">conf</span>`</span><br></pre></td></tr></table></figure></p>
-<p>template Service “pnp-svc” {<br>  action_url = “/pnp4nagios/graph?host=$HOSTNAME$&amp;srv=$SERVICEDESC$”<br>  vars.pnp_check_arg1 = “”<br>}<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">`#vim /etc/icinga2/<span class="keyword">conf</span>.<span class="keyword">d</span>/services.<span class="keyword">conf</span>`</span><br></pre></td></tr></table></figure></p>
-<p>apply Service “nrpe_traffic” {<br>  import “generic-service”<br>  import “pnp-svc”<br>  check_command = “nrpe”<br>  assign where host.name == “kddi-pxe”<br>  assign where host.name == “kddi-deploy”<br>  vars.nrpe_timeout = 240<br>  vars.nrpe_command = “check_traffic”<br>  vars.pnp_check_arg1 = “!$nrpe_command$”<br>}<br><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">`#vim <span class="regexp">/usr/</span>local<span class="regexp">/pnp4nagios/</span>etc<span class="regexp">/check_commands/</span>nrpe.cfg`</span><br></pre></td></tr></table></figure></p>
-<p>CUSTOM_TEMPLATE = 0,1<br>DATATYPE = GAUGE<br>USE_MAX_ON_CREATE = 0<br><figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">`#vim /usr/local/pnp4nagios/var/perfdata/kddi-deploy/nrpe_traffic.xml`  </span><br><span class="line"></span><br><span class="line">看这个值  </span><br><span class="line"></span><br><span class="line">`&lt;TEMPLATE&gt;nrpe_check_traffic&lt;/TEMPLATE&gt;`  </span><br><span class="line"></span><br><span class="line">然后根据xml中的名字创建模板  </span><br><span class="line"></span><br><span class="line">`#vim /usr/local/pnp4nagios/share/templates/nrpe_check_traffic.php`</span><br></pre></td></tr></table></figure></p>
-<p>&lt;?php<br>#</p>
-<h1 id="Copyright-c-2006-2010-Joerg-Linge-http-www-pnp4nagios-org"><a href="#Copyright-c-2006-2010-Joerg-Linge-http-www-pnp4nagios-org" class="headerlink" title="Copyright (c) 2006-2010 Joerg Linge (http://www.pnp4nagios.org)"></a>Copyright (c) 2006-2010 Joerg Linge (<a href="http://www.pnp4nagios.org" target="_blank" rel="external">http://www.pnp4nagios.org</a>)</h1><h1 id="Plugin-check-bmon"><a href="#Plugin-check-bmon" class="headerlink" title="Plugin: check_bmon"></a>Plugin: check_bmon</h1><h1 id="Output-TRAFFIC-OK-in-131-9Bps-out-185Bps"><a href="#Output-TRAFFIC-OK-in-131-9Bps-out-185Bps" class="headerlink" title="Output: TRAFFIC OK|in=131.9Bps; out=185Bps;"></a>Output: TRAFFIC OK|in=131.9Bps; out=185Bps;</h1><p>$opt[1] = “–vertical-label \”Bytes/s\” –title \”$servicedesc\” “;</p>
-<p>$def[1]  = “DEF:var1=$RRDFILE[1]:$DS[1]:AVERAGE “ ;<br>$def[1] .= “DEF:var2=$RRDFILE[2]:$DS[2]:AVERAGE “ ;<br>$def[1] .= “CDEF:var3=var2,-1,* “ ;<br>$def[1] .= “AREA:var1#00ff00:\”in\” “ ;<br>$def[1] .= “GPRINT:var1:LAST:\”%.1lf %SBytes last\” “ ;<br>$def[1] .= “GPRINT:var1:AVERAGE:\”%.1lf %SBytes avg\” “ ;<br>$def[1] .= “GPRINT:var1:MAX:\”%.1lf %SBytes max\n\” “ ;</p>
-<h1 id="def-1-“AREA-var2-0066FF-”out-”-“"><a href="#def-1-“AREA-var2-0066FF-”out-”-“" class="headerlink" title="$def[1] .= “AREA:var2#0066FF:\”out\” “ ;"></a>$def[1] .= “AREA:var2#0066FF:\”out\” “ ;</h1><p>$def[1] .= “AREA:var3#0066FF:\”out\” “ ;<br>$def[1] .= “GPRINT:var2:LAST:\”%.1lf %SBytes last\” “ ;<br>$def[1] .= “GPRINT:var2:AVERAGE:\”%.1lf %SBytes avg\” “ ;<br>$def[1] .= “GPRINT:var2:MAX:\”%.1lf %SBytes max\” “;<br>?&gt;<br>```<br>pnp template 文档<br><a href="https://docs.pnp4nagios.org/pnp-0.6/tpl_custom" target="_blank" rel="external">https://docs.pnp4nagios.org/pnp-0.6/tpl_custom</a><br>icinga2官方集成pnp4nagios模板攻略<br><a href="http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/addons-plugins?highlight-search=pnp4nagios#addons-graphing-pnp-custom-templates" target="_blank" rel="external">http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/addons-plugins?highlight-search=pnp4nagios#addons-graphing-pnp-custom-templates</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/08/24/icinga2-pnp4nagios/" data-id="cin5p1n2u000qqq5o4xmn3tdd" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/08/24/icinga2-pnp4nagios/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -191,6 +183,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/">Upgrade influxdb from v0.9 to v0.12</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
           </li>
         
@@ -206,10 +202,6 @@ ga('send', 'pageview');
             <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
           </li>
         
-          <li>
-            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -219,7 +211,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
     </div>
   </div>
 
@@ -228,7 +220,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -238,7 +230,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 

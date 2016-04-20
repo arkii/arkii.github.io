@@ -82,6 +82,55 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-rsyslog-send-locallog-to-logstash" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/07/rsyslog-send-locallog-to-logstash/" class="article-date">
+  <time datetime="2015-09-07T01:54:24.000Z" itemprop="datePublished">2015-09-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/07/rsyslog-send-locallog-to-logstash/">rsyslog收集本地系统和服务日志到logstash</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近做了一个项目，将Linux服务器的系统日志以及服务日志收集到elk。<br>期间从头学习了syslog rsyslog。<br>有几个比较重要的概念: facility, input module。<br>input module使用了imfile，功能为：将文本文件读取到rsyslog。<br>将所有服务软件的日志标记为service，最后使用规则匹配，之后发送到远端logstash服务器。<br>我使用local3作为所有服务软件的facility配置。主要是为了便于日志归集，因为默认情况下读取文件的内容会记录到本机/var/log/messages一份。<br>步骤如下<br>首先增加rsyslog主配置文件:<br><code>sed -i -e &#39;/\/var\/log\/messages/s/^/&amp;local3.none\;/&#39; -e &#39;6a\$ModLoad imfile\n&#39; /etc/rsyslog.conf</code><br><code>echo &quot;if \$programname == &#39;service&#39; then @@elk.zol.com.cn&quot;  &gt;&gt;/etc/rsyslog.conf</code><br>添加Apache错误日志:  </p>
+<pre><code>cat &lt;&lt;-&quot;RSYSLOGEOF&quot; &gt;/etc/rsyslog.d/httpd.conf 
+$InputFileName /var/log/httpd/error_log
+$InputFileStateFile httpd_error.stat
+$InputFileTag service:
+$InputFileFacility local3
+$InputRunFileMonitor
+$InputFilePollingInterval 60
+RSYSLOGEOF
+</code></pre><p>重启rsyslog<br><code>service rsyslog restart</code></p>
+<p>然后，如果Apache服务报错，而且已经开启日志记录到/var/log/httpd/error_log，远端kibana界面中就能搜索到。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/" data-id="cin8i2eof0016h65ouobtcc0d" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-set-esxi-log-server" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/31/set-esxi-log-server/" class="article-date">
@@ -110,51 +159,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/08/31/set-esxi-log-server/" data-id="cin5p1n3g0012qq5o39cpmh3y" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/08/31/set-esxi-log-server/" data-id="cin8i2eoi001ah65oy9cvly97" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/08/31/set-esxi-log-server/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-compile-tool-for-esxi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/31/compile-tool-for-esxi/" class="article-date">
-  <time datetime="2015-08-30T22:18:17.000Z" itemprop="datePublished">2015-08-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/31/compile-tool-for-esxi/">给esxi编译ipmitool</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>vmware 的 ESXi服务器是不带包管理系统的，也不带任何编译工具，所以遇到需要安装软件的情况，需要其他Linux环境来编译跨平台二进制文件。<br>本文主要讲述在CentOS下给ESXi服务器编译ipmitool。<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">yum -y install autoconf make gcc gcc-c++ glibc glibc-<span class="keyword">static</span> glibc-devel libstdc++ libstdc++-devel</span><br><span class="line">wget <span class="string">http:</span><span class="comment">//nchc.dl.sourceforge.net/project/ipmitool/ipmitool/1.8.15/ipmitool-1.8.15.tar.bz2</span></span><br><span class="line">tar xvf ipmitool<span class="number">-1.8</span><span class="number">.15</span>.tar.bz2</span><br><span class="line">cd ipmitool<span class="number">-1.8</span><span class="number">.15</span></span><br><span class="line">./configure CFLAGS=-m32 LDFLAGS=-<span class="keyword">static</span></span><br><span class="line">make -j8</span><br><span class="line">scp src<span class="regexp">/ipmitool root@your-esxi-host-ip:/</span>opt/</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/opt # ./</span>ipmitool mc info</span><br><span class="line">Device <span class="string">ID                 :</span> <span class="number">32</span></span><br><span class="line">Device <span class="string">Revision           :</span> <span class="number">0</span></span><br><span class="line">Firmware <span class="string">Revision         :</span> <span class="number">1.50</span></span><br><span class="line">IPMI <span class="string">Version              :</span> <span class="number">2.0</span></span><br><span class="line">Manufacturer <span class="string">ID           :</span> <span class="number">674</span></span><br><span class="line">Manufacturer <span class="string">Name         :</span> DELL Inc</span><br><span class="line">Product <span class="string">ID                :</span> <span class="number">256</span> (<span class="number">0x0100</span>)</span><br><span class="line">Product <span class="string">Name              :</span> Unknown (<span class="number">0x100</span>)</span><br><span class="line">Device <span class="string">Available          :</span> yes</span><br><span class="line">Provides Device <span class="string">SDRs      :</span> yes</span><br><span class="line">Additional Device <span class="string">Support :</span></span><br><span class="line">    Sensor Device</span><br><span class="line">    SDR Repository Device</span><br><span class="line">    SEL Device</span><br><span class="line">    FRU Inventory Device</span><br><span class="line">    IPMB Event Receiver</span><br><span class="line">    Bridge</span><br><span class="line">    Chassis Device</span><br><span class="line">Aux Firmware Rev <span class="string">Info     :</span> </span><br><span class="line">    <span class="number">0x00</span></span><br><span class="line">    <span class="number">0x18</span></span><br><span class="line">    <span class="number">0x00</span></span><br><span class="line">    <span class="number">0x00</span></span><br></pre></td></tr></table></figure>
-<p><code>/opt # ./ipmitool lan print</code>  </p>
-<figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set</span> <span class="keyword">in</span> <span class="attribute">Progress</span>         : <span class="built_in">Set</span> Complete</span><br><span class="line">Auth Type <span class="attribute">Support</span>       : NONE MD2 MD5 PASSWORD </span><br><span class="line">Auth Type <span class="attribute">Enable</span>        : <span class="attribute">Callback</span> : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">User</span>     : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">Operator</span> : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">Admin</span>    : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">OEM</span>      : </span><br><span class="line">IP Address <span class="attribute">Source</span>       : Static Address</span><br><span class="line">IP <span class="attribute">Address</span>              : <span class="number">10.3</span><span class="number">.0</span><span class="number">.35</span></span><br><span class="line">Subnet <span class="attribute">Mask</span>             : <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></span><br><span class="line">MAC <span class="attribute">Address</span>             : <span class="attribute">e4</span>:<span class="number">5</span><span class="attribute">b</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span><br><span class="line">SNMP Community String</span>   : public</span><br><span class="line">IP <span class="attribute">Header</span>               : TTL=<span class="number">0x40</span> Flags=<span class="number">0x40</span> Precedence=<span class="number">0x00</span> TOS=<span class="number">0x10</span></span><br><span class="line">Default Gateway <span class="attribute">IP</span>      : <span class="number">10.3</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">Default Gateway <span class="attribute">MAC</span>     : <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">Backup Gateway <span class="attribute">IP</span>       : <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">Backup Gateway <span class="attribute">MAC</span>      : <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">802.1</span>q VLAN <span class="attribute">ID</span>          : Disabled</span><br><span class="line"><span class="number">802.1</span>q VLAN <span class="attribute">Priority</span>    : <span class="number">0</span></span><br><span class="line">RMCP+ Cipher <span class="attribute">Suites</span>     : <span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span></span><br><span class="line">Cipher Suite Priv <span class="attribute">Max</span>   : <span class="attribute">aaaaaaaaaaaaaaa</span></span><br><span class="line">                        :     X=Cipher Suite <span class="attribute">Unused</span></span><br><span class="line">                        :     c=<span class="attribute">CALLBACK</span></span><br><span class="line">                        :     u=<span class="attribute">USER</span></span><br><span class="line">                        :     o=<span class="attribute">OPERATOR</span></span><br><span class="line">                        :     a=<span class="attribute">ADMIN</span></span><br><span class="line">                        :     O=OEM</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/" data-id="cin5p1n23000aqq5obmmaw3pb" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -180,6 +187,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.12/">Upgrade influxdb from v0.9 to v0.12</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
           </li>
         
@@ -195,10 +206,6 @@ ga('send', 'pageview');
             <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
           </li>
         
-          <li>
-            <a href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -208,7 +215,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 10px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
     </div>
   </div>
 
@@ -217,7 +224,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -227,7 +234,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
