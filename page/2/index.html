@@ -82,6 +82,65 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-supermicro_auto_deploy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/07/supermicro_auto_deploy/" class="article-date">
+  <time datetime="2016-04-07T10:42:00.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Automatic/">Automatic</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SuperMicro-Auto-Deploy"><a href="#SuperMicro-Auto-Deploy" class="headerlink" title="SuperMicro Auto Deploy"></a>SuperMicro Auto Deploy</h2><h3 id="SMCIPMITool-Usage"><a href="#SMCIPMITool-Usage" class="headerlink" title="SMCIPMITool Usage"></a>SMCIPMITool Usage</h3><h4 id="Query-FRU-info"><a href="#Query-FRU-info" class="headerlink" title="Query FRU info"></a>Query FRU info</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">SMCIPMITool 10.0.0.100 ADMIN ADMIN ipmi fru</span><br><span class="line">:&lt;&lt;EOF</span><br><span class="line">Getting FRU ...</span><br><span class="line">Chassis Type (CT)              = Other (01h)</span><br><span class="line">Chassis Part Number (CP)       = CSE-217HQ-XXXX</span><br><span class="line">Chassis Serial Number (CS)     = C2170FE0XXXX</span><br><span class="line">Board mfg. Date/Time (BDT)     = 1996/01/01 00:00:00 (00 00 00)</span><br><span class="line">Board Manufacturer Name (BM)   = Supermicro</span><br><span class="line">Board Product Name (BPN)       = </span><br><span class="line">Board Serial Number (BS)       = VM15CSXXXX</span><br><span class="line">Board Part Number (BP)         = X10DRT-H</span><br><span class="line">Board FRU File ID              = </span><br><span class="line">Product Manufacturer Name (PM) = Supermicro</span><br><span class="line">Product Name (PN)              = </span><br><span class="line">Product PartModel Number (PPM) = SYS-2028TR-H72R</span><br><span class="line">Product Version (PV)           = </span><br><span class="line">Product Serial Number (PS)     = S173440XXXXXXX</span><br><span class="line">Product Asset Tag (PAT)        = </span><br><span class="line">Product FRU File ID            = </span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h4 id="Set-Next-Boot-from-PXE"><a href="#Set-Next-Boot-from-PXE" class="headerlink" title="Set Next Boot from PXE"></a>Set Next Boot from PXE</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">:&lt;&lt;EOF</span><br><span class="line">For bootoption index :</span><br><span class="line">1: PXE              2:  Hard-drive</span><br><span class="line">3: CD/DVD           4:  Bios</span><br><span class="line">5: USB KEY          6:  USB HDD</span><br><span class="line">7: USB Floppy       8:  USB CD/DVD</span><br><span class="line">9: UEFI Hard-drive  10: UEFI CD/DVD</span><br><span class="line">11: UEFI USB KEY    12: UEFI USB HDD</span><br><span class="line">13: UEFI USB CD/DVD    </span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">SMCIPMITool 10.0.0.100 ADMIN ADMIN ipmi power bootoption 1 </span><br><span class="line">SMCIPMITool 10.0.0.100 ADMIN ADMIN ipmi power reset</span><br><span class="line"></span><br><span class="line">:&lt;&lt;EOF</span><br><span class="line">3.39.2 wsiso mount</span><br><span class="line">Use this <span class="built_in">command</span> to mount an ISO file.</span><br><span class="line">Usage:wsiso mount &lt;IP&gt; &lt;path&gt; [username] [password]</span><br><span class="line">      IP: IP or domain name of share host</span><br><span class="line">      path: path to iso file</span><br><span class="line">      username: username of share host (optional)</span><br><span class="line">      password: password of share host (optional)</span><br><span class="line">      Ex 1: mount linux.iso</span><br><span class="line">       wsiso mount 192.168.1.100 /iso/linux.iso</span><br><span class="line">      Ex 2: mount linux.iso with username and password</span><br><span class="line">       wsiso mount 192.168.1.100 /iso/linux.iso admin admin</span><br><span class="line">      * Use one ISO file at a time. Make sure umount existing ISO before mount new ISO</span><br><span class="line">    file</span><br><span class="line">      * This <span class="built_in">command</span> is available <span class="keyword">for</span> X9 and X10 platform with SFT-OOB-LIC node</span><br><span class="line">    product key</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h3 id="RAID-Configuration"><a href="#RAID-Configuration" class="headerlink" title="RAID Configuration"></a>RAID Configuration</h3><p><code>&lt;Ctrl&gt; - &lt;Y&gt;</code><br><strong>LSI Preboot CLI</strong></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pager 20 lines per page</span></span><br><span class="line">PDList a0 page20</span><br><span class="line"><span class="comment"># create one raid0 ld with one disk</span></span><br><span class="line">C<span class="built_in">fg</span>LdAdd r0 [252:0] a0<span class="comment"># create one raid1 ld with two disks</span>C<span class="built_in">fg</span>LdAdd r1 [252:0,252:1] a0C<span class="built_in">fg</span>Foreign Clear a0</span><br></pre></td></tr></table></figure>
+<p><strong>Full Screen Cast Below</strong></p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">Battery Status: Not present                                                                         </span><br><span class="line">                                                                                                    </span><br><span class="line">PCI SLOT ID LUN VENDOR    PRODUCT                   REVISION       CAPACITY                         </span><br><span class="line">-------- -- --- ------    -------                   --------       --------                         </span><br><span class="line">3               LSI       Supermicro SMC2208        3.240.05-2282  1024MB                           </span><br><span class="line">3        7  0   SEAGATE   ST9146853SS               YS09           140014MB                         </span><br><span class="line">3        8  0   SEAGATE   ST9146853SS               YS09           140014MB                         </span><br><span class="line">0 Virtual Drive(s) found <span class="keyword">on</span> the host adapter.                                                       </span><br><span class="line">                                                                                                    </span><br><span class="line">0 Virtual Drive(s) handled <span class="keyword">by</span> BIOS                                                                  </span><br><span class="line">Press &lt;Ctrl&gt;&lt;<span class="keyword">H</span>&gt; <span class="keyword">for</span> WebBIOS or press &lt;Ctrl&gt;&lt;Y&gt; <span class="keyword">for</span> Preboot <span class="keyword">CLI</span>                                      </span><br><span class="line">                                                                                                    </span><br><span class="line">MegaPCLI SAS RAID Management Tool.                                                                  </span><br><span class="line"><span class="keyword">Copyright</span>(c) LSI Corporation, 2008.                                                                 </span><br><span class="line"><span class="keyword">Use</span> -<span class="keyword">h</span> -a&lt;<span class="keyword">n</span>&gt; <span class="keyword">for</span> controller specific <span class="keyword">help</span>, where <span class="keyword">n</span> is the controller index                          </span><br><span class="line"><span class="keyword">Use</span> -v -a&lt;<span class="keyword">n</span>&gt; <span class="keyword">for</span> controller specific <span class="keyword">version</span>, where <span class="keyword">n</span> is the controller index                       </span><br><span class="line"><span class="keyword">Use</span> q to <span class="keyword">exit</span> from $ prompt                                                                         </span><br><span class="line">                                                                                                    </span><br><span class="line">Controller(s) Found                                                                                 </span><br><span class="line">HA-0 (Bus 3 DevFn 0)                                                                                </span><br><span class="line">$                                                                                                   </span><br><span class="line">                                                                                                    </span><br><span class="line"><span class="variable">$cfgforeign</span> <span class="keyword">clear</span> a0                                                                                </span><br><span class="line">                                                                                                    </span><br><span class="line">                                                                                                    </span><br><span class="line">Foreign configuration 0 is cleared <span class="keyword">on</span> controller 0.                                                 </span><br><span class="line">Foreign configuration 1 is cleared <span class="keyword">on</span> controller 0.                                                 </span><br><span class="line"><span class="keyword">Exit</span> Code = 0x0                                                                                     </span><br><span class="line"><span class="variable">$cfgldadd</span> r1 [252:0,252:1] a0                                                                       </span><br><span class="line">                                                                                                    </span><br><span class="line">                                                                                                    </span><br><span class="line">Adapter 0: Created VD 0                                                                             </span><br><span class="line">                                                                                                    </span><br><span class="line">Adapter 0: Configured the Adapter!!                                                                 </span><br><span class="line"><span class="keyword">Exit</span> Code = 0x0                                                                                     </span><br><span class="line"><span class="variable">$q</span>                                                                                                  </span><br><span class="line">Press &lt;CTL&gt;&lt;ALT&gt;&lt;DEL&gt; to reboot.</span><br></pre></td></tr></table></figure>
+<p><strong>After Rebooting POST message will show</strong></p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">LSI</span> MegaRAID SAS-MFI <span class="keyword">BIOS </span>                                                                          </span><br><span class="line"><span class="symbol">Version</span> <span class="number">5</span>.<span class="number">38</span>.<span class="number">00</span> (<span class="keyword">Build </span>October <span class="number">11</span>, <span class="number">2012</span>)                                                            </span><br><span class="line"><span class="symbol">Copyright</span>(c) <span class="number">2012</span> LSI Corporation                                                                   </span><br><span class="line"><span class="symbol">HA</span> -<span class="number">0</span> (<span class="keyword">Bus </span><span class="number">3</span> Dev <span class="number">0</span>) Supermicro <span class="keyword">SMC2208 </span>                                                             </span><br><span class="line"><span class="symbol">FW</span> package: <span class="number">23</span>.<span class="number">12</span>.<span class="number">0</span>.<span class="number">0011</span>                                                                            </span><br><span class="line">                                                                                                    </span><br><span class="line"><span class="keyword">Battery </span>Status: Not present                                                                         </span><br><span class="line">                                                                                                    </span><br><span class="line"><span class="symbol">PCI</span> SLOT ID LUN VENDOR    PRODUCT                   <span class="keyword">REVISION </span>      CAPACITY                         </span><br><span class="line">-------- -- --- ------    -------                   --------       --------                         </span><br><span class="line"><span class="number">3</span>               LSI       Supermicro <span class="keyword">SMC2208 </span>       <span class="number">3</span>.<span class="number">240</span>.<span class="number">05</span>-<span class="number">2282</span>  <span class="number">1024</span>MB                           </span><br><span class="line"><span class="number">3</span>        <span class="number">7</span>  <span class="number">0</span>   SEAGATE   ST9146853SS               YS09           <span class="number">140014</span>MB                         </span><br><span class="line"><span class="number">3</span>        <span class="number">8</span>  <span class="number">0</span>   SEAGATE   ST9146853SS               YS09           <span class="number">140014</span>MB                         </span><br><span class="line"><span class="number">3</span>           <span class="number">0</span>   LSI       Virtual Drive             RAID1          <span class="number">139236</span>MB                         </span><br><span class="line"><span class="number">1</span> Virtual Drive(s) found on the host adapter.                                                       </span><br><span class="line">                                                                                                    </span><br><span class="line"><span class="number">1</span> Virtual Drive(s) handled <span class="keyword">by </span><span class="keyword">BIOS </span>                                                                 </span><br><span class="line"><span class="symbol">Press</span> &lt;Ctrl&gt;&lt;H&gt; for WebBIOS or press &lt;Ctrl&gt;&lt;Y&gt; for Preboot CLI</span><br></pre></td></tr></table></figure>
+<h3 id="issues"><a href="#issues" class="headerlink" title="issues"></a>issues</h3><p>错误信息为:<br><code>PXE-E7B: Missing MTFTP server IP address</code>  </p>
+<p>Cisco设备是PortFast<br>Huawei设备里是<br>临时关掉生成树<br><code>stp disable</code><br>或者标记为边界端口<br><code>stp edged-port enable</code></p>
+<h3 id="other-resources"><a href="#other-resources" class="headerlink" title="other resources"></a>other resources</h3><h4 id="boot-ipxe"><a href="#boot-ipxe" class="headerlink" title="boot.ipxe"></a>boot.ipxe</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">http://10.0.0.9/cgi-bin/pxe.py?mac=<span class="variable">$&#123;netX/mac&#125;</span>&amp;manufacturer=<span class="variable">$&#123;manufacturer&#125;</span>&amp;product=<span class="variable">$&#123;product&#125;</span>&amp;serial=<span class="variable">$&#123;serial&#125;</span>&amp;bserial=<span class="variable">$&#123;smbios/board-serial:string&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="WS-Management"><a href="#WS-Management" class="headerlink" title="WS-Management"></a>WS-Management</h4><p><code>wsman identify -h 10.0.0.100 -P 5985 -u ADMIN -p ADMIN</code></p>
+<h4 id="flashrom"><a href="#flashrom" class="headerlink" title="flashrom"></a>flashrom</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># flashrom-0.9.9 install</span></span><br><span class="line">yum install -y zlib-devel libpciaccess-devel pciutils-devel libusb1-devel             </span><br><span class="line">make DESTDIR=/usr install</span><br></pre></td></tr></table></figure>
+<h4 id="Intel-BootUtil"><a href="#Intel-BootUtil" class="headerlink" title="Intel BootUtil"></a>Intel BootUtil</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">yum install -y make gcc perl kernel-devel</span><br><span class="line">./install </span><br><span class="line"></span><br><span class="line">./bootutil64e <span class="_">-e</span></span><br><span class="line"></span><br><span class="line">:&lt;&lt;EOF</span><br><span class="line">Intel(R) Ethernet Flash Firmware Utility</span><br><span class="line">BootUtil version 1.5.94.2</span><br><span class="line">Copyright (C) 2003-2015 Intel Corporation</span><br><span class="line"></span><br><span class="line">NIC= 1 MACAddress=0CC47AB4C12E</span><br><span class="line">NIC= 2 MACAddress=0CC47AB4C12F</span><br><span class="line"></span><br><span class="line">Port Network Address Location Series  WOL Flash Firmware                Version</span><br><span class="line">==== =============== ======== ======= === ============================= =======</span><br><span class="line">  1   0CC47AB4C12E     1:00.0 Gigabit YES FLASH Not Present</span><br><span class="line">  2   0CC47AB4C12F     1:00.1 Gigabit NO  FLASH Not Present</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">./bootutil64e -nic 1 -saveimage -file 0CC47AB4C12E.rom</span><br><span class="line"></span><br><span class="line">./bootutil64e -nic 1 -saveimage -file 80861521.rom</span><br></pre></td></tr></table></figure>
+<h4 id="SerialNumber"><a href="#SerialNumber" class="headerlink" title="SerialNumber"></a>SerialNumber</h4><p><code>dmidecode -s baseboard-serial-number</code> instead of <code>dmidecode -s system-serial-number</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2016/04/07/supermicro_auto_deploy/" data-id="cina3npv20015w35ohre65ug7" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2016/04/07/supermicro_auto_deploy/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dhcp/">dhcp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipmi/">ipmi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pxe/">pxe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sysops/">sysops</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-learning-elasticsearch" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/29/learning-elasticsearch/" class="article-date">
@@ -238,80 +297,12 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2016/03/29/learning-elasticsearch/" data-id="cin9zmfmr000wi45oqr92sq15" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2016/03/29/learning-elasticsearch/" data-id="cina3npui000sw35otd8vbbzm" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2016/03/29/learning-elasticsearch/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dev/">dev</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elk/">elk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nosql/">nosql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/search/">search</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-segmentfault-tools-sharing" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/19/segmentfault-tools-sharing/" class="article-date">
-  <time datetime="2016-03-19T09:42:00.000Z" itemprop="datePublished">2016-03-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/19/segmentfault-tools-sharing/">segmentfault「我是工具控」分享</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="segmentfault-我是工具控-分享"><a href="#segmentfault-我是工具控-分享" class="headerlink" title="segmentfault[我是工具控]分享"></a>segmentfault[我是工具控]分享</h2><p> <strong>运维团队中的开发，4年运维工作经验，去年转开发。主要开发语言python，偶尔写shell、javascript.</strong></p>
-<p>我的工具箱可能跟别人不太一样<br>大家装机必备的就不提了</p>
-<h3 id="命令行工具"><a href="#命令行工具" class="headerlink" title="命令行工具"></a>命令行工具</h3><ul>
-<li><strong>ag</strong> 搜索代码炒鸡快！</li>
-<li><strong>httpie</strong> 人类用的http测试工具</li>
-<li><strong>jq</strong> 格式化json用的，跟<code>python -m json.tool</code>相比，是彩色的</li>
-<li><strong>cowsay</strong> <strong>lolcat</strong> 好玩的，不解释</li>
-</ul>
-<h3 id="生活-效率"><a href="#生活-效率" class="headerlink" title="生活/效率"></a>生活/效率</h3><ul>
-<li><strong>Keynote</strong> 特别喜欢苹果的这款产品，简洁易用，码农也能做出很好的幻灯片。曾用它做演讲稿，从产品、前端那里赢得3次分享、项目评比冠军。</li>
-<li><strong>MacDown</strong> 以前用Mou，后来发现MacDown，代码着色要比Mou好很多，配合<strong>Hexo</strong>，也能用来写博客。</li>
-<li><strong>eWallet</strong> 管理密码的，从windows就开始用，Mac平台也有。</li>
-<li><strong>MindNode</strong> 看图，不解释<img src="/images/2016/03/19/mindnode.png" alt="mindnode"></li>
-</ul>
-<h3 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h3><ul>
-<li><strong>MacVim</strong>今年开始学习，平时一般用它，写写shell脚本、python小程序；</li>
-<li><strong>Atom</strong>项目用它，写前端不要太爽。</li>
-<li><em><strong>TextMate</strong></em> 刚从windows换到Mac的时候非常怀念极轻量的<strong>Editplus</strong>，用了一阵，也还不错，今年主要学习vim，所以不用了。</li>
-<li>我不用 <strong>oh~my~zsh</strong> 我用<strong>bash-it</strong> ，因为做了4年运维，对bash较熟，用过oh~my~zsh，感觉各种行为好怪异，简直无法愉快玩耍。<br>自己改的bash主题<img src="/images/2016/03/19/bash-it.png" alt="bash-it"></li>
-</ul>
-<p>vim 插件，一天可是说不完的。。。</p>
-<figure class="highlight sml"><table><tr><td class="code"><pre><span class="line"><span class="type">Plugin</span> <span class="symbol">'VundleVim</span>/<span class="type">Vundle</span>.vim'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'Valloric</span>/<span class="type">YouCompleteMe'</span></span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'scrooloose</span>/nerdtree'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'scrooloose</span>/nerdcommenter'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'scrooloose</span>/syntastic'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'vim</span>-airline/vim-airline'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'vim</span>-airline/vim-airline-themes'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'vim</span>-scripts/indentpython.vim'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'nvie</span>/vim-flake8'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'Xuyuanp</span>/nerdtree-git-plugin'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'xolox</span>/vim-misc'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'xolox</span>/vim-session'</span><br><span class="line"><span class="type">Plugin</span> <span class="symbol">'Chiel92</span>/vim-autoformat'</span><br></pre></td></tr></table></figure>
-<p>Atom插件</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">atom-beautify</span><br><span class="line">atom-<span class="keyword">sync</span></span><br><span class="line">color-picker</span><br><span class="line"><span class="keyword">file</span>-icons</span><br><span class="line">git-control</span><br><span class="line">git-status</span><br><span class="line">linter</span><br><span class="line">linter-jshint</span><br><span class="line">linter-pep8</span><br><span class="line">linter-<span class="keyword">python</span>-pep8</span><br><span class="line">minimap</span><br><span class="line"><span class="keyword">python</span>-tools</span><br><span class="line">tree-<span class="keyword">view</span>-git-status</span><br><span class="line"><span class="keyword">vim</span>-<span class="keyword">mode</span></span><br></pre></td></tr></table></figure>
-<h3 id="工位无码图"><a href="#工位无码图" class="headerlink" title="工位无码图"></a>工位无码图</h3><p><img src="/images/2016/03/19/seat.jpeg" alt="工位无码图"></p>
-<blockquote>
-<p>本文参与了 SegmentFault<a href="https://segmentfault.com/a/1190000004537274" target="_blank" rel="external">「我是工具控」</a>分享，如果你也手持利器，那就一起来分享吧。</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2016/03/19/segmentfault-tools-sharing/" data-id="cin9zmfn30013i45o1xrkesn4" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2016/03/19/segmentfault-tools-sharing/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dev/">dev</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
 
     </footer>
   </div>
@@ -336,6 +327,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2016/04/21/using_nxlog_to_send_windows_event_logs_to_logstash/">Using NxLog to send Windows Event Logs to Logstash</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.10/">Upgrade influxdb from v0.9 to v0.12</a>
           </li>
         
@@ -349,10 +344,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2016/03/19/segmentfault-tools-sharing/">segmentfault「我是工具控」分享</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
           </li>
         
       </ul>
@@ -383,7 +374,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 

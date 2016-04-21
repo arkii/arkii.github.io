@@ -82,6 +82,70 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-searchcode-server-community-deploy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/08/searchcode-server-community-deploy/" class="article-date">
+  <time datetime="2016-03-08T07:01:00.000Z" itemprop="datePublished">2016-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/productivity/">productivity</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Searchcode-Server-Community-Deploy"><a href="#Searchcode-Server-Community-Deploy" class="headerlink" title="Searchcode Server Community Deploy"></a>Searchcode Server Community Deploy</h1><h2 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h2><p><a href="https://searchcode.com" target="_blank" rel="external">https://searchcode.com</a></p>
+<h2 id="query-syntax"><a href="#query-syntax" class="headerlink" title="query syntax"></a>query syntax</h2><p><a href="https://searchcode.com/#jumbo-examples" target="_blank" rel="external">https://searchcode.com/#jumbo-examples</a></p>
+<h2 id="requirement"><a href="#requirement" class="headerlink" title="requirement"></a>requirement</h2><ul>
+<li>Linux (in this example, I’m using CentOS6)  </li>
+<li>JRE 8u65 <a href="http://www.oracle.com/technetwork/java/javase/archive-139210.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/archive-139210.html</a>  </li>
+<li>searchcode-server-community 1.0.0 <a href="https://searchcode.com/static/searchcode-server-community.tar.gz" target="_blank" rel="external">https://searchcode.com/static/searchcode-server-community.tar.gz</a>  </li>
+</ul>
+<h2 id="installation"><a href="#installation" class="headerlink" title="installation"></a>installation</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># download jre package from java archive website</span></span><br><span class="line">rpm -ivh jre-8u65-linux-x64.rpm</span><br><span class="line">wget https://searchcode.com/static/searchcode-server-community.tar.gz</span><br><span class="line">tar xf searchcode-server-community.tar.gz</span><br><span class="line">searchcode-server-community/release</span><br><span class="line">java -jar searchcode-1.0.0.jar</span><br></pre></td></tr></table></figure>
+<p><strong>visit <a href="http://yourserverip:8080/" target="_blank" rel="external">http://yourserverip:8080/</a></strong>  </p>
+<h2 id="use-my-docker-image"><a href="#use-my-docker-image" class="headerlink" title="use my docker image"></a>use my docker image</h2><h3 id="fresh-image-auto-build-and-keep-fresh-depend-on-author’s-api"><a href="#fresh-image-auto-build-and-keep-fresh-depend-on-author’s-api" class="headerlink" title="fresh image auto-build and keep fresh, depend on author’s api"></a>fresh image auto-build and keep fresh, depend on author’s api</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -p 8080:8080 <span class="_">-d</span> docker.io/arkii/searchcode-server-community</span><br></pre></td></tr></table></figure>
+<p>run image directly  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -p 8080:8080 <span class="_">-d</span> docker.io/arkii/searchcode-server</span><br></pre></td></tr></table></figure>
+<p>or run image with docker-compose<br>docker-compose.yml</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">searchcode:</span></span><br><span class="line"><span class="attr">  image:</span> arkii/searchcode-server</span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/index:/srv/index</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/repo:/srv/repo</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.properties:/srv/searchcode.properties</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.sqlite:/srv/searchcode.sqlite</span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"8080:8080/tcp"</span></span><br></pre></td></tr></table></figure>
+<p><strong>visit <a href="http://yourdockerserverip:8080/" target="_blank" rel="external">http://yourdockerserverip:8080/</a></strong>  </p>
+<p>To administer your searchcode server instance you need to click on the Admin link in the top right.<br>Enter the default password <strong>Adm1n234</strong></p>
+<h2 id="Dockerfiles"><a href="#Dockerfiles" class="headerlink" title="Dockerfiles"></a>Dockerfiles</h2><p><strong>build JRE 8u65 image</strong></p>
+<figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span>        centos:<span class="number">6</span></span><br><span class="line"><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</span><br><span class="line"><span class="keyword">COPY</span>        <span class="bash">./jre-8u65-linux-x64.rpm /tmp/jre-8u65-linux-x64.rpm</span><br><span class="line"></span><span class="keyword">RUN</span>         <span class="bash">rpm -ivh /tmp/jre-8u65-linux-x64.rpm &amp;&amp; rm <span class="_">-f</span> /tmp/jre-8u65-linux-x64.rpm</span></span><br></pre></td></tr></table></figure>
+<p><strong>build Searchcode Server Community 1.0.0 image</strong></p>
+<figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span>        arkii/centos6-jre-<span class="number">8</span>u6<span class="number">5</span><br><span class="line"></span><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</span><br><span class="line"><span class="keyword">COPY</span>        <span class="bash">./searchcode-server-community/release /srv</span><br><span class="line"></span><span class="keyword">WORKDIR</span>     <span class="bash">/srv</span><br><span class="line"></span><span class="keyword">CMD</span>         <span class="bash">/usr/bin/java -jar searchcode-1.0.0.jar</span><br><span class="line"></span><span class="keyword">EXPOSE</span>      <span class="number">8080</span>/tcp</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2016/03/08/searchcode-server-community-deploy/" data-id="cina3npux0012w35or6o6e3pd" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2016/03/08/searchcode-server-community-deploy/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dev/">dev</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devops/">devops</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-wall-e-web-deployment" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/01/wall-e-web-deployment/" class="article-date">
@@ -118,75 +182,12 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2016/03/01/wall-e-web-deployment/" data-id="cin9zmfng001ci45oduq78d51" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2016/03/01/wall-e-web-deployment/" data-id="cina3npva001bw35oqp405tkc" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2016/03/01/wall-e-web-deployment/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dev/">dev</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devops/">devops</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ionic-web-app-dev" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/15/ionic-web-app-dev/" class="article-date">
-  <time datetime="2016-02-15T02:42:00.000Z" itemprop="datePublished">2016-02-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/dev/">dev</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/15/ionic-web-app-dev/">ionic hybrid app development</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ionic-hybrid-app-development"><a href="#ionic-hybrid-app-development" class="headerlink" title="ionic hybrid app development"></a>ionic hybrid app development</h1><h2 id="Video-Show"><a href="#Video-Show" class="headerlink" title="Video Show"></a>Video Show</h2><p><a href="/images/2016/02/15/ionic-dev-icinga-zol-480p.mp4">video show</a>  </p>
-<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><h3 id="ionic"><a href="#ionic" class="headerlink" title="ionic"></a>ionic</h3><p><a href="http://ionicframework.com/getting-started/" target="_blank" rel="external">getting-started</a><br><a href="http://usecreator.com/" target="_blank" rel="external">usecreator</a><br><a href="https://creator.ionic.io/app/dashboard/help/videos" target="_blank" rel="external">videos for creator</a><br><a href="http://codepen.io/ionic/pens/public/" target="_blank" rel="external">Many examples on codepen</a><br><a href="http://www.runoob.com/ionic" target="_blank" rel="external">courses on w3school.cc</a>  </p>
-<h4 id="install-ionic"><a href="#install-ionic" class="headerlink" title="install ionic"></a>install ionic</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -g cordova ionic</span><br><span class="line">ionic start myApp blank</span><br><span class="line">ionic start myApp tabs</span><br><span class="line">ionic start myApp sidemenu</span><br></pre></td></tr></table></figure>
-<h3 id="run-or-emulate-your-app"><a href="#run-or-emulate-your-app" class="headerlink" title="run or emulate your app"></a>run or emulate your app</h3><p><a href="http://ionicframework.com/docs/cli/run.html" target="_blank" rel="external">http://ionicframework.com/docs/cli/run.html</a>  </p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装cordova/ionic</span></span><br><span class="line">npm install -g cordova ionic</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加平台(ios相关操作请在mac机器下o(&gt;﹏&lt;)o)</span></span><br><span class="line">ionic platform add android/ios</span><br><span class="line"></span><br><span class="line"><span class="comment">#更新项目中的ionic js类库</span></span><br><span class="line">ionic lib update</span><br><span class="line"></span><br><span class="line"><span class="comment">#展示ionic项目结果 (同时显示iOS和android上的样式)</span></span><br><span class="line">ionic serve --lab</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装/删除crosswalk</span></span><br><span class="line">ionic browser add/remove crosswalk</span><br></pre></td></tr></table></figure>
-<h3 id="Icon-and-Splash-Screen-Image-Generation"><a href="#Icon-and-Splash-Screen-Image-Generation" class="headerlink" title="Icon and Splash Screen Image Generation"></a>Icon and Splash Screen Image Generation</h3><p>Guide below<br><a href="http://ionicframework.com/docs/cli/icon-splashscreen.html" target="_blank" rel="external">http://ionicframework.com/docs/cli/icon-splashscreen.html</a>  </p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cp ~/Downloads/logo11/free_logo_11.ai ./resources/icon.ai</span><br><span class="line">ionic resources --icon</span><br></pre></td></tr></table></figure>
-<h3 id="splash-screen"><a href="#splash-screen" class="headerlink" title="splash screen"></a>splash screen</h3><p>2208 x 2208 splash.png  </p>
-<p>search images on Google , set resolution to 2208 x 2208  </p>
-<h2 id="Build-android-package"><a href="#Build-android-package" class="headerlink" title="Build android package"></a>Build android package</h2><p>Follow this guide<br><a href="http://ionicframework.com/docs/guide/publishing.html" target="_blank" rel="external">http://ionicframework.com/docs/guide/publishing.html</a>  </p>
-<h3 id="安装android-sdk"><a href="#安装android-sdk" class="headerlink" title="安装android sdk"></a>安装android sdk</h3><p><a href="http://developer.android.com/sdk/installing/index.html" target="_blank" rel="external">http://developer.android.com/sdk/installing/index.html</a><br>Download Stand-alone SDK Tools  </p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget <span class="string">'http://dl.google.com/android/android-sdk_r24.4.1-macosx.zip'</span></span><br><span class="line">unzip android-sdk_r24.4.1-macosx.zip</span><br><span class="line">mv android-sdk-macosx /usr/<span class="built_in">local</span>/</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export ANDROID_HOME="/usr/local/android-sdk-macosx"'</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PATH="$PATH:$ANDROID_HOME/tools"'</span> &gt;&gt; ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'http.proxyPort=8123'</span> &gt;&gt; ~/.android/androidtool.cfg</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'http.proxyHost=127.0.0.1'</span> &gt;&gt; ~/.android/androidtool.cfg</span><br><span class="line"></span><br><span class="line"><span class="comment"># android update sdk --no-ui</span></span><br><span class="line">android update sdk --no-https --no-ui --filter platform,system-image,tool,platform-tool</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$PROJECT_FOLDER</span></span><br><span class="line"></span><br><span class="line">vim config.xml</span><br><span class="line"></span><br><span class="line"><span class="comment">#we should remove debug console plugin before generating the release builds</span></span><br><span class="line"></span><br><span class="line">cordova plugin rm cordova-plugin-console</span><br><span class="line"></span><br><span class="line">cordova build --release android</span><br><span class="line"></span><br><span class="line">/bin/cp platforms/android/build/outputs/apk/android-release-unsigned.apk ./</span><br><span class="line"></span><br><span class="line"><span class="comment"># keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000</span></span><br><span class="line">keytool -genkey -v -keystore icinga-mobile-release-key.keystore -alias icinga_mobile -keyalg RSA -keysize 2048 -validity 10000</span><br><span class="line"></span><br><span class="line"><span class="comment"># jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore android-release-unsigned.apk alias_name</span></span><br><span class="line">jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore icinga-mobile-release-key.keystore android-release-unsigned.apk icinga_mobile</span><br><span class="line"></span><br><span class="line"><span class="comment"># zipalign -v 4 android-release-unsigned.apk icinga-dash.apk</span></span><br><span class="line">/usr/<span class="built_in">local</span>/android-sdk-macosx/build-tools/23.0.2/zipalign -v 4 android-release-unsigned.apk icinga-dash.apk</span><br></pre></td></tr></table></figure>
-<h2 id="issues"><a href="#issues" class="headerlink" title="issues"></a>issues</h2><p>style is much mess on Android  </p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// .config(function($stateProvider, $urlRouterProvider) &#123;</span></span><br><span class="line">.config(<span class="function"><span class="keyword">function</span>(<span class="params">$stateProvider, $urlRouterProvider , $ionicConfigProvider</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  $ionicConfigProvider.platform.ios.tabs.style(<span class="string">'standard'</span>);</span><br><span class="line">  $ionicConfigProvider.platform.ios.tabs.position(<span class="string">'bottom'</span>);</span><br><span class="line">  $ionicConfigProvider.platform.android.tabs.style(<span class="string">'standard'</span>);</span><br><span class="line">  $ionicConfigProvider.platform.android.tabs.position(<span class="string">'standard'</span>);</span><br><span class="line"></span><br><span class="line">  $ionicConfigProvider.platform.ios.navBar.alignTitle(<span class="string">'center'</span>);</span><br><span class="line">  $ionicConfigProvider.platform.android.navBar.alignTitle(<span class="string">'left'</span>);</span><br><span class="line"></span><br><span class="line">  $ionicConfigProvider.platform.ios.backButton.previousTitleText(<span class="string">''</span>).icon(<span class="string">'ion-ios-arrow-thin-left'</span>);</span><br><span class="line">  $ionicConfigProvider.platform.android.backButton.previousTitleText(<span class="string">''</span>).icon(<span class="string">'ion-android-arrow-back'</span>);</span><br><span class="line"></span><br><span class="line">  $ionicConfigProvider.platform.ios.views.transition(<span class="string">'ios'</span>);</span><br><span class="line">  $ionicConfigProvider.platform.android.views.transition(<span class="string">'android'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Ionic uses AngularUI Router which uses the concept of states</span></span><br><span class="line">  <span class="comment">// Learn more here: https://github.com/angular-ui/ui-router</span></span><br><span class="line">  <span class="comment">// Set up the various states which the app can be in.</span></span><br><span class="line">  <span class="comment">// Each state's controller can be found in controllers.js</span></span><br><span class="line">  $stateProvider</span><br></pre></td></tr></table></figure>
-<h2 id="Useful-resources"><a href="#Useful-resources" class="headerlink" title="Useful resources"></a>Useful resources</h2><h3 id="vuejs"><a href="#vuejs" class="headerlink" title="vuejs"></a>vuejs</h3><p><a href="http://vuejs.org/" target="_blank" rel="external">vuejs</a><br><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="external">awesome-vue</a></p>
-<h3 id="MaterializeCSS"><a href="#MaterializeCSS" class="headerlink" title="MaterializeCSS"></a>MaterializeCSS</h3><p><a href="http://materializecss.com/mobile.html" target="_blank" rel="external">Materialize</a>  </p>
-<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="http://flask-restful.readthedocs.org/" target="_blank" rel="external">Flask-RESTful</a></p>
-<h2 id="SDK-installation-output"><a href="#SDK-installation-output" class="headerlink" title="SDK installation output"></a>SDK installation output</h2><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">Running command: /Users/arkii/Workspace/Projects/icinga-dashboard-mobile/frontend/hooks/after_prepare/010_add_platform_class.js /Users/arkii/Workspace/Projects/icinga-dashboard-mobile/frontend</span><br><span class="line">add to body <span class="keyword">class</span>: platform-android</span><br><span class="line"><span class="keyword">ERROR</span> building <span class="keyword">one</span> of the platforms: Please install Android target: <span class="string">"android-23"</span>.</span><br><span class="line"></span><br><span class="line">Hint: <span class="keyword">Open</span> the SDK manager <span class="keyword">by</span> running: /usr/<span class="keyword">local</span>/android-sdk-macosx/tools/android</span><br><span class="line">You will require:</span><br><span class="line">1. <span class="string">"SDK Platform"</span> <span class="keyword">for</span> android-23</span><br><span class="line">2. "Android SDK Platform-tools (latest)</span><br><span class="line">3. <span class="string">"Android SDK Build-tools"</span> (latest)</span><br><span class="line">You may not have the required environment or OS to build this project</span><br><span class="line"><span class="keyword">Error</span>: Please install Android target: <span class="string">"android-23"</span>.</span><br><span class="line"></span><br><span class="line">Hint: <span class="keyword">Open</span> the SDK manager <span class="keyword">by</span> running: /usr/<span class="keyword">local</span>/android-sdk-macosx/tools/android</span><br><span class="line">You will require:</span><br><span class="line">1. <span class="string">"SDK Platform"</span> <span class="keyword">for</span> android-23</span><br><span class="line">2. "Android SDK Platform-tools (latest)</span><br><span class="line">3. <span class="string">"Android SDK Build-tools"</span> (latest)</span><br></pre></td></tr></table></figure>
-<h2 id="Android-build-process-output"><a href="#Android-build-process-output" class="headerlink" title="Android build process output"></a>Android build process output</h2><figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line">Running command: /Users/arkii/Workspace/Projects/icinga<span class="attr">-dashboard</span><span class="attr">-mobile</span>/frontend/hooks/after_prepare/<span class="number">010</span>_add_platform_class.js /Users/arkii/Workspace/Projects/icinga<span class="attr">-dashboard</span><span class="attr">-mobile</span>/frontend</span><br><span class="line">add <span class="keyword">to</span> body class: platform<span class="attr">-android</span></span><br><span class="line">ANDROID_HOME=/usr/<span class="built_in">local</span>/android<span class="attr">-sdk</span><span class="attr">-macosx</span></span><br><span class="line">JAVA_HOME=/Library/Java/Home</span><br><span class="line">Downloading http:<span class="comment">//services.gradle.org/distributions/gradle-2.2.1-all.zip</span></span><br><span class="line"><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span><span class="attr">...</span>.</span><br><span class="line">:compileReleaseNdk UP<span class="attr">-TO</span><span class="attr">-DATE</span></span><br><span class="line">:compileReleaseSources</span><br><span class="line">:lintVitalRelease</span><br><span class="line">:transformClassesWithDexForRelease</span><br><span class="line">:mergeReleaseJniLibFolders</span><br><span class="line">:transformNative_libsWithMergeJniLibsForRelease</span><br><span class="line">:processReleaseJavaRes UP<span class="attr">-TO</span><span class="attr">-DATE</span></span><br><span class="line">:transformResourcesWithMergeJavaResForRelease</span><br><span class="line">:packageRelease</span><br><span class="line">:assembleRelease</span><br><span class="line">:cdvBuildRelease</span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL</span><br><span class="line"></span><br><span class="line">Total time: <span class="number">5</span> mins <span class="number">21.356</span> secs</span><br><span class="line">Built the following apk(s): </span><br><span class="line">	/Users/arkii/Workspace/Projects/icinga<span class="attr">-dashboard</span><span class="attr">-mobile</span>/frontend/platforms/android/build/outputs/apk/android<span class="attr">-release</span><span class="attr">-unsigned</span>.apk</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2016/02/15/ionic-web-app-dev/" data-id="cin9zmfml000ri45o45apvbbo" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2016/02/15/ionic-web-app-dev/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/app/">app</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ionic/">ionic</a></li></ul>
 
     </footer>
   </div>
@@ -211,6 +212,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2016/04/21/using_nxlog_to_send_windows_event_logs_to_logstash/">Using NxLog to send Windows Event Logs to Logstash</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.10/">Upgrade influxdb from v0.9 to v0.12</a>
           </li>
         
@@ -224,10 +229,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2016/03/19/segmentfault-tools-sharing/">segmentfault「我是工具控」分享</a>
-          </li>
-        
-          <li>
-            <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
           </li>
         
       </ul>
@@ -258,7 +259,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
