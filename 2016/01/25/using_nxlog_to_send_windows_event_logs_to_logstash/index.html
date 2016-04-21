@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Using NxLog to send Windows Event Logs to Logstash | Tranquility Garden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Using NxLog to send Windows Event Logs to LogstashInstall nxloginstall nxlog-cedownload here  
+modify nxlog.conf## This is a sample configuration file. See the nxlog reference manual about the## confi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using NxLog to send Windows Event Logs to Logstash">
+<meta property="og:url" content="http://blog.wuliwala.net/2016/01/25/using_nxlog_to_send_windows_event_logs_to_logstash/index.html">
+<meta property="og:site_name" content="Tranquility Garden">
+<meta property="og:description" content="Using NxLog to send Windows Event Logs to LogstashInstall nxloginstall nxlog-cedownload here  
+modify nxlog.conf## This is a sample configuration file. See the nxlog reference manual about the## confi">
+<meta property="og:updated_time" content="2016-04-21T07:40:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Using NxLog to send Windows Event Logs to Logstash">
+<meta name="twitter:description" content="Using NxLog to send Windows Event Logs to LogstashInstall nxloginstall nxlog-cedownload here  
+modify nxlog.conf## This is a sample configuration file. See the nxlog reference manual about the## confi">
+  
+    <link rel="alternate" href="http://blog.wuliwala.net/atom.xml" title="Tranquility Garden" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+<!--  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72217808-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tranquility Garden</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="http://blog.wuliwala.net">Home</a>
+        
+          <a class="main-nav-link" href="http://blog.wuliwala.net/archives">Archives</a>
+        
+          <a class="main-nav-link" href="http://blog.wuliwala.net/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/arkii">GitHub</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/arkii">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="http://blog.wuliwala.net/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.wuliwala.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-using_nxlog_to_send_windows_event_logs_to_logstash" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/25/using_nxlog_to_send_windows_event_logs_to_logstash/" class="article-date">
+  <time datetime="2016-01-25T02:42:00.000Z" itemprop="datePublished">2016-01-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/monitoring/">monitoring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Using NxLog to send Windows Event Logs to Logstash
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Using-NxLog-to-send-Windows-Event-Logs-to-Logstash"><a href="#Using-NxLog-to-send-Windows-Event-Logs-to-Logstash" class="headerlink" title="Using NxLog to send Windows Event Logs to Logstash"></a>Using NxLog to send Windows Event Logs to Logstash</h2><h3 id="Install-nxlog"><a href="#Install-nxlog" class="headerlink" title="Install nxlog"></a>Install nxlog</h3><h4 id="install-nxlog-ce"><a href="#install-nxlog-ce" class="headerlink" title="install nxlog-ce"></a>install nxlog-ce</h4><p><a href="http://nxlog.org/products/nxlog-community-edition/download" target="_blank" rel="external">download here</a>  </p>
+<h4 id="modify-nxlog-conf"><a href="#modify-nxlog-conf" class="headerlink" title="modify nxlog.conf"></a>modify nxlog.conf</h4><figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line"><span class="comment">## This is a sample configuration file. See the nxlog reference manual about the</span></span><br><span class="line"><span class="comment">## configuration options. It should be installed locally and is also available</span></span><br><span class="line"><span class="comment">## online at http://nxlog.org/docs/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Please set the ROOT to the folder your nxlog was installed into,</span></span><br><span class="line"><span class="comment">## otherwise it will not start.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#define ROOT C:\Program Files\nxlog</span></span><br><span class="line">define ROOT C:\Program Files (x86)\nxlog</span><br><span class="line"></span><br><span class="line">Moduledir %ROOT%\modules</span><br><span class="line">CacheDir %ROOT%\data</span><br><span class="line">Pidfile %ROOT%\data\nxlog.pid</span><br><span class="line">SpoolDir %ROOT%\data</span><br><span class="line">LogFile %ROOT%\data\nxlog.log</span><br><span class="line"></span><br><span class="line"><span class="variable">&lt;Extension json&gt;</span></span><br><span class="line">    Module	xm_json</span><br><span class="line"><span class="variable">&lt;/Extension&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">&lt;Input eventlog&gt;</span></span><br><span class="line">    Module      im_msvistalog</span><br><span class="line"><span class="comment">#    SavePos	TRUE</span></span><br><span class="line">    Query       <span class="variable">&lt;QueryList&gt;</span>\</span><br><span class="line">                    <span class="variable">&lt;Query Id="0"&gt;</span>\</span><br><span class="line">                        <span class="variable">&lt;Select Path="Application"&gt;</span><span class="keyword">*</span><span class="variable">&lt;/Select&gt;</span>\</span><br><span class="line">                        <span class="variable">&lt;Select Path="System"&gt;</span><span class="keyword">*</span><span class="variable">&lt;/Select&gt;</span>\</span><br><span class="line">                        <span class="variable">&lt;Select Path="Security"&gt;</span><span class="keyword">*</span><span class="variable">&lt;/Select&gt;</span>\</span><br><span class="line">                    <span class="variable">&lt;/Query&gt;</span>\</span><br><span class="line">                <span class="variable">&lt;/QueryList&gt;</span></span><br><span class="line">    Exec	to_json();</span><br><span class="line"><span class="variable">&lt;/Input&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">&lt;Output out&gt;</span></span><br><span class="line">    Module      om_tcp</span><br><span class="line">    Host        YOUR_LOGSTASH_SERVER</span><br><span class="line">    Port        5000</span><br><span class="line"><span class="variable">&lt;/Output&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">&lt;Route 1&gt;</span></span><br><span class="line">    Path        eventlog =&gt; out</span><br><span class="line"><span class="variable">&lt;/Route&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="verify-configuration-file-syntax-and-start-service"><a href="#verify-configuration-file-syntax-and-start-service" class="headerlink" title="verify configuration file syntax and start service"></a>verify configuration file syntax and start service</h3><p><code>&quot;C:\Program Files (x86)\nxlog\nxlog.exe&quot; -v &amp;&amp; net start nxlog</code></p>
+<h3 id="make-some-noise-on-your-windows-node"><a href="#make-some-noise-on-your-windows-node" class="headerlink" title="make some noise on your windows node"></a>make some noise on your windows node</h3><h4 id="then-you-will-see-it-in-elasticsearch"><a href="#then-you-will-see-it-in-elasticsearch" class="headerlink" title="then you will see it in elasticsearch"></a>then you will see it in elasticsearch</h4><h3 id="docs"><a href="#docs" class="headerlink" title="docs"></a>docs</h3><p><a href="http://nxlog.org/docs/nxlog-ce/nxlog-reference-manual.html" target="_blank" rel="external">nxlog-reference-manual</a><br><a href="http://nxlog.org/docs/elasticsearch-kibana/using-nxlog-with-elasticsearch-and-kibana.html" target="_blank" rel="external">using-nxlog-with-elasticsearch-and-kibana</a><br><a href="http://nxlog.org/docs/sysmon/audit-logging-on-windows-with-sysmon-and-nxlog.html" target="_blank" rel="external">audit-logging-on-windows-with-sysmon-and-nxlog</a><br><a href="https://www.elastic.co/guide/en/logstash/2.2/event-dependent-configuration.html" target="_blank" rel="external">logstash-event-dependent-configuration</a><br><a href="https://sematext.com/blog/2016/02/01/sending-windows-event-logs-to-logsene-using-nxlog-and-logstash/" target="_blank" rel="external">sending-windows-event-logs-to-logsene-using-nxlog-and-logstash</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2016/01/25/using_nxlog_to_send_windows_event_logs_to_logstash/" data-id="cin9zadh1001ely5o75r1o079" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2016/01/25/using_nxlog_to_send_windows_event_logs_to_logstash/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elk/">elk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/logstash/">logstash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nxlog/">nxlog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/">windows</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/15/ionic-web-app-dev/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ionic hybrid app development
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/25/bitbar-plugin-icinga-overview/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">BitBar plugin icinga2 overview</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.10/">Upgrade influxdb from v0.9 to v0.12</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/29/learning-elasticsearch/">Learning ElasticSearch</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/19/segmentfault-tools-sharing/">segmentfault「我是工具控」分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 15px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/nxlog/" style="font-size: 10px;">nxlog</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logstash/">logstash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nxlog/">nxlog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 arkii<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="http://blog.wuliwala.net" class="mobile-nav-link">Home</a>
+  
+    <a href="http://blog.wuliwala.net/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="http://blog.wuliwala.net/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/arkii" class="mobile-nav-link">GitHub</a>
+  
+    <a href="https://hub.docker.com/u/arkii" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'blog-arkii';
+  
+  var disqus_url = 'http://blog.wuliwala.net/2016/01/25/using_nxlog_to_send_windows_event_logs_to_logstash/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

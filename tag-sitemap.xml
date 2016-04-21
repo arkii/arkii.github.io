@@ -30,13 +30,6 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/tags/elk/</loc>
-        <lastmod>2016-04-01T03:30:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://blog.wuliwala.net/tags/nosql/</loc>
         <lastmod>2016-04-01T03:30:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -109,6 +102,34 @@
     <url>
         <loc>http://blog.wuliwala.net/tags/graphing/</loc>
         <lastmod>2016-04-20T06:51:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/tags/elk/</loc>
+        <lastmod>2016-04-21T07:40:05.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/tags/logstash/</loc>
+        <lastmod>2016-04-21T07:40:05.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/tags/windows/</loc>
+        <lastmod>2016-04-21T07:40:05.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/tags/nxlog/</loc>
+        <lastmod>2016-04-21T07:40:05.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

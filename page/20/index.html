@@ -82,6 +82,46 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-centos6-ruby-gems-an-zhuang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/14/centos6-ruby-gems-an-zhuang/" class="article-date">
+  <time datetime="2015-07-14T04:54:43.000Z" itemprop="datePublished">2015-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/14/centos6-ruby-gems-an-zhuang/">CentOS6 ruby gems 安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>平时很少用到ruby，今天用到了，记录一下<br>ruby安装，并导入阿里云gems镜像</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">yum -y install ruby rubygems</span><br><span class="line">gem <span class="keyword">source</span> -r https:<span class="comment">//rubygems.org/</span></span><br><span class="line">gem <span class="keyword">source</span> -a http:<span class="comment">//mirrors.aliyun.com/rubygems/</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/" data-id="cin9zade30006ly5o013cdfld" class="article-share-link">Share</a>
+      
+        <a href="http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-centos6-pei-zhi-vagrant-virtualbox" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/" class="article-date">
@@ -121,50 +161,9 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/" data-id="cin8i4b4n0006n75omhetms9o" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/" data-id="cin9zade30005ly5o9gp5vmvl" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-osvan-zhuang-ce-shi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/09/osvan-zhuang-ce-shi/" class="article-date">
-  <time datetime="2015-07-08T20:07:54.000Z" itemprop="datePublished">2015-07-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/09/osvan-zhuang-ce-shi/">OSv安装测试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line">curl https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/cloudius-systems/capstan/master/scripts/download &gt;&gt;./</span> installcapstan</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># sh installcapstan </span></span><br><span class="line">Downloading Capstan binary: http:<span class="regexp">//</span>osv.capstan.s3.amazonaws.com/capstan/v0<span class="number">.1</span><span class="number">.8</span>/linux_amd64/capstan</span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span> <span class="number">100.0</span>%</span><br></pre></td></tr></table></figure>
-<p>执行命令<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# capstan </span><br><span class="line">NAME:</span><br><span class="line">   capstan - pack, ship, and run applications in light-weight VMs</span><br><span class="line"></span><br><span class="line">USAGE:</span><br><span class="line">   capstan [global options] command [command options] [arguments...]</span><br><span class="line"></span><br><span class="line">VERSION:</span><br><span class="line">   v0.1.8</span><br><span class="line"></span><br><span class="line">COMMANDS:</span><br><span class="line">   info		<span class="keyword">show</span> disk image information</span><br><span class="line">   <span class="keyword">import</span>	<span class="keyword">import</span> an image <span class="keyword">to</span> the <span class="keyword">local</span> repository</span><br><span class="line">   pull		pull an image <span class="keyword">from</span> a repository</span><br><span class="line">   rmi		<span class="keyword">delete</span> an image <span class="keyword">from</span> a repository</span><br><span class="line">   run		launch a VM. You may pass the image <span class="keyword">name</span> <span class="keyword">as</span> the <span class="keyword">first</span> argument.</span><br><span class="line">   <span class="keyword">build</span>	<span class="keyword">build</span> an image</span><br><span class="line">   images, i	<span class="keyword">list</span> images</span><br><span class="line">   <span class="keyword">search</span>	<span class="keyword">search</span> a remote images</span><br><span class="line">   instances, I	<span class="keyword">list</span> instances</span><br><span class="line">   <span class="keyword">stop</span>		<span class="keyword">stop</span> an <span class="keyword">instance</span></span><br><span class="line">   <span class="keyword">delete</span>	<span class="keyword">delete</span> an <span class="keyword">instance</span></span><br><span class="line">   <span class="keyword">help</span>, h	Shows a <span class="keyword">list</span> <span class="keyword">of</span> commands <span class="keyword">or</span> <span class="keyword">help</span> <span class="keyword">for</span> one command</span><br><span class="line">   </span><br><span class="line"><span class="keyword">GLOBAL</span> OPTIONS:</span><br><span class="line">   <span class="comment">--help, -h		show help</span></span><br><span class="line">   <span class="comment">--version, -v	print the version</span></span><br></pre></td></tr></table></figure></p>
-<p>搜索官方镜像<br><figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="meta"># capstan search</span></span><br><span class="line"><span class="built_in">Name</span>                           Description                                        Version                   Created        </span><br><span class="line">cloudius/osv-base              OSv base <span class="built_in">image</span> <span class="keyword">for</span> developers                      v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">29</span>:<span class="number">46</span></span><br><span class="line">cloudius/osv-cassandra         Apache Cassandra/OSv                               v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">38</span>:<span class="number">48</span></span><br><span class="line">cloudius/osv-crash             OSv/CRaSH shell <span class="keyword">for</span> developers                     v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">35</span>:<span class="number">59</span></span><br><span class="line">cloudius/osv-iperf             iperf/OSv                                          v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">40</span>:<span class="number">46</span></span><br><span class="line">cloudius/osv-memcached-opt     OSv memcached server (optimized)                   v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">41</span>:<span class="number">14</span></span><br><span class="line">cloudius/osv-node              Node/OSv                                           v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">35</span>:<span class="number">30</span></span><br><span class="line">cloudius/osv-openjdk           OpenJDK <span class="number">7</span>/OSv base <span class="built_in">image</span> <span class="keyword">for</span> developers            v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">32</span>:<span class="number">52</span></span><br><span class="line">cloudius/osv-openjdk8          OpenJDK <span class="number">8</span>/OSv base <span class="built_in">image</span> <span class="keyword">for</span> developers            v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">33</span>:<span class="number">57</span></span><br><span class="line">cloudius/osv-redis-memonly     Redis (<span class="built_in">in</span>-memory only)                             v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">41</span>:<span class="number">45</span></span><br><span class="line">cloudius/osv-tomcat            Apache Tomcat/OSv                                  v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">39</span>:<span class="number">48</span></span><br><span class="line">cloudius/osv                   OSv <span class="keyword">with</span> shell <span class="keyword">for</span> users                           v0.<span class="number">22</span>                     <span class="number">2015</span>-<span class="number">07</span>-<span class="number">06</span>T09:<span class="number">36</span>:<span class="number">59</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/" data-id="cin8i4b7r001gn75o1ts37s4j" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -177,7 +176,7 @@ ga('send', 'pageview');
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/19/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/21/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/19/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/21/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -218,7 +217,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 10px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a>
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/elk/" style="font-size: 15px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/nxlog/" style="font-size: 10px;">nxlog</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
     </div>
   </div>
 
@@ -227,7 +226,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logstash/">logstash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nxlog/">nxlog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -237,7 +236,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
