@@ -82,10 +82,10 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-gitlab-service-deploy" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-when-a-man-loves-a-woman" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/08/06/gitlab-service-deploy/" class="article-date">
-  <time datetime="2015-08-05T19:46:05.000Z" itemprop="datePublished">2015-08-06</time>
+    <a href="/2015/11/27/when-a-man-loves-a-woman/" class="article-date">
+  <time datetime="2015-11-27T06:41:01.000Z" itemprop="datePublished">2015-11-27</time>
 </a>
     
   </div>
@@ -96,7 +96,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/06/gitlab-service-deploy/">gitlab服务搭建，配置ldap登陆</a>
+      <a class="article-title" href="/2015/11/27/when-a-man-loves-a-woman/">When A Man Loves A Woman</a>
     </h1>
   
 
@@ -104,59 +104,19 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>准备数据目录<br><code>mkdir -p /srv/gitlab/config /srv/gitlab/logs /srv/gitlab/data</code></p>
-<p>docker-compose.yml文件<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gitlabCE:</span><br><span class="line">  image: gitlab/gitlab-ce</span><br><span class="line">  dns: 172.17.42.1</span><br><span class="line">  ports:</span><br><span class="line">    - &quot;8443:443&quot;</span><br><span class="line">    - &quot;8008:80&quot;</span><br><span class="line">    - &quot;2222:22&quot;</span><br><span class="line">  volumes:</span><br><span class="line">    - /srv/gitlab/config:/etc/gitlab</span><br><span class="line">    - /srv/gitlab/logs:/var/log/gitlab</span><br><span class="line">    - /srv/gitlab/data:/var/opt/gitlab</span><br><span class="line">  environment:</span><br><span class="line">    - PATH=/sbin:/usr/sbin:/bin:/usr/bin</span><br></pre></td></tr></table></figure></p>
-<p>配置ldap登陆<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gitlab_rails[&apos;ldap_enabled&apos;] = true</span><br><span class="line">gitlab_rails[&apos;ldap_servers&apos;] = YAML.load &lt;&lt;-&apos;EOS&apos; # remember to close this block with &apos;EOS&apos; below</span><br><span class="line">  main: # &apos;main&apos; is the GitLab &apos;provider ID&apos; of this LDAP server</span><br><span class="line">    label: &apos;LDAP&apos;</span><br><span class="line">    host: &apos;10.x.xx.xx&apos;</span><br><span class="line">    port: 389</span><br><span class="line">    uid: &apos;sAMAccountName&apos;</span><br><span class="line">    method: &apos;plain&apos; # &quot;tls&quot; or &quot;ssl&quot; or &quot;plain&quot;</span><br><span class="line">    bind_dn: &apos;cn=sysop,ou=zol,dc=office,dc=zol&apos;</span><br><span class="line">    password: &apos;password&apos;</span><br><span class="line">    active_directory: true</span><br><span class="line">    allow_username_or_email_login: false</span><br><span class="line">    block_auto_created_users: false</span><br><span class="line">    base: &apos;ou=zol,dc=office,dc=zol&apos;</span><br><span class="line">    user_filter: &apos;&apos;</span><br><span class="line">EOS</span><br></pre></td></tr></table></figure></p>
+        <h1 id="When-A-Man-Loves-A-Woman"><a href="#When-A-Man-Loves-A-Woman" class="headerlink" title="When A Man Loves A Woman"></a>When A Man Loves A Woman</h1><p>作词 : Calvin Lewis/Andrew Wright<br>原唱 : Percy Sledge<br>翻唱 : Michael Bolton, 金润吉<br>当一个男人爱上一个女人<br>他的脑子就再也装不下任何东西<br>他宁愿出卖整个世界<br>就为了他寻得的挚爱<br>如果她很坏，他也看不到<br>她不会错<br>他甚至会背弃最好的朋友<br>如果朋友敢轻视她  </p>
+<p>当一个男人爱上一个女人<br>会花光他的每一分<br>来维持他所需要的<br>他愿意放弃所有安逸<br>露宿街头 睡在雨中<br>如果她说就该做这些事  </p>
+<p>当一个男人爱上一个女人<br>他会献出自己的所有<br>试图保住 这份宝贵的爱<br>宝贝请别忽视我  </p>
+<p>当一个男人爱上一个女人<br>他的灵魂深处<br>她能使他痛苦如斯<br>如果她玩弄他如一个傻瓜<br>他也永远后知后觉<br>陷入爱河的人总是盲目  </p>
+<p>是的当一个男人爱上一个女人<br>我完全了解他的心思  </p>
+<p>当一个男人爱上一个女人  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/08/06/gitlab-service-deploy/" data-id="cina3npu5000fw35oyt8e5o76" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/11/27/when-a-man-loves-a-woman/" data-id="cinb97gqj001d055ospy46h5c" class="article-share-link">Share</a>
       
-        <a href="http://blog.wuliwala.net/2015/08/06/gitlab-service-deploy/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-centos6-update-kernel-to-3-10" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/04/centos6-update-kernel-to-3-10/" class="article-date">
-  <time datetime="2015-08-04T03:21:40.000Z" itemprop="datePublished">2015-08-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/04/centos6-update-kernel-to-3-10/">CentOS6免编译yum升级3.10内核</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用elrepo来更新<br>导入key<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br></pre></td></tr></table></figure></p>
-<p>安装repo<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm</span><br></pre></td></tr></table></figure></p>
-<p>安装kernel<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install kernel<span class="_">-lt</span> kernel<span class="_">-lt</span>-firmware kernel<span class="_">-lt</span>-headers</span><br></pre></td></tr></table></figure></p>
-<p>启用新kernel<br><code>vi /etc/grub.conf</code><br>修改<br><code>default=0</code><br>查看当前kernel版本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># uname -a</span></span><br><span class="line">Linux localhost.localdomain 2.6.32-504.30.3.el6.x86_64 <span class="comment">#1 SMP Wed Jul 15 10:13:09 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure></p>
-<p>重启系统<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># uname -a</span></span><br><span class="line">Linux localhost.localdomain 3.10.84-1.el6.elrepo.x86_64 <span class="comment">#1 SMP Sat Jul 11 11:33:48 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/08/04/centos6-update-kernel-to-3-10/" data-id="cina3nptv000aw35o7hhp85zo" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/08/04/centos6-update-kernel-to-3-10/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.wuliwala.net/2015/11/27/when-a-man-loves-a-woman/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -169,7 +129,7 @@ ga('send', 'pageview');
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
   </nav>
 </section>
         

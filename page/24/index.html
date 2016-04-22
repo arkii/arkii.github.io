@@ -82,10 +82,10 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-compile-tool-for-esxi" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/" class="article-date">
-  <time datetime="2015-05-24T18:45:27.000Z" itemprop="datePublished">2015-05-25</time>
+    <a href="/2015/08/31/compile-tool-for-esxi/" class="article-date">
+  <time datetime="2015-08-30T22:18:17.000Z" itemprop="datePublished">2015-08-31</time>
 </a>
     
   </div>
@@ -96,7 +96,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/">禁用chrome增强型书签管理器</a>
+      <a class="article-title" href="/2015/08/31/compile-tool-for-esxi/">给esxi编译ipmitool</a>
     </h1>
   
 
@@ -104,69 +104,17 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一直开着chrome自动更新，突然前段时间书签管理器变了，习惯之前的树形，书签都归类好了，突然来一简单粗暴的，还不习惯，每次添加都新书签都觉得好难用。</p>
-<p>先关了吧，过一阵再研究。</p>
-<p>打开 chrome://flags/#enhanced-bookmarks-experiment</p>
-<p>设置为“Disabled”</p>
-<p>重启chrome</p>
+        <p>vmware 的 ESXi服务器是不带包管理系统的，也不带任何编译工具，所以遇到需要安装软件的情况，需要其他Linux环境来编译跨平台二进制文件。<br>本文主要讲述在CentOS下给ESXi服务器编译ipmitool。<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">yum -y install autoconf make gcc gcc-c++ glibc glibc-<span class="keyword">static</span> glibc-devel libstdc++ libstdc++-devel</span><br><span class="line">wget <span class="string">http:</span><span class="comment">//nchc.dl.sourceforge.net/project/ipmitool/ipmitool/1.8.15/ipmitool-1.8.15.tar.bz2</span></span><br><span class="line">tar xvf ipmitool<span class="number">-1.8</span><span class="number">.15</span>.tar.bz2</span><br><span class="line">cd ipmitool<span class="number">-1.8</span><span class="number">.15</span></span><br><span class="line">./configure CFLAGS=-m32 LDFLAGS=-<span class="keyword">static</span></span><br><span class="line">make -j8</span><br><span class="line">scp src<span class="regexp">/ipmitool root@your-esxi-host-ip:/</span>opt/</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/opt # ./</span>ipmitool mc info</span><br><span class="line">Device <span class="string">ID                 :</span> <span class="number">32</span></span><br><span class="line">Device <span class="string">Revision           :</span> <span class="number">0</span></span><br><span class="line">Firmware <span class="string">Revision         :</span> <span class="number">1.50</span></span><br><span class="line">IPMI <span class="string">Version              :</span> <span class="number">2.0</span></span><br><span class="line">Manufacturer <span class="string">ID           :</span> <span class="number">674</span></span><br><span class="line">Manufacturer <span class="string">Name         :</span> DELL Inc</span><br><span class="line">Product <span class="string">ID                :</span> <span class="number">256</span> (<span class="number">0x0100</span>)</span><br><span class="line">Product <span class="string">Name              :</span> Unknown (<span class="number">0x100</span>)</span><br><span class="line">Device <span class="string">Available          :</span> yes</span><br><span class="line">Provides Device <span class="string">SDRs      :</span> yes</span><br><span class="line">Additional Device <span class="string">Support :</span></span><br><span class="line">    Sensor Device</span><br><span class="line">    SDR Repository Device</span><br><span class="line">    SEL Device</span><br><span class="line">    FRU Inventory Device</span><br><span class="line">    IPMB Event Receiver</span><br><span class="line">    Bridge</span><br><span class="line">    Chassis Device</span><br><span class="line">Aux Firmware Rev <span class="string">Info     :</span> </span><br><span class="line">    <span class="number">0x00</span></span><br><span class="line">    <span class="number">0x18</span></span><br><span class="line">    <span class="number">0x00</span></span><br><span class="line">    <span class="number">0x00</span></span><br></pre></td></tr></table></figure>
+<p><code>/opt # ./ipmitool lan print</code>  </p>
+<figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set</span> <span class="keyword">in</span> <span class="attribute">Progress</span>         : <span class="built_in">Set</span> Complete</span><br><span class="line">Auth Type <span class="attribute">Support</span>       : NONE MD2 MD5 PASSWORD </span><br><span class="line">Auth Type <span class="attribute">Enable</span>        : <span class="attribute">Callback</span> : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">User</span>     : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">Operator</span> : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">Admin</span>    : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">OEM</span>      : </span><br><span class="line">IP Address <span class="attribute">Source</span>       : Static Address</span><br><span class="line">IP <span class="attribute">Address</span>              : <span class="number">10.3</span><span class="number">.0</span><span class="number">.35</span></span><br><span class="line">Subnet <span class="attribute">Mask</span>             : <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></span><br><span class="line">MAC <span class="attribute">Address</span>             : <span class="attribute">e4</span>:<span class="number">5</span><span class="attribute">b</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span><br><span class="line">SNMP Community String</span>   : public</span><br><span class="line">IP <span class="attribute">Header</span>               : TTL=<span class="number">0x40</span> Flags=<span class="number">0x40</span> Precedence=<span class="number">0x00</span> TOS=<span class="number">0x10</span></span><br><span class="line">Default Gateway <span class="attribute">IP</span>      : <span class="number">10.3</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">Default Gateway <span class="attribute">MAC</span>     : <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">Backup Gateway <span class="attribute">IP</span>       : <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">Backup Gateway <span class="attribute">MAC</span>      : <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">802.1</span>q VLAN <span class="attribute">ID</span>          : Disabled</span><br><span class="line"><span class="number">802.1</span>q VLAN <span class="attribute">Priority</span>    : <span class="number">0</span></span><br><span class="line">RMCP+ Cipher <span class="attribute">Suites</span>     : <span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span></span><br><span class="line">Cipher Suite Priv <span class="attribute">Max</span>   : <span class="attribute">aaaaaaaaaaaaaaa</span></span><br><span class="line">                        :     X=Cipher Suite <span class="attribute">Unused</span></span><br><span class="line">                        :     c=<span class="attribute">CALLBACK</span></span><br><span class="line">                        :     u=<span class="attribute">USER</span></span><br><span class="line">                        :     o=<span class="attribute">OPERATOR</span></span><br><span class="line">                        :     a=<span class="attribute">ADMIN</span></span><br><span class="line">                        :     O=OEM</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/" data-id="cina3npuk000tw35o53yn7r2l" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/" data-id="cinb97gp00008055owzqztvl4" class="article-share-link">Share</a>
       
-        <a href="http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-docker-statsd-influxdb" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/05/12/docker-statsd-influxdb/" class="article-date">
-  <time datetime="2015-05-12T00:05:39.000Z" itemprop="datePublished">2015-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/12/docker-statsd-influxdb/">docker-statsd-influxdb</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文介绍如何用docker封装一个支持graphite和influxdb作为后端数据存储的statsd image。</p>
-<p>最近折腾监控系统<br>选用statsd作为数据代理，用于接收各种agent发来的读数，然后存到influxdb中。<br>statsd 目前在github上star有7500+。</p>
-<p>注意:<br>使用statsd数据刷到influxdb中有10秒钟延迟，这是由于statsd的机制。</p>
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/etsy/statsd.git</span><br></pre></td></tr></table></figure>
-<p>Dockerfile<br><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cat Dockerfile </span></span><br><span class="line"><span class="keyword">FROM</span>        arkii/node:slim</span><br><span class="line"><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</span><br><span class="line"><span class="keyword">COPY</span>        <span class="bash">./statsd /statsd</span><br><span class="line"></span><span class="keyword">ADD</span>         <span class="bash">config.js /statsd/config.js</span><br><span class="line"></span><span class="keyword">RUN</span>         <span class="bash"><span class="built_in">echo</span> <span class="string">'Asia/Shanghai'</span> &gt; /etc/timezone &amp;&amp; /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; <span class="built_in">cd</span> /statsd &amp;&amp; npm install statsd-influxdb-backend</span><br><span class="line"></span><span class="keyword">CMD</span>         <span class="bash">/statsd/bin/statsd <span class="string">"<span class="variable">$&#123;CONFIG_PATH:=/statsd/config.js&#125;</span>"</span></span><br><span class="line"></span><span class="keyword">EXPOSE</span>      <span class="number">8125</span>/udp <span class="number">8126</span>/tcp</span><br></pre></td></tr></table></figure></p>
-<p>docker-compose/fig 配置文件<br><figure class="highlight haml"><table><tr><td class="code"><pre><span class="line"># cat fig.yml </span><br><span class="line">statsd:</span><br><span class="line">  image: arkii/statsd:influxdb</span><br><span class="line">  dns: 172.17.42.1</span><br><span class="line">  ports:</span><br><span class="line">    -<span class="ruby"> <span class="string">"8125:8125/udp"</span></span><br><span class="line"></span>    -<span class="ruby"> <span class="string">"8126:8126/tcp"</span></span><br><span class="line"></span>  environment:</span><br><span class="line">    -<span class="ruby"> PATH=<span class="regexp">/sbin:/usr</span><span class="regexp">/sbin:/bin</span><span class="symbol">:/usr/bin</span><span class="symbol">:/usr/local/bin</span></span><br><span class="line"></span>    -<span class="ruby"> INFLUXDB_HOST=<span class="number">10.21</span>.<span class="number">9.61</span></span><br><span class="line"></span>    -<span class="ruby"> STATSD_DEBUG=<span class="keyword">true</span></span></span><br></pre></td></tr></table></figure></p>
-<p>启动脚本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cat service.sh </span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">sysctl -w net.nf_conntrack_max=655360</span><br><span class="line">sysctl -w vm.max_map_count=262144</span><br><span class="line"><span class="built_in">ulimit</span> -n 65536</span><br><span class="line">/usr/bin/fig up <span class="_">-d</span> --allow-insecure-ssl</span><br></pre></td></tr></table></figure></p>
-<p>statsd配置文件，支持启动时指定变量<br><figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cat config.js </span></span><br><span class="line">&#123;<span class="comment"></span><br><span class="line">//  graphitePort: 2003,</span><span class="comment"></span><br><span class="line">//  graphiteHost: "graphite.example.com",</span></span><br><span class="line">  port: <span class="number">8125</span>,<span class="comment"></span><br><span class="line">//  backends: [ "./backends/graphite", "statsd-influxdb-backend" ],</span></span><br><span class="line">  debug: <span class="built_in">process</span>.env.STATSD_DEBUG || <span class="literal">false</span>,</span><br><span class="line">  backends: [ <span class="string">"statsd-influxdb-backend"</span> ],</span><br><span class="line">  influxdb: &#123;</span><br><span class="line">    host: <span class="built_in">process</span>.env.INFLUXDB_HOST || <span class="string">'127.0.0.1'</span>,  <span class="comment"> // InfluxDB host. (default 127.0.0.1)</span></span><br><span class="line">    port: <span class="built_in">process</span>.env.INFLUXDB_PORT || <span class="number">8086</span>,         <span class="comment"> // InfluxDB port. (default 8086)</span></span><br><span class="line">    <span class="built_in">version</span>: <span class="number">0.8</span>,                                    <span class="comment"> // InfluxDB port. (default 0.8)</span></span><br><span class="line">    ssl: <span class="literal">false</span>,                                      <span class="comment"> // InfluxDB is hosted over SSL. (default false)</span></span><br><span class="line">    database: <span class="built_in">process</span>.env.INFLUXDB_DB || <span class="string">"statsd"</span>,   <span class="comment"> // InfluxDB database instance. (required)</span></span><br><span class="line">    username: <span class="built_in">process</span>.env.INFLUXDB_USER || <span class="string">"root"</span>,   <span class="comment"> // InfluxDB database username. (required)</span></span><br><span class="line">    password: <span class="built_in">process</span>.env.INFLUXDB_PASS || <span class="string">"root"</span>,   <span class="comment"> // InfluxDB database password. (required)</span></span><br><span class="line">    flush: &#123;</span><br><span class="line">      enable: <span class="literal">true</span>      <span class="comment"> // Enable regular flush strategy. (default true)</span></span><br><span class="line">    &#125;,</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      enable: <span class="literal">false</span>,      <span class="comment"> // Enable the proxy strategy. (default false)</span></span><br><span class="line">      suffix: <span class="string">'raw'</span>,      <span class="comment"> // Metric name suffix. (default 'raw')</span></span><br><span class="line">      flushInterval: <span class="number">1000</span> <span class="comment"> // Flush interval for the internal buffer.</span></span><br><span class="line">                          <span class="comment"> // (default 1000)</span></span><br><span class="line">    &#125;,</span><br><span class="line">    includeStatsdMetrics: <span class="literal">false</span>,<span class="comment"> // Send internal statsd metrics to InfluxDB. (default false)</span></span><br><span class="line">    includeInfluxdbMetrics: <span class="literal">false</span><span class="comment"> // Send internal backend metrics to InfluxDB. (default false)</span></span><br><span class="line">                                 <span class="comment"> // Requires includeStatsdMetrics to be enabled.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>启动容器<br><figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line">./<span class="class"><span class="keyword">service</span>.<span class="title">sh</span></span></span><br></pre></td></tr></table></figure></p>
-<p>查看容器日志和debug信息<br><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">fig</span> logs</span><br></pre></td></tr></table></figure></p>
-<p>直接使用我的镜像<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker pull arkii/<span class="string">statsd:</span>influxdb</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://github.com/etsy/statsd" target="_blank" rel="external">statsd项目地址</a></p>
-<p><a href="https://github.com/bernd/statsd-influxdb-backend" target="_blank" rel="external">statsd-influxdb-backend项目地址</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/" data-id="cina3nptz000bw35oxist0ihx" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -179,7 +127,7 @@ ga('send', 'pageview');
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/23/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/25/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/23/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/25/">Next &raquo;</a>
   </nav>
 </section>
         

@@ -82,10 +82,10 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-set-esxi-log-server" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-how-to-build-tinycorelinux-docker-image" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/08/31/set-esxi-log-server/" class="article-date">
-  <time datetime="2015-08-30T23:48:32.000Z" itemprop="datePublished">2015-08-31</time>
+    <a href="/2015/12/07/how-to-build-tinycorelinux-docker-image/" class="article-date">
+  <time datetime="2015-12-07T02:14:57.000Z" itemprop="datePublished">2015-12-07</time>
 </a>
     
   </div>
@@ -96,7 +96,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/31/set-esxi-log-server/">vmware esxi log server</a>
+      <a class="article-title" href="/2015/12/07/how-to-build-tinycorelinux-docker-image/">how to build tinycorelinux docker image</a>
     </h1>
   
 
@@ -104,57 +104,14 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ESXi client –&gt; Configuration –&gt; Advanced Settings –&gt; Syslog –&gt; Syslog.global.logHost=udp://your-syslog-server:514  </p>
-<p>ESXi client –&gt; Configuration –&gt; Security Profile –&gt; Firewall –&gt; Properties –&gt; √ syslog</p>
+        <h1 id="how-to-build-tinycorelinux-docker-image"><a href="#how-to-build-tinycorelinux-docker-image" class="headerlink" title="how to build tinycorelinux docker image"></a>how to build tinycorelinux docker image</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http://tinycorelinux.net/6.x/x86_64/release/distribution_files/corepure64.gz</span><br><span class="line">mkdir chroot</span><br><span class="line">gunzip corepure64.gz</span><br><span class="line">cd chroot/</span><br><span class="line">cpio -i &lt; ../corepure64</span><br><span class="line">cd ..</span><br><span class="line">tar -C chroot -c . | docker import - tinycorelinux</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/08/31/set-esxi-log-server/" data-id="cina3npv10014w35ot77ves2x" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/" data-id="cinb97gph000j055orp9c2ghc" class="article-share-link">Share</a>
       
-        <a href="http://blog.wuliwala.net/2015/08/31/set-esxi-log-server/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-compile-tool-for-esxi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/31/compile-tool-for-esxi/" class="article-date">
-  <time datetime="2015-08-30T22:18:17.000Z" itemprop="datePublished">2015-08-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/31/compile-tool-for-esxi/">给esxi编译ipmitool</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>vmware 的 ESXi服务器是不带包管理系统的，也不带任何编译工具，所以遇到需要安装软件的情况，需要其他Linux环境来编译跨平台二进制文件。<br>本文主要讲述在CentOS下给ESXi服务器编译ipmitool。<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">yum -y install autoconf make gcc gcc-c++ glibc glibc-<span class="keyword">static</span> glibc-devel libstdc++ libstdc++-devel</span><br><span class="line">wget <span class="string">http:</span><span class="comment">//nchc.dl.sourceforge.net/project/ipmitool/ipmitool/1.8.15/ipmitool-1.8.15.tar.bz2</span></span><br><span class="line">tar xvf ipmitool<span class="number">-1.8</span><span class="number">.15</span>.tar.bz2</span><br><span class="line">cd ipmitool<span class="number">-1.8</span><span class="number">.15</span></span><br><span class="line">./configure CFLAGS=-m32 LDFLAGS=-<span class="keyword">static</span></span><br><span class="line">make -j8</span><br><span class="line">scp src<span class="regexp">/ipmitool root@your-esxi-host-ip:/</span>opt/</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/opt # ./</span>ipmitool mc info</span><br><span class="line">Device <span class="string">ID                 :</span> <span class="number">32</span></span><br><span class="line">Device <span class="string">Revision           :</span> <span class="number">0</span></span><br><span class="line">Firmware <span class="string">Revision         :</span> <span class="number">1.50</span></span><br><span class="line">IPMI <span class="string">Version              :</span> <span class="number">2.0</span></span><br><span class="line">Manufacturer <span class="string">ID           :</span> <span class="number">674</span></span><br><span class="line">Manufacturer <span class="string">Name         :</span> DELL Inc</span><br><span class="line">Product <span class="string">ID                :</span> <span class="number">256</span> (<span class="number">0x0100</span>)</span><br><span class="line">Product <span class="string">Name              :</span> Unknown (<span class="number">0x100</span>)</span><br><span class="line">Device <span class="string">Available          :</span> yes</span><br><span class="line">Provides Device <span class="string">SDRs      :</span> yes</span><br><span class="line">Additional Device <span class="string">Support :</span></span><br><span class="line">    Sensor Device</span><br><span class="line">    SDR Repository Device</span><br><span class="line">    SEL Device</span><br><span class="line">    FRU Inventory Device</span><br><span class="line">    IPMB Event Receiver</span><br><span class="line">    Bridge</span><br><span class="line">    Chassis Device</span><br><span class="line">Aux Firmware Rev <span class="string">Info     :</span> </span><br><span class="line">    <span class="number">0x00</span></span><br><span class="line">    <span class="number">0x18</span></span><br><span class="line">    <span class="number">0x00</span></span><br><span class="line">    <span class="number">0x00</span></span><br></pre></td></tr></table></figure>
-<p><code>/opt # ./ipmitool lan print</code>  </p>
-<figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set</span> <span class="keyword">in</span> <span class="attribute">Progress</span>         : <span class="built_in">Set</span> Complete</span><br><span class="line">Auth Type <span class="attribute">Support</span>       : NONE MD2 MD5 PASSWORD </span><br><span class="line">Auth Type <span class="attribute">Enable</span>        : <span class="attribute">Callback</span> : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">User</span>     : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">Operator</span> : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">Admin</span>    : MD2 <span class="attribute">MD5</span> </span><br><span class="line">                        : <span class="attribute">OEM</span>      : </span><br><span class="line">IP Address <span class="attribute">Source</span>       : Static Address</span><br><span class="line">IP <span class="attribute">Address</span>              : <span class="number">10.3</span><span class="number">.0</span><span class="number">.35</span></span><br><span class="line">Subnet <span class="attribute">Mask</span>             : <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></span><br><span class="line">MAC <span class="attribute">Address</span>             : <span class="attribute">e4</span>:<span class="number">5</span><span class="attribute">b</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span>:<span class="attribute">dd</span><br><span class="line">SNMP Community String</span>   : public</span><br><span class="line">IP <span class="attribute">Header</span>               : TTL=<span class="number">0x40</span> Flags=<span class="number">0x40</span> Precedence=<span class="number">0x00</span> TOS=<span class="number">0x10</span></span><br><span class="line">Default Gateway <span class="attribute">IP</span>      : <span class="number">10.3</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">Default Gateway <span class="attribute">MAC</span>     : <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">Backup Gateway <span class="attribute">IP</span>       : <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">Backup Gateway <span class="attribute">MAC</span>      : <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">802.1</span>q VLAN <span class="attribute">ID</span>          : Disabled</span><br><span class="line"><span class="number">802.1</span>q VLAN <span class="attribute">Priority</span>    : <span class="number">0</span></span><br><span class="line">RMCP+ Cipher <span class="attribute">Suites</span>     : <span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span></span><br><span class="line">Cipher Suite Priv <span class="attribute">Max</span>   : <span class="attribute">aaaaaaaaaaaaaaa</span></span><br><span class="line">                        :     X=Cipher Suite <span class="attribute">Unused</span></span><br><span class="line">                        :     c=<span class="attribute">CALLBACK</span></span><br><span class="line">                        :     u=<span class="attribute">USER</span></span><br><span class="line">                        :     o=<span class="attribute">OPERATOR</span></span><br><span class="line">                        :     a=<span class="attribute">ADMIN</span></span><br><span class="line">                        :     O=OEM</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/" data-id="cina3nptq0007w35o7ktyp76i" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -167,7 +124,7 @@ ga('send', 'pageview');
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
   </nav>
 </section>
         

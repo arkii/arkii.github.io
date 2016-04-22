@@ -82,12 +82,16 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-how-to-configure-httpd-proxy-with-authentication" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-searchcode-server-community-deploy" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/12/02/how-to-configure-httpd-proxy-with-authentication/" class="article-date">
-  <time datetime="2015-12-01T23:20:31.000Z" itemprop="datePublished">2015-12-02</time>
+    <a href="/2016/03/08/searchcode-server-community-deploy/" class="article-date">
+  <time datetime="2016-03-08T07:01:00.000Z" itemprop="datePublished">2016-03-08</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/productivity/">productivity</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -96,7 +100,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/02/how-to-configure-httpd-proxy-with-authentication/">how to configure httpd proxy with authentication</a>
+      <a class="article-title" href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
     </h1>
   
 
@@ -104,59 +108,37 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="how-to-configure-httpd-proxy-with-authentication"><a href="#how-to-configure-httpd-proxy-with-authentication" class="headerlink" title="how to configure httpd proxy with authentication"></a>how to configure httpd proxy with authentication</h1><p><code>vi gen.php</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo base64_encode(&quot;user:password&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p><code>php gen.php</code><br><code>dXNlcjpwYXNzd29yZA==</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteEngine On</span><br><span class="line">RewriteRule ^/orin/(.*)$    http://target.lb.com/$1   [NC,L,P]</span><br><span class="line"></span><br><span class="line">&lt;LocationMatch &quot;^/orin/(.*)$&quot;&gt;</span><br><span class="line">    #AddDefaultCharset GBK</span><br><span class="line">    RequestHeader set Authorization &quot;dXNlcjpwYXNzd29yZA==&quot;</span><br><span class="line">    ProxyPass http://target.lb.com/$1</span><br><span class="line">&lt;/LocationMatch&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="via-httpd-apache-org"><a href="#via-httpd-apache-org" class="headerlink" title="via:httpd.apache.org"></a>via:httpd.apache.org</h2><p><a href="https://httpd.apache.org/docs/2.4/mod/mod_headers.html" target="_blank" rel="external">mod_headers</a><br><a href="https://httpd.apache.org/docs/2.4/rewrite/flags.html#flag_p" target="_blank" rel="external">rewrite flags</a><br><a href="https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxypassreverse" target="_blank" rel="external">mod_proxy.html</a></p>
+        <h1 id="Searchcode-Server-Community-Deploy"><a href="#Searchcode-Server-Community-Deploy" class="headerlink" title="Searchcode Server Community Deploy"></a>Searchcode Server Community Deploy</h1><h2 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h2><p><a href="https://searchcode.com" target="_blank" rel="external">https://searchcode.com</a></p>
+<h2 id="query-syntax"><a href="#query-syntax" class="headerlink" title="query syntax"></a>query syntax</h2><p><a href="https://searchcode.com/#jumbo-examples" target="_blank" rel="external">https://searchcode.com/#jumbo-examples</a></p>
+<h2 id="requirement"><a href="#requirement" class="headerlink" title="requirement"></a>requirement</h2><ul>
+<li>Linux (in this example, I’m using CentOS6)  </li>
+<li>JRE 8u65 <a href="http://www.oracle.com/technetwork/java/javase/archive-139210.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/archive-139210.html</a>  </li>
+<li>searchcode-server-community 1.0.0 <a href="https://searchcode.com/static/searchcode-server-community.tar.gz" target="_blank" rel="external">https://searchcode.com/static/searchcode-server-community.tar.gz</a>  </li>
+</ul>
+<h2 id="installation"><a href="#installation" class="headerlink" title="installation"></a>installation</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># download jre package from java archive website</span></span><br><span class="line">rpm -ivh jre-8u65-linux-x64.rpm</span><br><span class="line">wget https://searchcode.com/static/searchcode-server-community.tar.gz</span><br><span class="line">tar xf searchcode-server-community.tar.gz</span><br><span class="line">searchcode-server-community/release</span><br><span class="line">java -jar searchcode-1.0.0.jar</span><br></pre></td></tr></table></figure>
+<p><strong>visit <a href="http://yourserverip:8080/" target="_blank" rel="external">http://yourserverip:8080/</a></strong>  </p>
+<h2 id="use-my-docker-image"><a href="#use-my-docker-image" class="headerlink" title="use my docker image"></a>use my docker image</h2><h3 id="fresh-image-auto-build-and-keep-fresh-depend-on-author’s-api"><a href="#fresh-image-auto-build-and-keep-fresh-depend-on-author’s-api" class="headerlink" title="fresh image auto-build and keep fresh, depend on author’s api"></a>fresh image auto-build and keep fresh, depend on author’s api</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -p 8080:8080 <span class="_">-d</span> docker.io/arkii/searchcode-server-community</span><br></pre></td></tr></table></figure>
+<p>run image directly  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -p 8080:8080 <span class="_">-d</span> docker.io/arkii/searchcode-server</span><br></pre></td></tr></table></figure>
+<p>or run image with docker-compose<br>docker-compose.yml</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">searchcode:</span></span><br><span class="line"><span class="attr">  image:</span> arkii/searchcode-server</span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/index:/srv/index</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/repo:/srv/repo</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.properties:/srv/searchcode.properties</span><br><span class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.sqlite:/srv/searchcode.sqlite</span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">"8080:8080/tcp"</span></span><br></pre></td></tr></table></figure>
+<p><strong>visit <a href="http://yourdockerserverip:8080/" target="_blank" rel="external">http://yourdockerserverip:8080/</a></strong>  </p>
+<p>To administer your searchcode server instance you need to click on the Admin link in the top right.<br>Enter the default password <strong>Adm1n234</strong></p>
+<h2 id="Dockerfiles"><a href="#Dockerfiles" class="headerlink" title="Dockerfiles"></a>Dockerfiles</h2><p><strong>build JRE 8u65 image</strong></p>
+<figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span>        centos:<span class="number">6</span></span><br><span class="line"><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</span><br><span class="line"><span class="keyword">COPY</span>        <span class="bash">./jre-8u65-linux-x64.rpm /tmp/jre-8u65-linux-x64.rpm</span><br><span class="line"></span><span class="keyword">RUN</span>         <span class="bash">rpm -ivh /tmp/jre-8u65-linux-x64.rpm &amp;&amp; rm <span class="_">-f</span> /tmp/jre-8u65-linux-x64.rpm</span></span><br></pre></td></tr></table></figure>
+<p><strong>build Searchcode Server Community 1.0.0 image</strong></p>
+<figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span>        arkii/centos6-jre-<span class="number">8</span>u6<span class="number">5</span><br><span class="line"></span><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</span><br><span class="line"><span class="keyword">COPY</span>        <span class="bash">./searchcode-server-community/release /srv</span><br><span class="line"></span><span class="keyword">WORKDIR</span>     <span class="bash">/srv</span><br><span class="line"></span><span class="keyword">CMD</span>         <span class="bash">/usr/bin/java -jar searchcode-1.0.0.jar</span><br><span class="line"></span><span class="keyword">EXPOSE</span>      <span class="number">8080</span>/tcp</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/" data-id="cina3npu9000jw35ogrvvh2m5" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2016/03/08/searchcode-server-community-deploy/" data-id="cinb97gq70013055o8y56vf2z" class="article-share-link">Share</a>
       
-        <a href="http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.wuliwala.net/2016/03/08/searchcode-server-community-deploy/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-    </footer>
-  </div>
-  
-</article>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dev/">dev</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devops/">devops</a></li></ul>
 
-
-  
-    <article id="post-how-to-configure-httpd-with-ldap-authentication" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/01/how-to-configure-httpd-with-ldap-authentication/" class="article-date">
-  <time datetime="2015-12-01T00:07:06.000Z" itemprop="datePublished">2015-12-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/01/how-to-configure-httpd-with-ldap-authentication/">how to configure httpd with ldap authentication</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="how-to-configure-httpd-with-ldap-authentication"><a href="#how-to-configure-httpd-with-ldap-authentication" class="headerlink" title="how to configure httpd with ldap authentication"></a>how to configure httpd with ldap authentication</h1><h2 id="httpd-2-4-ldap"><a href="#httpd-2-4-ldap" class="headerlink" title="httpd 2.4 ldap"></a>httpd 2.4 ldap</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LoadModule authn_core_module modules/mod_authn_core.so</span><br><span class="line">LoadModule authz_host_module modules/mod_authz_host.so</span><br><span class="line">LoadModule authz_user_module modules/mod_authz_user.so</span><br><span class="line">LoadModule authz_core_module modules/mod_authz_core.so</span><br><span class="line">LoadModule access_compat_module modules/mod_access_compat.so</span><br><span class="line">LoadModule auth_basic_module modules/mod_auth_basic.so</span><br><span class="line">LoadModule ldap_module modules/mod_ldap.so</span><br><span class="line">LoadModule authnz_ldap_module modules/mod_authnz_ldap.so</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:*&gt;</span><br><span class="line">ProxyPass / http://elk-kibana:5601/</span><br><span class="line">ProxyPassReverse / http://elk-kibana:5601/</span><br><span class="line"></span><br><span class="line">&lt;Proxy *&gt;</span><br><span class="line">Require all granted</span><br><span class="line"></span><br><span class="line"># LDAPSharedCacheSize 500000</span><br><span class="line"># LDAPCacheEntries 1024</span><br><span class="line"># LDAPCacheTTL 600</span><br><span class="line"># LDAPOpCacheEntries 1024</span><br><span class="line"># LDAPOpCacheTTL 600</span><br><span class="line">AuthType Basic</span><br><span class="line">AuthName &quot;Login with LDAP&quot;</span><br><span class="line">AuthBasicProvider ldap</span><br><span class="line">AuthLDAPURL &quot;ldap://&lt;YOUR LDAP SERVER&gt;:3268/OU=Offices,DC=company,DC=com?sAMAccountName?sub?(objectClass=person)&quot;</span><br><span class="line">AuthLDAPBindDN &quot;CN=Operator,OU=Service Accounts,DC=company,DC=com&quot;</span><br><span class="line">AuthLDAPBindPassword &lt;PUT Operator&apos;s PASSWORD HERE&gt;</span><br><span class="line">require valid-user</span><br><span class="line">&lt;/Proxy&gt; </span><br><span class="line"></span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="via-httpd-apache-org"><a href="#via-httpd-apache-org" class="headerlink" title="via:httpd.apache.org"></a>via:httpd.apache.org</h3><p><a href="https://httpd.apache.org/docs/2.4/mod/mod_ldap.html" target="_blank" rel="external">mod_ldap</a><br><a href="https://httpd.apache.org/docs/2.4/mod/mod_authnz_ldap.html" target="_blank" rel="external">mod_authnz_ldap</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/12/01/how-to-configure-httpd-with-ldap-authentication/" data-id="cina3npu9000kw35oggpfmpwu" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/12/01/how-to-configure-httpd-with-ldap-authentication/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
     </footer>
   </div>
   
@@ -167,7 +149,7 @@ ga('send', 'pageview');
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
   </nav>
 </section>
         

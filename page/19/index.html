@@ -82,10 +82,10 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-iptables-nat-dong-tai-qie-huan-ip" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-icinga2-escalation-notification" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/" class="article-date">
-  <time datetime="2015-07-17T01:33:45.000Z" itemprop="datePublished">2015-07-17</time>
+    <a href="/2015/09/22/icinga2-escalation-notification/" class="article-date">
+  <time datetime="2015-09-21T22:52:12.000Z" itemprop="datePublished">2015-09-22</time>
 </a>
     
   </div>
@@ -96,7 +96,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/">iptables NAT 动态切换 IP</a>
+      <a class="article-title" href="/2015/09/22/icinga2-escalation-notification/">icinga2/nagios 分级通知</a>
     </h1>
   
 
@@ -104,57 +104,23 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>iptables 动态切换出口IP<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 100); <span class="keyword">do</span> iptables -t nat -I POSTROUTING -m statistic --mode nth --packet 0 --every 5 -j SNAT --to-source 10.0.0.<span class="variable">$i</span>; <span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+        <p>icinga是nagios的派生版，但又增加了很多改进，icinga2版本配置文件变化较大。<br>下面是设置分级别通知策略的配置方法。<br>分级通知主要用于 业务负责人员未收到通知的情况通知全体联系人。   </p>
+<p>下面的配置解析：<br>出现问题后立刻通知web组管理员，如果15分钟后问题没有得到处理，接下来的30分钟以每5分钟一次的频率再次通知web组管理员；45分钟后问题仍存在，通知所有管理员。</p>
+<p><code>vim /etc/icinga2/conf.d/notifications.conf</code>  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">// <span class="keyword">start</span> <span class="keyword">of</span> escalation notification <span class="keyword">level</span></span><br><span class="line"><span class="keyword">apply</span> Notification <span class="string">"wechat-2nd-level-web"</span> <span class="keyword">to</span> Service &#123;</span><br><span class="line">  <span class="keyword">import</span> <span class="string">"wechat-service-notification-template"</span></span><br><span class="line"></span><br><span class="line">  user_groups = [ <span class="string">"admins-web"</span> ]</span><br><span class="line"></span><br><span class="line">  <span class="built_in">interval</span> = <span class="number">5</span>m</span><br><span class="line">  times = &#123;</span><br><span class="line">    <span class="keyword">begin</span> = <span class="number">15</span>m</span><br><span class="line">    <span class="keyword">end</span> = <span class="number">45</span>m</span><br><span class="line">  &#125;</span><br><span class="line">  assign <span class="keyword">where</span> service.<span class="keyword">name</span> == <span class="string">"ping4"</span></span><br><span class="line">  assign <span class="keyword">where</span> <span class="keyword">match</span>(<span class="string">"nrpe_disk_read_write"</span>, service.<span class="keyword">name</span>)</span><br><span class="line">&#125;           </span><br><span class="line"><span class="keyword">apply</span> Notification <span class="string">"wechat-1st-level-web"</span> <span class="keyword">to</span> Service &#123;</span><br><span class="line">  <span class="keyword">import</span> <span class="string">"wechat-service-notification-template"</span></span><br><span class="line">           </span><br><span class="line">  user_groups = [ <span class="string">"icingaadmins"</span> ]</span><br><span class="line">              </span><br><span class="line">  <span class="built_in">interval</span> = <span class="number">15</span>m</span><br><span class="line">  times = &#123; </span><br><span class="line">    <span class="keyword">begin</span> = <span class="number">45</span>m</span><br><span class="line">    <span class="keyword">end</span> = <span class="number">2</span>h</span><br><span class="line">  &#125; </span><br><span class="line">  assign <span class="keyword">where</span> service.<span class="keyword">name</span> == <span class="string">"ping4"</span></span><br><span class="line">  assign <span class="keyword">where</span> <span class="keyword">match</span>(<span class="string">"nrpe_disk_read_write"</span>, service.<span class="keyword">name</span>)</span><br><span class="line">&#125;   </span><br><span class="line">// <span class="keyword">end</span> <span class="keyword">of</span> escalation notification <span class="keyword">level</span></span><br></pre></td></tr></table></figure>
+<h3 id="官方的文档如下"><a href="#官方的文档如下" class="headerlink" title="官方的文档如下"></a>官方的文档如下</h3><p>Similar example for advanced notification apply rule filters: If the service attribute notes contains the has gold support 24x7 string AND one of the two condition passes: Either the customer host custom attribute is set to customer-xy OR the host custom attribute always_notify is set to true.</p>
+<p>The notification is ignored for services whose host name ends with *internal OR the priority custom attribute is less than 2.</p>
+<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">template Notification <span class="string">"cust-xy-notification"</span> &#123;</span><br><span class="line">  <span class="attr">users</span> = [ <span class="string">"noc-xy"</span>, <span class="string">"mgmt-xy"</span> ]</span><br><span class="line">  <span class="attr">command</span> = <span class="string">"mail-service-notification"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">apply Notification <span class="string">"notify-cust-xy-mysql"</span> to Service &#123;</span><br><span class="line">  <span class="built_in">import</span> <span class="string">"cust-xy-notification"</span></span><br><span class="line"></span><br><span class="line">  assign where match(<span class="string">"*has gold support 24x7*"</span>, service.notes) &amp;&amp; (host.vars.<span class="attr">customer</span> == <span class="string">"customer-xy"</span> || host.vars.<span class="attr">always_notify</span> == <span class="literal">true</span>)</span><br><span class="line">  ignore where match(<span class="string">"*internal"</span>, host.name) || (service.vars.priority &lt; <span class="number">2</span> &amp;&amp; host.vars.<span class="attr">is_clustered</span> == <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If the problem does not get resolved nor acknowledged preventing further notifications the escalation-sms-1st-level user will be escalated 1h after the initial problem was notified, but only for one hour (2h as end key for the times dictionary).  </p>
+<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">apply Notification <span class="string">"mail"</span> to Service &#123;</span><br><span class="line">  <span class="built_in">import</span> <span class="string">"generic-notification"</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">command</span> = <span class="string">"mail-notification"</span></span><br><span class="line">  <span class="attr">users</span> = [ <span class="string">"icingaadmin"</span> ]</span><br><span class="line"></span><br><span class="line">  assign where service.<span class="attr">name</span> == <span class="string">"ping4"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">apply Notification <span class="string">"escalation-sms-2nd-level"</span> to Service &#123;</span><br><span class="line">  <span class="built_in">import</span> <span class="string">"generic-notification"</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">command</span> = <span class="string">"sms-notification"</span></span><br><span class="line">  <span class="attr">users</span> = [ <span class="string">"icinga-oncall-2nd-level"</span> ]</span><br><span class="line"></span><br><span class="line">  <span class="attr">times</span> = &#123;</span><br><span class="line">    <span class="attr">begin</span> = <span class="number">30</span>m</span><br><span class="line">    <span class="attr">end</span> = <span class="number">1</span>h</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  assign where service.<span class="attr">name</span> == <span class="string">"ping4"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">apply Notification <span class="string">"escalation-sms-1st-level"</span> to Service &#123;</span><br><span class="line">  <span class="built_in">import</span> <span class="string">"generic-notification"</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">command</span> = <span class="string">"sms-notification"</span></span><br><span class="line">  <span class="attr">users</span> = [ <span class="string">"icinga-oncall-1st-level"</span> ]</span><br><span class="line"></span><br><span class="line">  <span class="attr">times</span> = &#123;</span><br><span class="line">    <span class="attr">begin</span> = <span class="number">1</span>h</span><br><span class="line">    <span class="attr">end</span> = <span class="number">2</span>h</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  assign where service.<span class="attr">name</span> == <span class="string">"ping4"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/object-types#objecttype-notification" target="_blank" rel="external">官方关于notification定义的文档</a><br><a href="http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/monitoring-basics#notification-delay" target="_blank" rel="external">官方关于notification配置技巧文档</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/" data-id="cina3npug000rw35opjt38i6o" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/09/22/icinga2-escalation-notification/" data-id="cinb97gpl000m055onfc8jnx4" class="article-share-link">Share</a>
       
-        <a href="http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-pip-bao-cuo-from-versions-wen-ti" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/16/pip-bao-cuo-from-versions-wen-ti/" class="article-date">
-  <time datetime="2015-07-15T23:16:41.000Z" itemprop="datePublished">2015-07-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/16/pip-bao-cuo-from-versions-wen-ti/">pip 报错from versions: 问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>pip升级到6\7版本后，使用自搭建mirror的报错问题</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">pip_pypy <span class="keyword">install</span> Flask</span><br><span class="line">You <span class="keyword">are</span> <span class="keyword">using</span> pip <span class="keyword">version</span> <span class="number">7.0</span><span class="number">.1</span>, however <span class="keyword">version</span> <span class="number">7.1</span><span class="number">.0</span> <span class="keyword">is</span> available.</span><br><span class="line">You should <span class="keyword">consider</span> upgrading via the <span class="string">'pip install --upgrade pip'</span> command.</span><br><span class="line">Collecting Flask</span><br><span class="line">  The repository located <span class="keyword">at</span> mirrors.zol.com.cn <span class="keyword">is</span> <span class="keyword">not</span> a trusted <span class="keyword">or</span> secure host <span class="keyword">and</span> <span class="keyword">is</span> being ignored. <span class="keyword">If</span> this repository <span class="keyword">is</span> available via HTTPS it <span class="keyword">is</span> recommended <span class="keyword">to</span> <span class="keyword">use</span> HTTPS instead, otherwise you may silence this <span class="keyword">warning</span> <span class="keyword">and</span> <span class="keyword">allow</span> it anyways <span class="keyword">with</span> <span class="string">'--trusted-host mirrors.zol.com.cn'</span>.</span><br><span class="line">  Could <span class="keyword">not</span> find a <span class="keyword">version</span> that satisfies the requirement Flask (<span class="keyword">from</span> <span class="keyword">versions</span>: )</span><br><span class="line"><span class="keyword">No</span> matching distribution <span class="keyword">found</span> <span class="keyword">for</span> Flask</span><br></pre></td></tr></table></figure>
-<p>主要是这句：<br>Could not find a version that satisfies the requirement Flask (from versions: )<br>No matching distribution found for Flask</p>
-<p>困扰了好久，google也不到答案。 </p>
-<p>其实这样使用就可以了：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">pip_pypy --trusted-host mirrors<span class="selector-class">.zol</span><span class="selector-class">.com</span><span class="selector-class">.cn</span> install Flask</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/" data-id="cina3npuu000yw35opleeoqol" class="article-share-link">Share</a>
-      
-        <a href="http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.wuliwala.net/2015/09/22/icinga2-escalation-notification/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -167,7 +133,7 @@ ga('send', 'pageview');
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/18/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/20/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/18/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/20/">Next &raquo;</a>
   </nav>
 </section>
         
