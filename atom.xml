@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wuliwala.net/"/>
-  <updated>2016-04-21T09:42:28.000Z</updated>
+  <updated>2016-04-26T04:48:16.000Z</updated>
   <id>http://blog.wuliwala.net/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DC/OS Deployment</title>
+    <link href="http://blog.wuliwala.net/2016/04/21/dcos_installation/"/>
+    <id>http://blog.wuliwala.net/2016/04/21/dcos_installation/</id>
+    <published>2016-04-21T10:42:00.000Z</published>
+    <updated>2016-04-26T04:48:16.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;Intruduction&quot;&gt;&lt;a href=&quot;#Intruduction&quot; class=&quot;headerlink&quot; title=&quot;Intruduction&quot;&gt;&lt;/a&gt;Intruduction&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Every system operator always dreaming an infrastructure management tool like &lt;a href=&quot;https://dcos.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DCOS&lt;/a&gt;, makes job easier and more spare time.&lt;/strong&gt;&lt;br&gt;As you know, mesosphere.com released it as &lt;a href=&quot;https://mesosphere.com/blog/2016/04/19/open-source-dcos/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Open Source project&lt;/a&gt; on 2016/04/19.&lt;br&gt;So I tried it the first time.&lt;br&gt;This post reords my steps followed the official &lt;a href=&quot;https://dcos.io/get-started&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;guide&lt;/a&gt;.&lt;br&gt;In this example, all my node is running CentOS7(with &lt;code&gt;yum -y update&lt;/code&gt;), I used 6 nodes(1 deploy, 1 master, 4 compute), and if you want master node High-Availability, 8 nodes(1 deploy, 3 master, 4 compute) is recommended.&lt;br&gt;After deployment, the deploy node can be destroyed, so it can be a temporary vm.&lt;/p&gt;
+&lt;h3 id=&quot;System-Requirements&quot;&gt;&lt;a href=&quot;#System-Requirements&quot; class=&quot;headerlink&quot; title=&quot;System Requirements&quot;&gt;&lt;/a&gt;System Requirements&lt;/h3&gt;&lt;p&gt;Please read &lt;a href=&quot;https://dcos.io/docs/1.7/administration/installing/custom/system-requirements/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;system-requirements&lt;/a&gt; carefully.&lt;br&gt;First time, I encountered an issue. It’s a shell script in the progress of deployment, to change the storage-driver to overlayfs.&lt;br&gt;I don’t know why if run with this &lt;code&gt;-H fd://&lt;/code&gt;, docker daemon can not get started.&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ sudo mkdir -p /etc/systemd/system/docker.service.d &amp;amp;&amp;amp; sudo tee /etc/systemd/system/docker.service.d/override.conf &amp;lt;&amp;lt;- EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Service]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ExecStart=&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ExecStart=/usr/bin/docker daemon --storage-driver=overlay -H fd://&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EOF&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;CentOS Linux release 7.2.1511 (Core)   &lt;/li&gt;
+&lt;li&gt;Linux 3.10.0-327.13.1.el7.x86_64  &lt;/li&gt;
+&lt;li&gt;docker 1.9.xx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So I upgraded docker to v1.10.1&lt;/p&gt;
+&lt;h3 id=&quot;Deployment-Progress&quot;&gt;&lt;a href=&quot;#Deployment-Progress&quot; class=&quot;headerlink&quot; title=&quot;Deployment Progress&quot;&gt;&lt;/a&gt;Deployment Progress&lt;/h3&gt;&lt;h4 id=&quot;change-storage-driver-from-devicemapper-to-overlayfs&quot;&gt;&lt;a href=&quot;#change-storage-driver-from-devicemapper-to-overlayfs&quot; class=&quot;headerlink&quot; title=&quot;change storage-driver from devicemapper to overlayfs&quot;&gt;&lt;/a&gt;change storage-driver from devicemapper to overlayfs&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;docker official docs of storage driver&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;service docker stop&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# remove  &#39;-H fd://&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sed -ie &lt;span class=&quot;string&quot;&gt;&quot;/DOCKER_STORAGE_OPTIONS/s/=.*/=&#39;--storage-driver=overlay&#39;/&quot;&lt;/span&gt; /etc/sysconfig/docker-storage&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service docker start&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# check if storage-driver is overlay&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;docker info&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;Download-amp-Start-the-DC-OS-installer&quot;&gt;&lt;a href=&quot;#Download-amp-Start-the-DC-OS-installer&quot; class=&quot;headerlink&quot; title=&quot;Download &amp;amp; Start the DC/OS installer&quot;&gt;&lt;/a&gt;Download &amp;amp; Start the DC/OS installer&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;bash dcos_generate_config.sh --web -v&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Launch the DC/OS web installer in your browser at: &lt;code&gt;http://&amp;lt;bootstrap-node-public-ip&amp;gt;:9000&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Follow this &lt;a href=&quot;https://dcos.io/docs/1.7/administration/installing/custom/gui/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GUI DC/OS Installation Guide&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&quot;Uninstall-DC-OS&quot;&gt;&lt;a href=&quot;#Uninstall-DC-OS&quot; class=&quot;headerlink&quot; title=&quot;Uninstall DC/OS&quot;&gt;&lt;/a&gt;Uninstall DC/OS&lt;/h4&gt;&lt;figure class=&quot;highlight mipsasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bash &lt;/span&gt;dcos_generate_config.&lt;span class=&quot;keyword&quot;&gt;sh &lt;/span&gt;--uninstall&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;Authentication-opt-out&quot;&gt;&lt;a href=&quot;#Authentication-opt-out&quot; class=&quot;headerlink&quot; title=&quot;Authentication opt-out&quot;&gt;&lt;/a&gt;Authentication opt-out&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;https://dcos.io/docs/1.7/overview/security/#authentication-opt-out&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;authentication-opt-out&lt;/a&gt;&lt;br&gt;If you are performing a custom advanced installation, you may opt out of Auth0-based authentication by adding the following directive to &lt;code&gt;genconf/config.yaml&lt;/code&gt; (note that the quotes are currently required):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;oauth_enabled: &amp;#39;false&amp;#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;On AWS, when creating a stack, at the Specify Details step, you may choose to set the OAuthEnabled option to false to disable authentication for the DC/OS installation.&lt;/p&gt;
+&lt;p&gt;The same option is not currently available when installing DC/OS through the Azure Marketplace, but will be added in a future release along with other options to customize authentication.&lt;/p&gt;
+&lt;h3 id=&quot;Resources&quot;&gt;&lt;a href=&quot;#Resources&quot; class=&quot;headerlink&quot; title=&quot;Resources&quot;&gt;&lt;/a&gt;Resources&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;http://elrepo.org/tiki/tiki-index.php&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ELrepo&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/dcos/dcos&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dcos on github&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://dcos.io/docs/1.7/administration/installing/custom/advanced/#configure-your-cluster&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;configure-your-cluster&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;All-right-is-show-time&quot;&gt;&lt;a href=&quot;#All-right-is-show-time&quot; class=&quot;headerlink&quot; title=&quot;All right is show time&quot;&gt;&lt;/a&gt;All right is show time&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/2016/04/21/1.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/2.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/3.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/4.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/5.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/6.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/7.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/8.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/9.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/10.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/11.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/12.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/13.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/14.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2016/04/21/15.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Intruduction&quot;&gt;&lt;a href=&quot;#Intruduction&quot; class=&quot;headerlink&quot; title=&quot;Intruduction&quot;&gt;&lt;/a&gt;Intruduction&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Every system operator 
+    
+    </summary>
+    
+      <category term="cloud" scheme="http://blog.wuliwala.net/categories/cloud/"/>
+    
+    
+      <category term="dcos" scheme="http://blog.wuliwala.net/tags/dcos/"/>
+    
+      <category term="docker" scheme="http://blog.wuliwala.net/tags/docker/"/>
+    
+      <category term="mesos" scheme="http://blog.wuliwala.net/tags/mesos/"/>
+    
+  </entry>
   
   <entry>
     <title>Using NxLog to send Windows Event Logs to Logstash</title>
@@ -789,25 +836,6 @@
     
       &lt;p&gt;icinga是nagios的派生版，但又增加了很多改进，icinga2版本配置文件变化较大。&lt;br&gt;下面是设置分级别通知策略的配置方法。&lt;br&gt;分级通知主要用于 业务负责人员未收到通知的情况通知全体联系人。   &lt;/p&gt;
 &lt;p&gt;下面的配置解析：&lt;br&gt;出现问题后立刻通知we
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ssh注入秘钥要求密码</title>
-    <link href="http://blog.wuliwala.net/2015/09/15/ssh-key-auth-require-password/"/>
-    <id>http://blog.wuliwala.net/2015/09/15/ssh-key-auth-require-password/</id>
-    <published>2015-09-14T23:59:34.000Z</published>
-    <updated>2016-01-25T11:18:39.000Z</updated>
-    
-    <content type="html">&lt;p&gt;已经通过kickstart安装过程中注入ssh秘钥的系统，启动后ssh连接的时候仍然要求输入密码。&lt;br&gt;但是再执行一遍ssh-copy-id后，ssh就又能免密码连接。&lt;br&gt;最后确认是selinux问题。&lt;br&gt;解决办法是执行&lt;code&gt;/sbin/restorecon -r /root/.ssh&lt;/code&gt;&lt;br&gt;安装系统时关闭SELinux，可以在kickstart中增加一行&lt;code&gt;selinux --disabled&lt;/code&gt;。&lt;br&gt;已经完整完系统的，可以&lt;code&gt;sed -i -e &amp;#39;/SELINUX/s/enforcing/disabled/&amp;#39; /etc/selinux/config&lt;/code&gt; 重启系统来关闭SELinux。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;已经通过kickstart安装过程中注入ssh秘钥的系统，启动后ssh连接的时候仍然要求输入密码。&lt;br&gt;但是再执行一遍ssh-copy-id后，ssh就又能免密码连接。&lt;br&gt;最后确认是selinux问题。&lt;br&gt;解决办法是执行&lt;code&gt;/sbin/restorecon
     
     </summary>
     
