@@ -9,13 +9,6 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/tags/tools/</loc>
-        <lastmod>2016-03-21T07:07:08.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://blog.wuliwala.net/tags/ionic/</loc>
         <lastmod>2016-03-23T06:55:44.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -67,13 +60,6 @@
     <url>
         <loc>http://blog.wuliwala.net/tags/dhcp/</loc>
         <lastmod>2016-04-11T03:42:10.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://blog.wuliwala.net/tags/dev/</loc>
-        <lastmod>2016-04-13T08:49:28.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -158,6 +144,20 @@
     <url>
         <loc>http://blog.wuliwala.net/tags/virtualization/</loc>
         <lastmod>2016-04-29T09:16:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/tags/dev/</loc>
+        <lastmod>2016-05-01T14:29:01.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/tags/tools/</loc>
+        <lastmod>2016-05-01T14:29:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

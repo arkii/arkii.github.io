@@ -378,10 +378,10 @@
     <link href="http://blog.wuliwala.net/2016/03/19/segmentfault-tools-sharing/"/>
     <id>http://blog.wuliwala.net/2016/03/19/segmentfault-tools-sharing/</id>
     <published>2016-03-19T09:42:00.000Z</published>
-    <updated>2016-03-21T07:07:08.000Z</updated>
+    <updated>2016-05-01T14:29:01.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;segmentfault-我是工具控-分享&quot;&gt;&lt;a href=&quot;#segmentfault-我是工具控-分享&quot; class=&quot;headerlink&quot; title=&quot;segmentfault[我是工具控]分享&quot;&gt;&lt;/a&gt;segmentfault[我是工具控]分享&lt;/h2&gt;&lt;p&gt; &lt;strong&gt;运维团队中的开发，4年运维工作经验，去年转开发。主要开发语言python，偶尔写shell、javascript.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;我的工具箱可能跟别人不太一样&lt;br&gt;大家装机必备的就不提了&lt;/p&gt;
+&lt;p&gt;我的工具箱可能跟别人不太一样&lt;br&gt;大家装机必备的就不提了&lt;br&gt;&lt;a href=&quot;http://blog.wuliwala.net&quot;&gt;我的博客&lt;/a&gt; 欢迎交流&lt;/p&gt;
 &lt;h3 id=&quot;命令行工具&quot;&gt;&lt;a href=&quot;#命令行工具&quot; class=&quot;headerlink&quot; title=&quot;命令行工具&quot;&gt;&lt;/a&gt;命令行工具&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;ag&lt;/strong&gt; 搜索代码炒鸡快！&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;httpie&lt;/strong&gt; 人类用的http测试工具&lt;/li&gt;
@@ -389,7 +389,7 @@
 &lt;li&gt;&lt;strong&gt;cowsay&lt;/strong&gt; &lt;strong&gt;lolcat&lt;/strong&gt; 好玩的，不解释&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;生活-效率&quot;&gt;&lt;a href=&quot;#生活-效率&quot; class=&quot;headerlink&quot; title=&quot;生活/效率&quot;&gt;&lt;/a&gt;生活/效率&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Keynote&lt;/strong&gt; 特别喜欢苹果的这款产品，简洁易用，码农也能做出很好的幻灯片。曾用它做演讲稿，从产品、前端那里赢得3次分享、项目评比冠军。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Keynote&lt;/strong&gt; 特别喜欢苹果的这款产品，简洁易用，码农也能做出很好的幻灯片。曾用它做演讲稿，从产品、前端那里赢得几次分享、项目评比冠军。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MacDown&lt;/strong&gt; 以前用Mou，后来发现MacDown，代码着色要比Mou好很多，配合&lt;strong&gt;Hexo&lt;/strong&gt;，也能用来写博客。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;eWallet&lt;/strong&gt; 管理密码的，从windows就开始用，Mac平台也有。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MindNode&lt;/strong&gt; 看图，不解释&lt;img src=&quot;/images/2016/03/19/mindnode.png&quot; alt=&quot;mindnode&quot;&gt;&lt;/li&gt;
@@ -400,6 +400,7 @@
 &lt;li&gt;&lt;em&gt;&lt;strong&gt;TextMate&lt;/strong&gt;&lt;/em&gt; 刚从windows换到Mac的时候非常怀念极轻量的&lt;strong&gt;Editplus&lt;/strong&gt;，用了一阵，也还不错，今年主要学习vim，所以不用了。&lt;/li&gt;
 &lt;li&gt;我不用 &lt;strong&gt;oh~my~zsh&lt;/strong&gt; 我用&lt;strong&gt;bash-it&lt;/strong&gt; ，因为做了4年运维，对bash较熟，用过oh~my~zsh，感觉各种行为好怪异，简直无法愉快玩耍。&lt;br&gt;自己改的bash主题&lt;img src=&quot;/images/2016/03/19/bash-it.png&quot; alt=&quot;bash-it&quot;&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;有同学想要这个主题的话，可以访问&lt;a href=&quot;https://github.com/arkii/gadgets/tree/master/Terminal&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;我的github&lt;/a&gt;。  &lt;/p&gt;
 &lt;p&gt;vim 插件，一天可是说不完的。。。&lt;/p&gt;
 &lt;figure class=&quot;highlight sml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;VundleVim&lt;/span&gt;/&lt;span class=&quot;type&quot;&gt;Vundle&lt;/span&gt;.vim&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;Valloric&lt;/span&gt;/&lt;span class=&quot;type&quot;&gt;YouCompleteMe&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;scrooloose&lt;/span&gt;/nerdtree&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;scrooloose&lt;/span&gt;/nerdcommenter&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;scrooloose&lt;/span&gt;/syntastic&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;vim&lt;/span&gt;-airline/vim-airline&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;vim&lt;/span&gt;-airline/vim-airline-themes&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;vim&lt;/span&gt;-scripts/indentpython.vim&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;nvie&lt;/span&gt;/vim-flake8&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;Xuyuanp&lt;/span&gt;/nerdtree-git-plugin&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;xolox&lt;/span&gt;/vim-misc&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;xolox&lt;/span&gt;/vim-session&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Plugin&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;&#39;Chiel92&lt;/span&gt;/vim-autoformat&#39;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;Atom插件&lt;/p&gt;
