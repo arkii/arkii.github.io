@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://blog.wuliwala.net/2015/12/09/icinga2-influxdb-grafana-integration/</loc>
+        <lastmod>2016-07-21T03:26:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://blog.wuliwala.net/2016/03/19/segmentfault-tools-sharing/</loc>
         <lastmod>2016-05-01T14:29:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -41,14 +49,6 @@
     <url>
         <loc>http://blog.wuliwala.net/2016/04/12/upgrade_influxdb_from_v0.9_to_v0.10/</loc>
         <lastmod>2016-04-20T06:51:23.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://blog.wuliwala.net/2015/12/09/icinga2-influxdb-grafana-integration/</loc>
-        <lastmod>2016-04-18T04:01:23.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -135,14 +135,6 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/</loc>
-        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://blog.wuliwala.net/2015/08/21/cacti-add-multi-devices-graphs/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -151,7 +143,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
+        <loc>http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -160,6 +152,14 @@
 
     <url>
         <loc>http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/</loc>
+        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -183,7 +183,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/03/dell-ipxe/</loc>
+        <loc>http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -191,7 +191,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/03/dell-ipxe/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -223,7 +223,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/24/ghosttian-jia-dai-ma-gao-liang-highlight-js/</loc>
+        <loc>http://blog.wuliwala.net/2015/11/19/gitlab-ci-and-runner/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -231,7 +231,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/11/19/gitlab-ci-and-runner/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/24/ghosttian-jia-dai-ma-gao-liang-highlight-js/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -256,14 +256,6 @@
 
     <url>
         <loc>http://blog.wuliwala.net/2015/12/01/how-to-configure-httpd-with-ldap-authentication/</loc>
-        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -303,7 +295,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -311,7 +303,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/</loc>
+        <loc>http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -327,7 +319,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/08/07/mp4box-concat-mp4/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -335,7 +327,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/09/osvan-zhuang-ce-shi/</loc>
+        <loc>http://blog.wuliwala.net/2015/08/07/mp4box-concat-mp4/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -359,6 +351,14 @@
     </url>
 
     <url>
+        <loc>http://blog.wuliwala.net/2015/01/12/run-crond-in-container/</loc>
+        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://blog.wuliwala.net/2015/09/07/rsyslog-send-locallog-to-logstash/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -367,7 +367,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/01/12/run-crond-in-container/</loc>
+        <loc>http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -391,7 +391,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/09/15/ssh-key-auth-require-password/</loc>
+        <loc>http://blog.wuliwala.net/2015/08/18/ssh-automatic/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -399,7 +399,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/08/18/ssh-automatic/</loc>
+        <loc>http://blog.wuliwala.net/2015/09/15/ssh-key-auth-require-password/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
