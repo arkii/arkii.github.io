@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Tranquility Garden">
 <meta property="og:description" content="使用rsyslog + elk分析nginx访问日志。elk日志分析栈，即elasticsearch logstash kibana。  
 为了减少对现有系统的改造，故使用rsyslog来读取应用服务器的nginx access_log，使用udp的方式发送到elk日志分析服务器的logstash，logstash解析日志后写入elasticsearch，进行存储和索引，最后由kibana来查询e">
-<meta property="og:updated_time" content="2016-08-01T08:23:42.000Z">
+<meta property="og:updated_time" content="2016-08-01T08:26:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elk分析nginx访问日志">
 <meta name="twitter:description" content="使用rsyslog + elk分析nginx访问日志。elk日志分析栈，即elasticsearch logstash kibana。  
@@ -122,14 +122,14 @@ ga('send', 'pageview');
 <p>这样的话，可以将上面 /etc/rsyslog.conf 的部分去掉，简单地把下面这行配置加到nginx配置文件中即可。</p>
 <p><code>access_log syslog:server=syslog.yourdomain.com:514 default;</code></p>
 <p><a href="http://nginx.org/en/CHANGES" target="_blank" rel="external">官方CHANGES LIST</a></p>
-<p><a href="http://nginx.org/en/docs/syslog.html" target="_blank" rel="external">官方教程 \<logging to="" syslog\=""> </logging></a></p>
-<p><a href="http://nginx.org/en/docs/http/ngx_http_log_module.html" target="_blank" rel="external">官方文档 \<ngx_http_log_module\> </ngx_http_log_module\></a></p>
+<p><a href="http://nginx.org/en/docs/syslog.html" target="_blank" rel="external">官方教程 Logging to syslog </a></p>
+<p><a href="http://nginx.org/en/docs/http/ngx_http_log_module.html" target="_blank" rel="external">官方文档 ngx_http_log_module </a></p>
 <figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">Changes <span class="keyword">with</span> nginx <span class="number">1.7</span><span class="number">.1</span>                                         <span class="number">27</span> May <span class="number">2014</span></span><br><span class="line">    *) Feature: the <span class="string">"error_log"</span> <span class="literal">and</span> <span class="string">"access_log"</span> directives <span class="built_in">now</span> support</span><br><span class="line">       logging <span class="keyword">to</span> syslog.</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/07/25/elk/" data-id="cirbrri09000gsg5oqbl4jtli" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/07/25/elk/" data-id="cirbrujqt000edv5oqgffxea1" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/07/25/elk/#disqus_thread" class="article-comment-link">Comments</a>
       
