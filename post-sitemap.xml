@@ -159,7 +159,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -167,7 +167,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/14/centos6-ruby-gems-an-zhuang/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -183,7 +183,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/</loc>
+        <loc>http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -191,7 +191,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/08/31/compile-tool-for-esxi/</loc>
+        <loc>http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -231,14 +231,6 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/11/19/gitlab-ci-and-runner/</loc>
-        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://blog.wuliwala.net/2015/08/06/gitlab-service-deploy/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -247,7 +239,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/12/01/how-to-configure-httpd-with-ldap-authentication/</loc>
+        <loc>http://blog.wuliwala.net/2015/11/19/gitlab-ci-and-runner/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -263,7 +255,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/12/01/how-to-configure-nginx-with-ldap-authentication/</loc>
+        <loc>http://blog.wuliwala.net/2015/12/01/how-to-configure-httpd-with-ldap-authentication/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -272,6 +264,14 @@
 
     <url>
         <loc>http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/</loc>
+        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/2015/12/01/how-to-configure-nginx-with-ldap-authentication/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -343,7 +343,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/09/08/pnp4nagioszi-dong-diao-zheng-shu-zhi/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -351,7 +351,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/16/pip-bao-cuo-from-versions-wen-ti/</loc>
+        <loc>http://blog.wuliwala.net/2015/09/08/pnp4nagioszi-dong-diao-zheng-shu-zhi/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

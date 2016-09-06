@@ -209,9 +209,9 @@
       <category term="Automatic" scheme="http://blog.wuliwala.net/categories/Automatic/"/>
     
     
-      <category term="sysops" scheme="http://blog.wuliwala.net/tags/sysops/"/>
-    
       <category term="ipmi" scheme="http://blog.wuliwala.net/tags/ipmi/"/>
+    
+      <category term="sysops" scheme="http://blog.wuliwala.net/tags/sysops/"/>
     
       <category term="pxe" scheme="http://blog.wuliwala.net/tags/pxe/"/>
     
@@ -595,9 +595,9 @@
       <category term="gadget" scheme="http://blog.wuliwala.net/categories/gadget/"/>
     
     
-      <category term="monitoring" scheme="http://blog.wuliwala.net/tags/monitoring/"/>
-    
       <category term="sysops" scheme="http://blog.wuliwala.net/tags/sysops/"/>
+    
+      <category term="monitoring" scheme="http://blog.wuliwala.net/tags/monitoring/"/>
     
   </entry>
   
