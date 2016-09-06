@@ -151,7 +151,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
+        <loc>http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -159,7 +159,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/08/04/centos6-update-kernel-to-3-10/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/14/centos6-pei-zhi-vagrant-virtualbox/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -175,7 +175,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/</loc>
+        <loc>http://blog.wuliwala.net/2015/08/04/centos6-update-kernel-to-3-10/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -191,7 +191,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/</loc>
+        <loc>http://blog.wuliwala.net/2015/08/24/cygwin-mysqld/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -215,6 +215,14 @@
     </url>
 
     <url>
+        <loc>http://blog.wuliwala.net/2015/05/12/docker-statsd-influxdb/</loc>
+        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://blog.wuliwala.net/2015/07/24/ghosttian-jia-dai-ma-gao-liang-highlight-js/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -224,6 +232,14 @@
 
     <url>
         <loc>http://blog.wuliwala.net/2015/11/19/gitlab-ci-and-runner/</loc>
+        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/2015/08/06/gitlab-service-deploy/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -247,7 +263,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/08/06/gitlab-service-deploy/</loc>
+        <loc>http://blog.wuliwala.net/2015/12/01/how-to-configure-httpd-with-ldap-authentication/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -256,14 +272,6 @@
 
     <url>
         <loc>http://blog.wuliwala.net/2015/12/01/how-to-configure-nginx-with-ldap-authentication/</loc>
-        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://blog.wuliwala.net/2015/12/01/how-to-configure-httpd-with-ldap-authentication/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -295,7 +303,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -303,7 +311,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/</loc>
+        <loc>http://blog.wuliwala.net/2015/05/25/jin-yong-chromezeng-qiang-xing-shu-qian-guan-li-qi/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -399,14 +407,6 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/11/27/when-a-man-loves-a-woman/</loc>
-        <lastmod>2016-01-25T11:18:39.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://blog.wuliwala.net/2015/07/23/vmware-esxi-jian-kong/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -415,7 +415,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/07/24/yuman-zhuang-dellguan-fang-openipmishi-bai-wen-ti/</loc>
+        <loc>http://blog.wuliwala.net/2015/11/27/when-a-man-loves-a-woman/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -423,7 +423,7 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/2015/06/15/centos-6-x-git-1-7-clone-gitlab-yan-zheng-shi-bai/</loc>
+        <loc>http://blog.wuliwala.net/2015/07/24/yuman-zhuang-dellguan-fang-openipmishi-bai-wen-ti/</loc>
         <lastmod>2016-01-25T11:18:39.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
