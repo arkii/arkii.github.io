@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wuliwala.net/"/>
-  <updated>2016-04-29T09:16:47.000Z</updated>
+  <updated>2016-04-26T05:18:32.000Z</updated>
   <id>http://blog.wuliwala.net/</id>
   
   <author>
@@ -14,31 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>can not add lun device in vsphere client</title>
-    <link href="http://blog.wuliwala.net/2016/04/29/can_not_add_lun_device_in_vsphere_client/"/>
-    <id>http://blog.wuliwala.net/2016/04/29/can_not_add_lun_device_in_vsphere_client/</id>
-    <published>2016-04-29T08:42:00.000Z</published>
-    <updated>2016-04-29T09:16:47.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;Can-not-add-lun-device-in-vsphere-client&quot;&gt;&lt;a href=&quot;#Can-not-add-lun-device-in-vsphere-client&quot; class=&quot;headerlink&quot; title=&quot;Can not add lun device in vsphere client&quot;&gt;&lt;/a&gt;Can not add lun device in vsphere client&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Call “HostStorageSystem.ComputeDiskPartitionInfo” for object “storageSystem” on ESXi “10.19.40.8” failed.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# esxcfg-scsidevs -l&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;naa.600508b1001037383941424344450400&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Device Type: Direct-Access &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Size: 69973 MB&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Display Name: HP Serial Attached SCSI Disk (naa.600508b1001037383941424344450400)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Multipath Plugin: NMP&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Console Device: /vmfs/devices/disks/naa.600508b1001037383941424344450400&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Devfs Path: /vmfs/devices/disks/naa.600508b1001037383941424344450400&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Vendor: HP        Model: LOGICAL VOLUME    Revis: 1.62 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   SCSI Level: 5  Is Pseudo: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; Status: degraded  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Is RDM Capable: &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;  Is Removable: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Is Local: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; Is SSD: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Other Names: &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      vml.0200000000600508b10010373839414243444504004c4f47494341&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   VAAI Status: unknown&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;naa.600508b1001037383941424344450700&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Device Type: Direct-Access &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Size: 139979 MB&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Display Name: HP Serial Attached SCSI Disk (naa.600508b1001037383941424344450700)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Multipath Plugin: NMP&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Console Device: /vmfs/devices/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Devfs Path: /vmfs/devices/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Vendor: HP        Model: LOGICAL VOLUME    Revis: 1.62 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   SCSI Level: 5  Is Pseudo: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; Status: degraded  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Is RDM Capable: &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;  Is Removable: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Is Local: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; Is SSD: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Other Names: &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      vml.0200010000600508b10010373839414243444507004c4f47494341&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   VAAI Status: unknown&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# partedUtil getptbl /dev/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;msdos&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17844 255 63 286677120&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 32 286677119 131 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# partedUtil get /dev/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17844 255 63 286677120&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 32 286677119 131 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# partedUtil delete /dev/disks/naa.600508b1001037383941424344450700 1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# partedUtil getptbl /dev/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;msdos&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17844 255 63 286677120&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;a href=&quot;https://communities.vmware.com/message/2294919#2294919&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;QA id 2294919 in vmware’s community&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/kk1230/p/3363737.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;post on kk.1230’s blog&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://communities.vmware.com/thread/458670&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;QA id 458670 in vmware’s community&lt;/a&gt;  &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Can-not-add-lun-device-in-vsphere-client&quot;&gt;&lt;a href=&quot;#Can-not-add-lun-device-in-vsphere-client&quot; class=&quot;headerlink&quot; title=&quot;Can not add 
-    
-    </summary>
-    
-    
-      <category term="virtualization" scheme="http://blog.wuliwala.net/tags/virtualization/"/>
-    
-  </entry>
   
   <entry>
     <title>DC/OS Deployment</title>
@@ -216,6 +191,31 @@
       <category term="pxe" scheme="http://blog.wuliwala.net/tags/pxe/"/>
     
       <category term="dhcp" scheme="http://blog.wuliwala.net/tags/dhcp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>can not add lun device in vsphere client</title>
+    <link href="http://blog.wuliwala.net/2016/03/29/can_not_add_lun_device_in_vsphere_client/"/>
+    <id>http://blog.wuliwala.net/2016/03/29/can_not_add_lun_device_in_vsphere_client/</id>
+    <published>2016-03-29T08:42:00.000Z</published>
+    <updated>2016-12-08T07:58:11.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Can-not-add-lun-device-in-vsphere-client&quot;&gt;&lt;a href=&quot;#Can-not-add-lun-device-in-vsphere-client&quot; class=&quot;headerlink&quot; title=&quot;Can not add lun device in vsphere client&quot;&gt;&lt;/a&gt;Can not add lun device in vsphere client&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Call “HostStorageSystem.ComputeDiskPartitionInfo” for object “storageSystem” on ESXi “10.19.40.8” failed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# esxcfg-scsidevs -l&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;naa.600508b1001037383941424344450400&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Device Type: Direct-Access &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Size: 69973 MB&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Display Name: HP Serial Attached SCSI Disk (naa.600508b1001037383941424344450400)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Multipath Plugin: NMP&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Console Device: /vmfs/devices/disks/naa.600508b1001037383941424344450400&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Devfs Path: /vmfs/devices/disks/naa.600508b1001037383941424344450400&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Vendor: HP        Model: LOGICAL VOLUME    Revis: 1.62 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   SCSI Level: 5  Is Pseudo: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; Status: degraded  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Is RDM Capable: &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;  Is Removable: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Is Local: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; Is SSD: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Other Names: &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      vml.0200000000600508b10010373839414243444504004c4f47494341&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   VAAI Status: unknown&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;naa.600508b1001037383941424344450700&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Device Type: Direct-Access &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Size: 139979 MB&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Display Name: HP Serial Attached SCSI Disk (naa.600508b1001037383941424344450700)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Multipath Plugin: NMP&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Console Device: /vmfs/devices/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Devfs Path: /vmfs/devices/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Vendor: HP        Model: LOGICAL VOLUME    Revis: 1.62 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   SCSI Level: 5  Is Pseudo: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; Status: degraded  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Is RDM Capable: &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;  Is Removable: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Is Local: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; Is SSD: &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Other Names: &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      vml.0200010000600508b10010373839414243444507004c4f47494341&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   VAAI Status: unknown&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# partedUtil getptbl /dev/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;msdos&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17844 255 63 286677120&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 32 286677119 131 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# partedUtil get /dev/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17844 255 63 286677120&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 32 286677119 131 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# partedUtil delete /dev/disks/naa.600508b1001037383941424344450700 1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;~ &lt;span class=&quot;comment&quot;&gt;# partedUtil getptbl /dev/disks/naa.600508b1001037383941424344450700&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;msdos&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17844 255 63 286677120&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;a href=&quot;https://communities.vmware.com/message/2294919#2294919&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;QA id 2294919 in vmware’s community&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/kk1230/p/3363737.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;post on kk.1230’s blog&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://communities.vmware.com/thread/458670&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;QA id 458670 in vmware’s community&lt;/a&gt;  &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Can-not-add-lun-device-in-vsphere-client&quot;&gt;&lt;a href=&quot;#Can-not-add-lun-device-in-vsphere-client&quot; class=&quot;headerlink&quot; title=&quot;Can not add 
+    
+    </summary>
+    
+    
+      <category term="virtualization" scheme="http://blog.wuliwala.net/tags/virtualization/"/>
     
   </entry>
   
