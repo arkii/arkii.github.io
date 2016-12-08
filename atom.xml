@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wuliwala.net/"/>
-  <updated>2016-04-26T05:18:32.000Z</updated>
+  <updated>2016-12-08T08:10:20.000Z</updated>
   <id>http://blog.wuliwala.net/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://blog.wuliwala.net/2016/04/21/dcos_installation/"/>
     <id>http://blog.wuliwala.net/2016/04/21/dcos_installation/</id>
     <published>2016-04-21T10:42:00.000Z</published>
-    <updated>2016-04-26T05:18:32.000Z</updated>
+    <updated>2016-12-08T08:10:20.000Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;Intruduction&quot;&gt;&lt;a href=&quot;#Intruduction&quot; class=&quot;headerlink&quot; title=&quot;Intruduction&quot;&gt;&lt;/a&gt;Intruduction&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Every system operator always dreaming an infrastructure management tool like &lt;a href=&quot;https://dcos.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DCOS&lt;/a&gt;, makes job easier and more spare time.&lt;/strong&gt;&lt;br&gt;As you know, mesosphere.com released it as &lt;a href=&quot;https://mesosphere.com/blog/2016/04/19/open-source-dcos/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Open Source project&lt;/a&gt; on 2016/04/19.&lt;br&gt;So I tried it the first time.&lt;br&gt;This post reords my steps followed the official &lt;a href=&quot;https://dcos.io/get-started&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;guide&lt;/a&gt;.&lt;br&gt;In this example, all my node is running CentOS7(with &lt;code&gt;yum -y update&lt;/code&gt;), I used 6 nodes(1 deploy, 1 master, 4 compute), and if you want master node High-Availability, 8 nodes(1 deploy, 3 master, 4 compute) is recommended.&lt;br&gt;After deployment, the deploy node can be destroyed, so it can be a temporary vm.&lt;/p&gt;
+    <content type="html">&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Every system operator always dreaming an infrastructure management tool like &lt;a href=&quot;https://dcos.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DCOS&lt;/a&gt;, makes job easier and more spare time.&lt;/strong&gt;&lt;br&gt;As you know, mesosphere.com released it as &lt;a href=&quot;https://mesosphere.com/blog/2016/04/19/open-source-dcos/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Open Source project&lt;/a&gt; on 2016/04/19.&lt;br&gt;So I tried it the first time.&lt;br&gt;This post reords my steps followed the official &lt;a href=&quot;https://dcos.io/get-started&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;guide&lt;/a&gt;.&lt;br&gt;In this example, all my node is running CentOS7(with &lt;code&gt;yum -y update&lt;/code&gt;), I used 6 nodes(1 deploy, 1 master, 4 compute), and if you want master node High-Availability, 8 nodes(1 deploy, 3 master, 4 compute) is recommended.&lt;br&gt;After deployment, the deploy node can be destroyed, so it can be a temporary vm.&lt;/p&gt;
 &lt;h3 id=&quot;System-Requirements&quot;&gt;&lt;a href=&quot;#System-Requirements&quot; class=&quot;headerlink&quot; title=&quot;System Requirements&quot;&gt;&lt;/a&gt;System Requirements&lt;/h3&gt;&lt;p&gt;Please read &lt;a href=&quot;https://dcos.io/docs/1.7/administration/installing/custom/system-requirements/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;system-requirements&lt;/a&gt; carefully.&lt;br&gt;First time, I encountered an issue. It’s a shell script in the progress of deployment, to change the storage-driver to overlayfs.&lt;br&gt;I don’t know why if run with this &lt;code&gt;-H fd://&lt;/code&gt;, docker daemon can not get started.&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ sudo mkdir -p /etc/systemd/system/docker.service.d &amp;amp;&amp;amp; sudo tee /etc/systemd/system/docker.service.d/override.conf &amp;lt;&amp;lt;- EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Service]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ExecStart=&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ExecStart=/usr/bin/docker daemon --storage-driver=overlay -H fd://&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EOF&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ul&gt;
@@ -47,7 +47,7 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;Intruduction&quot;&gt;&lt;a href=&quot;#Intruduction&quot; class=&quot;headerlink&quot; title=&quot;Intruduction&quot;&gt;&lt;/a&gt;Intruduction&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Every system operator 
+      &lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Every system operator 
     
     </summary>
     

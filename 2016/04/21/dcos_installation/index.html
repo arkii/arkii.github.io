@@ -5,12 +5,12 @@
   
   <title>DC/OS Deployment | Tranquility Garden</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="IntruductionEvery system operator always dreaming an infrastructure management tool like DCOS, makes job easier and more spare time.As you know, mesosphere.com released it as Open Source project on 20">
+  <meta name="description" content="IntroductionEvery system operator always dreaming an infrastructure management tool like DCOS, makes job easier and more spare time.As you know, mesosphere.com released it as Open Source project on 20">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DC/OS Deployment">
 <meta property="og:url" content="http://blog.wuliwala.net/2016/04/21/dcos_installation/index.html">
 <meta property="og:site_name" content="Tranquility Garden">
-<meta property="og:description" content="IntruductionEvery system operator always dreaming an infrastructure management tool like DCOS, makes job easier and more spare time.As you know, mesosphere.com released it as Open Source project on 20">
+<meta property="og:description" content="IntroductionEvery system operator always dreaming an infrastructure management tool like DCOS, makes job easier and more spare time.As you know, mesosphere.com released it as Open Source project on 20">
 <meta property="og:image" content="http://blog.wuliwala.net/images/2016/04/21/1.png">
 <meta property="og:image" content="http://blog.wuliwala.net/images/2016/04/21/2.png">
 <meta property="og:image" content="http://blog.wuliwala.net/images/2016/04/21/3.png">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="http://blog.wuliwala.net/images/2016/04/21/13.png">
 <meta property="og:image" content="http://blog.wuliwala.net/images/2016/04/21/14.png">
 <meta property="og:image" content="http://blog.wuliwala.net/images/2016/04/21/15.png">
-<meta property="og:updated_time" content="2016-04-26T05:18:32.000Z">
+<meta property="og:updated_time" content="2016-12-08T08:10:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DC/OS Deployment">
-<meta name="twitter:description" content="IntruductionEvery system operator always dreaming an infrastructure management tool like DCOS, makes job easier and more spare time.As you know, mesosphere.com released it as Open Source project on 20">
+<meta name="twitter:description" content="IntroductionEvery system operator always dreaming an infrastructure management tool like DCOS, makes job easier and more spare time.As you know, mesosphere.com released it as Open Source project on 20">
 <meta name="twitter:image" content="http://blog.wuliwala.net/images/2016/04/21/1.png">
   
     <link rel="alternate" href="http://blog.wuliwala.net/atom.xml" title="Tranquility Garden" type="application/atom+xml">
@@ -123,7 +123,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Intruduction"><a href="#Intruduction" class="headerlink" title="Intruduction"></a>Intruduction</h3><p><strong>Every system operator always dreaming an infrastructure management tool like <a href="https://dcos.io" target="_blank" rel="external">DCOS</a>, makes job easier and more spare time.</strong><br>As you know, mesosphere.com released it as <a href="https://mesosphere.com/blog/2016/04/19/open-source-dcos/" target="_blank" rel="external">Open Source project</a> on 2016/04/19.<br>So I tried it the first time.<br>This post reords my steps followed the official <a href="https://dcos.io/get-started" target="_blank" rel="external">guide</a>.<br>In this example, all my node is running CentOS7(with <code>yum -y update</code>), I used 6 nodes(1 deploy, 1 master, 4 compute), and if you want master node High-Availability, 8 nodes(1 deploy, 3 master, 4 compute) is recommended.<br>After deployment, the deploy node can be destroyed, so it can be a temporary vm.</p>
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p><strong>Every system operator always dreaming an infrastructure management tool like <a href="https://dcos.io" target="_blank" rel="external">DCOS</a>, makes job easier and more spare time.</strong><br>As you know, mesosphere.com released it as <a href="https://mesosphere.com/blog/2016/04/19/open-source-dcos/" target="_blank" rel="external">Open Source project</a> on 2016/04/19.<br>So I tried it the first time.<br>This post reords my steps followed the official <a href="https://dcos.io/get-started" target="_blank" rel="external">guide</a>.<br>In this example, all my node is running CentOS7(with <code>yum -y update</code>), I used 6 nodes(1 deploy, 1 master, 4 compute), and if you want master node High-Availability, 8 nodes(1 deploy, 3 master, 4 compute) is recommended.<br>After deployment, the deploy node can be destroyed, so it can be a temporary vm.</p>
 <h3 id="System-Requirements"><a href="#System-Requirements" class="headerlink" title="System Requirements"></a>System Requirements</h3><p>Please read <a href="https://dcos.io/docs/1.7/administration/installing/custom/system-requirements/" target="_blank" rel="external">system-requirements</a> carefully.<br>First time, I encountered an issue. It’s a shell script in the progress of deployment, to change the storage-driver to overlayfs.<br>I don’t know why if run with this <code>-H fd://</code>, docker daemon can not get started.</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo mkdir -p /etc/systemd/system/docker.service.d &amp;&amp; sudo tee /etc/systemd/system/docker.service.d/override.conf &lt;&lt;- EOF</span><br><span class="line">[Service]</span><br><span class="line">ExecStart=</span><br><span class="line">ExecStart=/usr/bin/docker daemon --storage-driver=overlay -H fd://</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
 <ul>
@@ -148,7 +148,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2016/04/21/dcos_installation/" data-id="ciwg31t7e000cmm5om7df4nuk" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2016/04/21/dcos_installation/" data-id="ciwg3324s000cp15ogxmc9occ" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2016/04/21/dcos_installation/#disqus_thread" class="article-comment-link">Comments</a>
       

@@ -121,27 +121,6 @@
     </url>
 
     <url>
-        <loc>http://blog.wuliwala.net/tags/dcos/</loc>
-        <lastmod>2016-04-26T05:18:32.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://blog.wuliwala.net/tags/docker/</loc>
-        <lastmod>2016-04-26T05:18:32.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://blog.wuliwala.net/tags/mesos/</loc>
-        <lastmod>2016-04-26T05:18:32.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://blog.wuliwala.net/tags/dev/</loc>
         <lastmod>2016-05-01T14:29:01.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -158,6 +137,27 @@
     <url>
         <loc>http://blog.wuliwala.net/tags/virtualization/</loc>
         <lastmod>2016-12-08T07:58:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/tags/dcos/</loc>
+        <lastmod>2016-12-08T08:10:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/tags/docker/</loc>
+        <lastmod>2016-12-08T08:10:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.wuliwala.net/tags/mesos/</loc>
+        <lastmod>2016-12-08T08:10:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
