@@ -109,16 +109,16 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用elrepo来更新<br>导入key<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br></pre></td></tr></table></figure></p>
-<p>安装repo<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm</span><br></pre></td></tr></table></figure></p>
-<p>安装kernel<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install kernel<span class="_">-lt</span> kernel<span class="_">-lt</span>-firmware kernel<span class="_">-lt</span>-headers</span><br></pre></td></tr></table></figure></p>
-<p>启用新kernel<br><code>vi /etc/grub.conf</code><br>修改<br><code>default=0</code><br>查看当前kernel版本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># uname -a</span></span><br><span class="line">Linux localhost.localdomain 2.6.32-504.30.3.el6.x86_64 <span class="comment">#1 SMP Wed Jul 15 10:13:09 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure></p>
-<p>重启系统<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># uname -a</span></span><br><span class="line">Linux localhost.localdomain 3.10.84-1.el6.elrepo.x86_64 <span class="comment">#1 SMP Sat Jul 11 11:33:48 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure></p>
+        <p>使用elrepo来更新<br>导入key<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</div></pre></td></tr></table></figure></p>
+<p>安装repo<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm</div></pre></td></tr></table></figure></p>
+<p>安装kernel<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">yum install kernel<span class="_">-lt</span> kernel<span class="_">-lt</span>-firmware kernel<span class="_">-lt</span>-headers</div></pre></td></tr></table></figure></p>
+<p>启用新kernel<br><code>vi /etc/grub.conf</code><br>修改<br><code>default=0</code><br>查看当前kernel版本<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># uname -a</span></div><div class="line">Linux localhost.localdomain 2.6.32-504.30.3.el6.x86_64 <span class="comment">#1 SMP Wed Jul 15 10:13:09 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux</span></div></pre></td></tr></table></figure></p>
+<p>重启系统<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># uname -a</span></div><div class="line">Linux localhost.localdomain 3.10.84-1.el6.elrepo.x86_64 <span class="comment">#1 SMP Sat Jul 11 11:33:48 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/08/04/centos6-update-kernel-to-3-10/" data-id="ciy42m2z40008f35oz4qmzuj8" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/08/04/centos6-update-kernel-to-3-10/" data-id="ciy42pxws0007l05od9re718q" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/08/04/centos6-update-kernel-to-3-10/#disqus_thread" class="article-comment-link">Comments</a>
       

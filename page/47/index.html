@@ -108,13 +108,13 @@ ga('send', 'pageview');
 <p>连到esxi 5.5 或 vCenter 5.5都要增加<cipherlist>ALL</cipherlist></p>
 <p>F2 ，输入账号密码<br>进入Troubleshooting Options<br>EnableSSH</p>
 <p>ssh 到 ESXi<br>cd /etc/vmware/rhttpproxy/<br>cp config.xml config_bak.xml<br>修改 config.xml ：vi config.xml<br>找到 <vmacore> 的 <ssl> 配置段<br>加上一行：<cipherlist>ALL</cipherlist></ssl></vmacore></p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="params">&lt;ssl&gt;</span></span><br><span class="line">          <span class="params">&lt;doVersionCheck&gt;</span> false <span class="params">&lt;/doVersionCheck&gt;</span></span><br><span class="line">          <span class="params">&lt;useCompression&gt;</span>true<span class="params">&lt;/useCompression&gt;</span></span><br><span class="line">          <span class="params">&lt;libraryPath&gt;</span><span class="meta-keyword">/lib/</span><span class="params">&lt;/libraryPath&gt;</span></span><br><span class="line">          <span class="params">&lt;cipherList&gt;</span>ALL<span class="params">&lt;/cipherList&gt;</span></span><br><span class="line"><span class="params">&lt;/ssl&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="code"><pre><div class="line"><span class="params">&lt;ssl&gt;</span></div><div class="line">          <span class="params">&lt;doVersionCheck&gt;</span> false <span class="params">&lt;/doVersionCheck&gt;</span></div><div class="line">          <span class="params">&lt;useCompression&gt;</span>true<span class="params">&lt;/useCompression&gt;</span></div><div class="line">          <span class="params">&lt;libraryPath&gt;</span><span class="meta-keyword">/lib/</span><span class="params">&lt;/libraryPath&gt;</span></div><div class="line">          <span class="params">&lt;cipherList&gt;</span>ALL<span class="params">&lt;/cipherList&gt;</span></div><div class="line"><span class="params">&lt;/ssl&gt;</span></div></pre></td></tr></table></figure>
 <p>保存后重启服务：/etc/init.d/rhttpproxy restart</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/" data-id="ciy42m2y90002f35oyahonuvu" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/" data-id="ciy42pxwc0001l05okt0o1ugx" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/06/23/32wei-xp-server2003-lian-jie-vmware-vcenter-esxi-5-5yi-shang-ban-ben-shi-bai-wen-ti/#disqus_thread" class="article-comment-link">Comments</a>
       

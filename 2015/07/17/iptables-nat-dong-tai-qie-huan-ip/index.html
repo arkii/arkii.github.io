@@ -103,12 +103,12 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>iptables 动态切换出口IP<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 100); <span class="keyword">do</span> iptables -t nat -I POSTROUTING -m statistic --mode nth --packet 0 --every 5 -j SNAT --to-source 10.0.0.<span class="variable">$i</span>; <span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+        <p>iptables 动态切换出口IP<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 100); <span class="keyword">do</span> iptables -t nat -I POSTROUTING -m statistic --mode nth --packet 0 --every 5 -j SNAT --to-source 10.0.0.<span class="variable">$i</span>; <span class="keyword">done</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/" data-id="ciy42m30h000uf35ocy524faa" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/" data-id="ciy42pxxp000tl05o2esarkr9" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/07/17/iptables-nat-dong-tai-qie-huan-ip/#disqus_thread" class="article-comment-link">Comments</a>
       

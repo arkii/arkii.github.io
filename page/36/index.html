@@ -106,12 +106,12 @@ ga('send', 'pageview');
       
         <p>dell openmanage repo CentOS5<br>安装 OpenIPMI时报如下错误：<br><a href="http://mirrors.private.com/hardware/dell/5/x86_64/ipmitool/OpenIPMI-2.0.16-99.dell.4.99.1.el5.x86_64.rpm" target="_blank" rel="external">http://mirrors.private.com/hardware/dell/5/x86_64/ipmitool/OpenIPMI-2.0.16-99.dell.4.99.1.el5.x86_64.rpm</a>: [Errno -1] Package does not match intended download<br>Trying other mirror.<br>问题分析：<br>从mirror服务器的nginx访问日志中看，是200状态，表明yum成功下载了该rpm包<br>于是怀疑是repo数据库中此rpm包的值不对，于是用createrepo命令来创建</p>
 <p>又遇到了Error performing checksum错误<br>原因为：<br>CentOS5中的yum不能计算sha256，于是改用 sha1算法来生成针对centos5版本的repo数据库</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="meta-keyword">/usr/</span>bin/createrepo -s sha1 --simple-md-filenames -d -o <span class="meta-keyword">/mirrors/</span>hardware<span class="meta-keyword">/dell/</span>rh50 <span class="meta-keyword">/mirrors/</span>hardware<span class="meta-keyword">/dell/</span>rh50</span><br><span class="line"><span class="meta-keyword">/usr/</span>bin/createrepo -s sha1 --simple-md-filenames -d -o <span class="meta-keyword">/mirrors/</span>hardware<span class="meta-keyword">/dell/</span>rh50_64 <span class="meta-keyword">/mirrors/</span>hardware<span class="meta-keyword">/dell/</span>rh50_64</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="code"><pre><div class="line"><span class="meta-keyword">/usr/</span>bin/createrepo -s sha1 --simple-md-filenames -d -o <span class="meta-keyword">/mirrors/</span>hardware<span class="meta-keyword">/dell/</span>rh50 <span class="meta-keyword">/mirrors/</span>hardware<span class="meta-keyword">/dell/</span>rh50</div><div class="line"><span class="meta-keyword">/usr/</span>bin/createrepo -s sha1 --simple-md-filenames -d -o <span class="meta-keyword">/mirrors/</span>hardware<span class="meta-keyword">/dell/</span>rh50_64 <span class="meta-keyword">/mirrors/</span>hardware<span class="meta-keyword">/dell/</span>rh50_64</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/07/24/yuman-zhuang-dellguan-fang-openipmishi-bai-wen-ti/" data-id="ciy42m318001hf35oj6eujsmw" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/07/24/yuman-zhuang-dellguan-fang-openipmishi-bai-wen-ti/" data-id="ciy42pxye001el05olerip0bo" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/07/24/yuman-zhuang-dellguan-fang-openipmishi-bai-wen-ti/#disqus_thread" class="article-comment-link">Comments</a>
       

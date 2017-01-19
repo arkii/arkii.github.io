@@ -105,17 +105,17 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>DELL R710 服务器iPXE启动报错问题，报错信息如下：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">1<span class="selector-class">.0</span><span class="selector-class">.0</span>(<span class="selector-tag">f557</span>)</span><br><span class="line"><span class="selector-tag">Link</span><span class="selector-pseudo">:up</span></span><br><span class="line"><span class="selector-tag">Configuring</span> (<span class="selector-tag">net0</span>)…… <span class="selector-tag">Error</span> 0<span class="selector-tag">x040ee119</span> </span><br><span class="line"><span class="selector-tag">No</span> <span class="selector-tag">more</span> <span class="selector-tag">network</span> <span class="selector-tag">devices</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line">1<span class="selector-class">.0</span><span class="selector-class">.0</span>(<span class="selector-tag">f557</span>)</div><div class="line"><span class="selector-tag">Link</span><span class="selector-pseudo">:up</span></div><div class="line"><span class="selector-tag">Configuring</span> (<span class="selector-tag">net0</span>)…… <span class="selector-tag">Error</span> 0<span class="selector-tag">x040ee119</span> </div><div class="line"><span class="selector-tag">No</span> <span class="selector-tag">more</span> <span class="selector-tag">network</span> <span class="selector-tag">devices</span></div></pre></td></tr></table></figure>
 <p>在官网可以看到错误代码文档，以及可能的问题分析，还有直达源码的链接。<br><a href="http://ipxe.org/err/040ee1" target="_blank" rel="external">http://ipxe.org/err/040ee1</a></p>
 <p>解决方案是升级 引导文件undionly.kpxe</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">yum -y install lzma xz-devel xz-libs lzip syslinux cdw</span><br><span class="line">git clone <span class="string">http:</span><span class="comment">//git.ipxe.org/ipxe.git</span></span><br><span class="line">cd ipxe<span class="regexp">/src/</span></span><br><span class="line">make</span><br><span class="line">cp bin<span class="regexp">/undionly.kpxe /</span>home<span class="regexp">/service/</span>PXE/</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">yum -y install lzma xz-devel xz-libs lzip syslinux cdw</div><div class="line">git clone <span class="string">http:</span><span class="comment">//git.ipxe.org/ipxe.git</span></div><div class="line">cd ipxe<span class="regexp">/src/</span></div><div class="line">make</div><div class="line">cp bin<span class="regexp">/undionly.kpxe /</span>home<span class="regexp">/service/</span>PXE/</div></pre></td></tr></table></figure>
 <p>把文件替换旧版本即可</p>
 <p>重启服务器，网络引导成功</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/07/03/dell-ipxe/" data-id="ciy42m2zh000df35ofqqvgof2" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/07/03/dell-ipxe/" data-id="ciy42pxx3000cl05o8fg3dr0c" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/07/03/dell-ipxe/#disqus_thread" class="article-comment-link">Comments</a>
       

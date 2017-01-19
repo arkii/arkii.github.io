@@ -103,12 +103,12 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="how-to-build-tinycorelinux-docker-image"><a href="#how-to-build-tinycorelinux-docker-image" class="headerlink" title="how to build tinycorelinux docker image"></a>how to build tinycorelinux docker image</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http://tinycorelinux.net/6.x/x86_64/release/distribution_files/corepure64.gz</span><br><span class="line">mkdir chroot</span><br><span class="line">gunzip corepure64.gz</span><br><span class="line">cd chroot/</span><br><span class="line">cpio -i &lt; ../corepure64</span><br><span class="line">cd ..</span><br><span class="line">tar -C chroot -c . | docker import - tinycorelinux</span><br></pre></td></tr></table></figure>
+        <h1 id="how-to-build-tinycorelinux-docker-image"><a href="#how-to-build-tinycorelinux-docker-image" class="headerlink" title="how to build tinycorelinux docker image"></a>how to build tinycorelinux docker image</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget http://tinycorelinux.net/6.x/x86_64/release/distribution_files/corepure64.gz</div><div class="line">mkdir chroot</div><div class="line">gunzip corepure64.gz</div><div class="line">cd chroot/</div><div class="line">cpio -i &lt; ../corepure64</div><div class="line">cd ..</div><div class="line">tar -C chroot -c . | docker import - tinycorelinux</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/" data-id="ciy42m2zo000jf35oz4focbri" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/" data-id="ciy42pxxe000kl05omnrlp2ih" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/12/07/how-to-build-tinycorelinux-docker-image/#disqus_thread" class="article-comment-link">Comments</a>
       

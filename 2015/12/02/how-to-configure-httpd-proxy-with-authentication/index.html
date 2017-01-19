@@ -109,15 +109,15 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="how-to-configure-httpd-proxy-with-authentication"><a href="#how-to-configure-httpd-proxy-with-authentication" class="headerlink" title="how to configure httpd proxy with authentication"></a>how to configure httpd proxy with authentication</h1><p><code>vi gen.php</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo base64_encode(&quot;user:password&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="how-to-configure-httpd-proxy-with-authentication"><a href="#how-to-configure-httpd-proxy-with-authentication" class="headerlink" title="how to configure httpd proxy with authentication"></a>how to configure httpd proxy with authentication</h1><p><code>vi gen.php</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;?php</div><div class="line">echo base64_encode(&quot;user:password&quot;);</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
 <p><code>php gen.php</code><br><code>dXNlcjpwYXNzd29yZA==</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RewriteEngine On</span><br><span class="line">RewriteRule ^/orin/(.*)$    http://target.lb.com/$1   [NC,L,P]</span><br><span class="line"></span><br><span class="line">&lt;LocationMatch &quot;^/orin/(.*)$&quot;&gt;</span><br><span class="line">    #AddDefaultCharset GBK</span><br><span class="line">    RequestHeader set Authorization &quot;dXNlcjpwYXNzd29yZA==&quot;</span><br><span class="line">    ProxyPass http://target.lb.com/$1</span><br><span class="line">&lt;/LocationMatch&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">RewriteEngine On</div><div class="line">RewriteRule ^/orin/(.*)$    http://target.lb.com/$1   [NC,L,P]</div><div class="line"></div><div class="line">&lt;LocationMatch &quot;^/orin/(.*)$&quot;&gt;</div><div class="line">    #AddDefaultCharset GBK</div><div class="line">    RequestHeader set Authorization &quot;dXNlcjpwYXNzd29yZA==&quot;</div><div class="line">    ProxyPass http://target.lb.com/$1</div><div class="line">&lt;/LocationMatch&gt;</div></pre></td></tr></table></figure>
 <h2 id="via-httpd-apache-org"><a href="#via-httpd-apache-org" class="headerlink" title="via:httpd.apache.org"></a>via:httpd.apache.org</h2><p><a href="https://httpd.apache.org/docs/2.4/mod/mod_headers.html" target="_blank" rel="external">mod_headers</a><br><a href="https://httpd.apache.org/docs/2.4/rewrite/flags.html#flag_p" target="_blank" rel="external">rewrite flags</a><br><a href="https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxypassreverse" target="_blank" rel="external">mod_proxy.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/" data-id="ciy42m2zx000nf35oyjzw4f64" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/" data-id="ciy42pxxg000ll05oz0kxicx4" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/12/02/how-to-configure-httpd-proxy-with-authentication/#disqus_thread" class="article-comment-link">Comments</a>
       

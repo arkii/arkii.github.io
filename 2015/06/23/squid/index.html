@@ -111,14 +111,14 @@ ga('send', 'pageview');
       
         <p>由于新IDC和老IDC需要迁移部分数据，但新老两个IDC之间网络目前还没打通，但办公室网络两边都可以连通。<br>于是用squid搭个代理来同步数据。</p>
 <p>office 10.21.2.2 squid proxy<br>老IDC  10.15.3.8 rsync src<br>新IDC  10.19.1.3 rsync dst</p>
-<p>office的服务器10.21.2.2上搭建squid服务<br>yum install -y squid<br>vim /etc/squid/squid.conf<br>在配置文件最前面添加<br><figure class="highlight elm"><table><tr><td class="code"><pre><span class="line"><span class="title">acl</span> idc_rule src <span class="number">10.19</span><span class="number">.1</span><span class="number">.0</span>/<span class="number">22</span></span><br><span class="line"><span class="title">acl</span> <span class="type">SSL_port</span> <span class="keyword">port</span> 873 # for rsync  </span><br><span class="line"><span class="title">acl</span> <span class="type">Safe_port</span> <span class="keyword">port</span> 873 # for rsync  </span><br><span class="line"><span class="title">visible_hostname</span> localhost</span><br><span class="line"><span class="title">http_access</span> allow idc_rule</span><br></pre></td></tr></table></figure></p>
+<p>office的服务器10.21.2.2上搭建squid服务<br>yum install -y squid<br>vim /etc/squid/squid.conf<br>在配置文件最前面添加<br><figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">acl idc_rule src <span class="number">10.19</span><span class="number">.1</span><span class="number">.0</span>/<span class="number">22</span></div><div class="line">acl SSL_port port <span class="number">873</span> # for rsync  </div><div class="line">acl Safe_port port <span class="number">873</span> # for rsync  </div><div class="line">visible_hostname localhost</div><div class="line">http_access allow idc_rule</div></pre></td></tr></table></figure></p>
 <p>service squid restart</p>
 <p>在新idc的机器10.19.1.3上，运行下面命令<br>export RSYNC_PROXY=”10.21.2.2:3128”<br>rsync -avz –progress 10.15.3.8::iso/ ./</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2015/06/23/squid/" data-id="ciy42m30z0017f35oyl4e988a" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2015/06/23/squid/" data-id="ciy42pxy70014l05ors8qp958" class="article-share-link">Share</a>
       
         <a href="http://blog.wuliwala.net/2015/06/23/squid/#disqus_thread" class="article-comment-link">Comments</a>
       
