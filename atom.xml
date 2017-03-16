@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wuliwala.net/"/>
-  <updated>2016-12-08T08:10:20.000Z</updated>
+  <updated>2017-03-16T08:28:28.000Z</updated>
   <id>http://blog.wuliwala.net/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>logstash CPU high</title>
+    <link href="http://blog.wuliwala.net/2017/03/16/logstash-cpu-percent-100/"/>
+    <id>http://blog.wuliwala.net/2017/03/16/logstash-cpu-percent-100/</id>
+    <published>2017-03-16T02:23:43.000Z</published>
+    <updated>2017-03-16T08:28:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Logstash-CPU-使用率高"><a href="#Logstash-CPU-使用率高" class="headerlink" title="Logstash CPU 使用率高"></a>Logstash CPU 使用率高</h1><p>好久没更新blog了。<br>最近搭ELK，遇到logstash的几个坑。<br>特别特别坑，忍无可忍，赶紧记录下来。</p>
+<p>CPU使用100%的情况：<br>/etc/init.d/logstash中有一行nice=19<br>在系统中使用top命令会看到CPU每个核心使用率100%。按1键会看到，并不是%us高，而是100%ni。</p>
+<p><code>Timeout executing grok &#39;%{NGINXMAIN}&#39; against field &#39;message&#39; with value &#39;Value too large to output (587 bytes)! First 255 chars are:</code></p>
+<p><code>Timeout executing grok &#39;%{NGINXMAIN}&#39; against field &#39;message&#39; with value &#39;</code>  </p>
+<p>这两个错误绝对不是超时，而是正则表达式没匹配。</p>
+<p>当我把问题解决完之后，才发现，CPU使用率高的最终原因是传来的日志格式不能匹配，所以grok就会找默认的n多正则，一直到超时(貌似默认30秒)，这个时间内CPU就会特别繁忙。</p>
+<p>总结:</p>
+<ol>
+<li>当你无法确认所接受到的数据都能在你的自定义正则匹配时，建议删除grok插件自带的正则模板</li>
+<li>写正则表达式时，多思考，要兼容意外情况。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Logstash-CPU-使用率高&quot;&gt;&lt;a href=&quot;#Logstash-CPU-使用率高&quot; class=&quot;headerlink&quot; title=&quot;Logstash CPU 使用率高&quot;&gt;&lt;/a&gt;Logstash CPU 使用率高&lt;/h1&gt;&lt;p&gt;好久没更新blog了
+    
+    </summary>
+    
+      <category term="sysop" scheme="http://blog.wuliwala.net/categories/sysop/"/>
+    
+    
+      <category term="elk" scheme="http://blog.wuliwala.net/tags/elk/"/>
+    
+  </entry>
   
   <entry>
     <title>DC/OS Deployment</title>
@@ -363,9 +396,9 @@
       <category term="search" scheme="http://blog.wuliwala.net/categories/search/"/>
     
     
-      <category term="dev" scheme="http://blog.wuliwala.net/tags/dev/"/>
-    
       <category term="elk" scheme="http://blog.wuliwala.net/tags/elk/"/>
+    
+      <category term="dev" scheme="http://blog.wuliwala.net/tags/dev/"/>
     
       <category term="nosql" scheme="http://blog.wuliwala.net/tags/nosql/"/>
     
@@ -785,60 +818,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;给gitlab添加gitlab-ci和gitlab-runner&quot;&gt;&lt;a href=&quot;#给gitlab添加gitlab-ci和gitlab-runner&quot; class=&quot;headerlink&quot; title=&quot;给gitlab添加gitlab-ci和gitlab-ru
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>aliyunEC云主机磁盘安全扩容</title>
-    <link href="http://blog.wuliwala.net/2015/11/19/aliyun-disk-growth-online/"/>
-    <id>http://blog.wuliwala.net/2015/11/19/aliyun-disk-growth-online/</id>
-    <published>2015-11-18T18:49:29.000Z</published>
-    <updated>2016-01-25T11:18:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>云主机磁盘（块设备），实际是虚拟文件，当磁盘空间不够时，可以在云服务提供商后台增加磁盘容量，下面是用户需要做的操作。  </p>
-<ul>
-<li>系统版本：CentOS6</li>
-<li>数据盘文件系统：xfs</li>
-<li>数据盘挂载点：/mount_point</li>
-<li>数据盘设备名：/dev/xvdb</li>
-<li>当前容量: <code>df -lh</code><br><code>/dev/xvdb1       27G   23G  4.0G  85% /mount_point</code></li>
-<li>扩容后容量：</li>
-</ul>
-<h3 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h3><ul>
-<li>停止服务 <code>service nginx stop</code></li>
-<li>查看是否有其他程序正在打开分区<code>lsof /mount_point</code></li>
-<li>umount分区 <code>umount /mount_point</code></li>
-<li><p>查看磁盘信息，可看到这块盘已经是100GB大小，但是系统还不能使用。</p>
-<figure class="highlight tap"><table><tr><td class="code"><pre><div class="line"><span class="comment"># fdisl -l /dev/xvdb</span></div><div class="line">Disk /dev/xvdb: 107.4 GB,<span class="number"> 107374182400 </span>bytes,<span class="number"> 209715200 </span>    sectors</div><div class="line">Device       Start      End         Blocks     Id  System</div><div class="line">/dev/xvdb1  <span class="number"> 7999488 </span>  <span class="number"> 62914559 </span>  <span class="number"> 27457536 </span> <span class="number"> 83 </span> Linux</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改分区表</p>
-<figure class="highlight ocaml"><table><tr><td class="code"><pre><div class="line"># fdisk /dev/xvdb</div><div class="line"><span class="type">Welcome</span> <span class="keyword">to</span> fdisk (util-linux <span class="number">2.23</span>.<span class="number">2</span>).</div><div class="line"></div><div class="line"><span class="type">Changes</span> will remain <span class="keyword">in</span> memory only, until you decide <span class="keyword">to</span> write them.</div><div class="line"><span class="type">Be</span> careful before using the write command.</div><div class="line"></div><div class="line"></div><div class="line"><span class="type">Command</span> (m <span class="keyword">for</span> help): p</div><div class="line"></div><div class="line"><span class="type">Disk</span> /dev/xvdb: <span class="number">107.4</span> <span class="type">GB</span>, <span class="number">107374182400</span> <span class="built_in">bytes</span>, <span class="number">209715200</span> sectors</div><div class="line"><span class="type">Units</span> = sectors <span class="keyword">of</span> <span class="number">1</span> * <span class="number">512</span> = <span class="number">512</span> <span class="built_in">bytes</span></div><div class="line"><span class="type">Sector</span> size (logical/physical): <span class="number">512</span> <span class="built_in">bytes</span> / <span class="number">512</span> <span class="built_in">bytes</span></div><div class="line"><span class="type">I</span>/<span class="type">O</span> size (minimum/optimal): <span class="number">512</span> <span class="built_in">bytes</span> / <span class="number">512</span> <span class="built_in">bytes</span></div><div class="line"><span class="type">Disk</span> label <span class="keyword">type</span>: dos</div><div class="line"><span class="type">Disk</span> identifier: <span class="number">0x000dc675</span></div><div class="line"></div><div class="line">    <span class="type">Device</span> <span class="type">Boot</span>      <span class="type">Start</span>         <span class="type">End</span>      <span class="type">Blocks</span>   <span class="type">Id</span>  <span class="type">System</span></div><div class="line">/dev/xvdb1         <span class="number">7999488</span>    <span class="number">62914559</span>    <span class="number">27457536</span>   <span class="number">83</span>  <span class="type">Linux</span></div><div class="line"></div><div class="line"><span class="type">Command</span> (m <span class="keyword">for</span> help): d</div><div class="line"><span class="type">Selected</span> partition <span class="number">1</span></div><div class="line"><span class="type">Partition</span> <span class="number">1</span> is deleted</div><div class="line"></div><div class="line"><span class="type">Command</span> (m <span class="keyword">for</span> help): p</div><div class="line"></div><div class="line"><span class="type">Disk</span> /dev/xvdb: <span class="number">107.4</span> <span class="type">GB</span>, <span class="number">107374182400</span> <span class="built_in">bytes</span>, <span class="number">209715200</span> sectors</div><div class="line"><span class="type">Units</span> = sectors <span class="keyword">of</span> <span class="number">1</span> * <span class="number">512</span> = <span class="number">512</span> <span class="built_in">bytes</span></div><div class="line"><span class="type">Sector</span> size (logical/physical): <span class="number">512</span> <span class="built_in">bytes</span> / <span class="number">512</span> <span class="built_in">bytes</span></div><div class="line"><span class="type">I</span>/<span class="type">O</span> size (minimum/optimal): <span class="number">512</span> <span class="built_in">bytes</span> / <span class="number">512</span> <span class="built_in">bytes</span></div><div class="line"><span class="type">Disk</span> label <span class="keyword">type</span>: dos</div><div class="line"><span class="type">Disk</span> identifier: <span class="number">0x000dc675</span></div><div class="line"></div><div class="line">    <span class="type">Device</span> <span class="type">Boot</span>      <span class="type">Start</span>         <span class="type">End</span>      <span class="type">Blocks</span>   <span class="type">Id</span>  <span class="type">System</span></div><div class="line"></div><div class="line"><span class="type">Command</span> (m <span class="keyword">for</span> help): n</div><div class="line"><span class="type">Partition</span> <span class="keyword">type</span>:</div><div class="line">   p   primary (<span class="number">0</span> primary, <span class="number">0</span> extended, <span class="number">4</span> free)</div><div class="line">   e   extended</div><div class="line"><span class="type">Select</span> (default p): p</div><div class="line"><span class="type">Partition</span> number (<span class="number">1</span>-<span class="number">4</span>, default <span class="number">1</span>): </div><div class="line"><span class="type">First</span> sector (<span class="number">2048</span>-<span class="number">209715199</span>, default <span class="number">2048</span>): <span class="number">7999488</span></div><div class="line"><span class="type">Last</span> sector, +sectors <span class="keyword">or</span> +size&#123;<span class="type">K</span>,<span class="type">M</span>,<span class="type">G</span>&#125; (<span class="number">7999488</span>-<span class="number">209715199</span>, default <span class="number">209715199</span>): </div><div class="line"><span class="type">Using</span> default <span class="keyword">value</span> <span class="number">209715199</span></div><div class="line"><span class="type">Partition</span> <span class="number">1</span> <span class="keyword">of</span> <span class="keyword">type</span> <span class="type">Linux</span> <span class="keyword">and</span> <span class="keyword">of</span> size <span class="number">96.2</span> <span class="type">GiB</span> is set</div><div class="line"></div><div class="line"><span class="type">Command</span> (m <span class="keyword">for</span> help): p</div><div class="line"></div><div class="line"><span class="type">Disk</span> /dev/xvdb: <span class="number">107.4</span> <span class="type">GB</span>, <span class="number">107374182400</span> <span class="built_in">bytes</span>, <span class="number">209715200</span> sectors</div><div class="line"><span class="type">Units</span> = sectors <span class="keyword">of</span> <span class="number">1</span> * <span class="number">512</span> = <span class="number">512</span> <span class="built_in">bytes</span></div><div class="line"><span class="type">Sector</span> size (logical/physical): <span class="number">512</span> <span class="built_in">bytes</span> / <span class="number">512</span> <span class="built_in">bytes</span></div><div class="line"><span class="type">I</span>/<span class="type">O</span> size (minimum/optimal): <span class="number">512</span> <span class="built_in">bytes</span> / <span class="number">512</span> <span class="built_in">bytes</span></div><div class="line"><span class="type">Disk</span> label <span class="keyword">type</span>: dos</div><div class="line"><span class="type">Disk</span> identifier: <span class="number">0x000dc675</span></div><div class="line"></div><div class="line">    <span class="type">Device</span> <span class="type">Boot</span>      <span class="type">Start</span>         <span class="type">End</span>      <span class="type">Blocks</span>   <span class="type">Id</span>  <span class="type">System</span></div><div class="line">/dev/xvdb1         <span class="number">7999488</span>   <span class="number">209715199</span>   <span class="number">100857856</span>   <span class="number">83</span>  <span class="type">Linux</span></div><div class="line"></div><div class="line"><span class="type">Command</span> (m <span class="keyword">for</span> help): wq</div><div class="line"><span class="type">The</span> partition table has been altered!</div><div class="line"></div><div class="line"><span class="type">Calling</span> ioctl<span class="literal">()</span> <span class="keyword">to</span> re-read partition table.</div><div class="line"><span class="type">Syncing</span> disks.</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看修改结果</p>
-<figure class="highlight tap"><table><tr><td class="code"><pre><div class="line"><span class="comment"># fdisk -l /dev/xvdb</span></div><div class="line">Disk /dev/xvdb: 107.4 GB,<span class="number"> 107374182400 </span>bytes,<span class="number"> 209715200 </span>sectors</div><div class="line">Units = sectors of<span class="number"> 1 </span>*<span class="number"> 512 </span>=<span class="number"> 512 </span>bytes</div><div class="line">Sector size (logical/physical):<span class="number"> 512 </span>bytes /<span class="number"> 512 </span>bytes</div><div class="line">I/O size (minimum/optimal):<span class="number"> 512 </span>bytes /<span class="number"> 512 </span>bytes</div><div class="line">Disk label type: dos</div><div class="line">Disk identifier: 0x000dc675</div><div class="line"></div><div class="line">    Device Boot      Start         End      Blocks   Id  System</div><div class="line">/dev/xvdb1        <span class="number"> 7999488 </span> <span class="number"> 209715199 </span> <span class="number"> 100857856 </span> <span class="number"> 83 </span> Linux</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用xfs_growfs命令对xfs文件系统进行扩容</p>
-<figure class="highlight nix"><table><tr><td class="code"><pre><div class="line"><span class="comment"># xfs_growfs /dev/xvdb1 </span></div><div class="line"><span class="attr">meta-data=/dev/xvdb1</span>             <span class="attr">isize=256</span>    <span class="attr">agcount=4,</span> <span class="attr">agsize=1716096</span> <span class="attr">blks</span></div><div class="line">         =                       <span class="attr">sectsz=512</span>   <span class="attr">attr=2,</span> <span class="attr">projid32bit=0</span></div><div class="line">         =                       <span class="attr">crc=0</span></div><div class="line"><span class="attr">data</span>     =                       <span class="attr">bsize=4096</span>   <span class="attr">blocks=6864384,</span> <span class="attr">imaxpct=25</span></div><div class="line">         =                       <span class="attr">sunit=0</span>      <span class="attr">swidth=0</span> blks</div><div class="line"><span class="attr">naming</span>   =version <span class="number">2</span>              <span class="attr">bsize=4096</span>   <span class="attr">ascii-ci=0</span> <span class="attr">ftype=0</span></div><div class="line"><span class="attr">log</span>      =internal               <span class="attr">bsize=4096</span>   <span class="attr">blocks=3351,</span> <span class="attr">version=2</span></div><div class="line">         =                       <span class="attr">sectsz=512</span>   <span class="attr">sunit=0</span> blks, <span class="attr">lazy-count=1</span></div><div class="line"><span class="attr">realtime</span> =none                   <span class="attr">extsz=4096</span>   <span class="attr">blocks=0,</span> <span class="attr">rtextents=0</span></div><div class="line">data blocks changed from <span class="number">6864384</span> to <span class="number">25214464</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>挂载分区<code># mount -a</code></p>
-</li>
-<li>查看目前可用空间<figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line"># df -lh</div><div class="line">Filesystem      Size  Used Avail Use% Mounted on</div><div class="line">/dev/xvdb1       <span class="number">97</span>G   <span class="number">23</span>G   <span class="number">74</span>G  <span class="number">24</span>% /mount_point</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><a href="http://bbs.aliyun.com/read/239398.html" target="_blank" rel="external">aliyun磁盘原地扩容官方说明</a></p>
-<p><a href="http://help.aliyun.com/document_detail/ecs/operation-guide/disk-operation/resize.html" target="_blank" rel="external">aliyun磁盘原地扩容官方操作说明</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;云主机磁盘（块设备），实际是虚拟文件，当磁盘空间不够时，可以在云服务提供商后台增加磁盘容量，下面是用户需要做的操作。  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;系统版本：CentOS6&lt;/li&gt;
-&lt;li&gt;数据盘文件系统：xfs&lt;/li&gt;
-&lt;li&gt;数据盘挂载点：/mount_point&lt;
     
     </summary>
     

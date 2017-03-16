@@ -82,16 +82,12 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-searchcode-server-community-deploy" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-migrate-to-git-from-svn" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/03/08/searchcode-server-community-deploy/" class="article-date">
-  <time datetime="2016-03-08T07:01:00.000Z" itemprop="datePublished">2016-03-08</time>
+    <a href="/2016/03/14/migrate-to-git-from-svn/" class="article-date">
+  <time datetime="2016-03-14T11:01:00.000Z" itemprop="datePublished">2016-03-14</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/productivity/">productivity</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -100,7 +96,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/08/searchcode-server-community-deploy/">Searchcode Server Community Deploy</a>
+      <a class="article-title" href="/2016/03/14/migrate-to-git-from-svn/">Migration From Subversion(svn) to Git</a>
     </h1>
   
 
@@ -108,36 +104,19 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Searchcode-Server-Community-Deploy"><a href="#Searchcode-Server-Community-Deploy" class="headerlink" title="Searchcode Server Community Deploy"></a>Searchcode Server Community Deploy</h1><h2 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h2><p><a href="https://searchcode.com" target="_blank" rel="external">https://searchcode.com</a></p>
-<h2 id="query-syntax"><a href="#query-syntax" class="headerlink" title="query syntax"></a>query syntax</h2><p><a href="https://searchcode.com/#jumbo-examples" target="_blank" rel="external">https://searchcode.com/#jumbo-examples</a></p>
-<h2 id="requirement"><a href="#requirement" class="headerlink" title="requirement"></a>requirement</h2><ul>
-<li>Linux (in this example, I’m using CentOS6)  </li>
-<li>JRE 8u65 <a href="http://www.oracle.com/technetwork/java/javase/archive-139210.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/archive-139210.html</a>  </li>
-<li>searchcode-server-community 1.0.0 <a href="https://searchcode.com/static/searchcode-server-community.tar.gz" target="_blank" rel="external">https://searchcode.com/static/searchcode-server-community.tar.gz</a>  </li>
-</ul>
-<h2 id="installation"><a href="#installation" class="headerlink" title="installation"></a>installation</h2><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># download jre package from java archive website</span></div><div class="line">rpm -ivh jre-8u65-linux-x64.rpm</div><div class="line">wget https://searchcode.com/static/searchcode-server-community.tar.gz</div><div class="line">tar xf searchcode-server-community.tar.gz</div><div class="line">searchcode-server-community/release</div><div class="line">java -jar searchcode-1.0.0.jar</div></pre></td></tr></table></figure>
-<p><strong>visit <a href="http://yourserverip:8080/" target="_blank" rel="external">http://yourserverip:8080/</a></strong>  </p>
-<h2 id="use-my-docker-image"><a href="#use-my-docker-image" class="headerlink" title="use my docker image"></a>use my docker image</h2><h3 id="fresh-image-auto-build-and-keep-fresh-depend-on-author’s-api"><a href="#fresh-image-auto-build-and-keep-fresh-depend-on-author’s-api" class="headerlink" title="fresh image auto-build and keep fresh, depend on author’s api"></a>fresh image auto-build and keep fresh, depend on author’s api</h3><figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">docker run -p 8080:8080 <span class="_">-d</span> docker.io/arkii/searchcode-server-community</div></pre></td></tr></table></figure>
-<p>run image directly  </p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">docker run -p 8080:8080 <span class="_">-d</span> docker.io/arkii/searchcode-server</div></pre></td></tr></table></figure>
-<p>or run image with docker-compose<br>docker-compose.yml</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><div class="line"><span class="attr">searchcode:</span></div><div class="line"><span class="attr">  image:</span> arkii/searchcode-server</div><div class="line"><span class="attr">  volumes:</span></div><div class="line"><span class="bullet">    -</span> /db/searchcode/git/index:/srv/index</div><div class="line"><span class="bullet">    -</span> /db/searchcode/git/repo:/srv/repo</div><div class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.properties:/srv/searchcode.properties</div><div class="line"><span class="bullet">    -</span> /db/searchcode/git/searchcode.sqlite:/srv/searchcode.sqlite</div><div class="line"><span class="attr">  ports:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">"8080:8080/tcp"</span></div></pre></td></tr></table></figure>
-<p><strong>visit <a href="http://yourdockerserverip:8080/" target="_blank" rel="external">http://yourdockerserverip:8080/</a></strong>  </p>
-<p>To administer your searchcode server instance you need to click on the Admin link in the top right.<br>Enter the default password <strong>Adm1n234</strong></p>
-<h2 id="Dockerfiles"><a href="#Dockerfiles" class="headerlink" title="Dockerfiles"></a>Dockerfiles</h2><p><strong>build JRE 8u65 image</strong></p>
-<figure class="highlight docker"><table><tr><td class="code"><pre><div class="line"><span class="keyword">FROM</span>        centos:<span class="number">6</span></div><div class="line"><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</div><div class="line"><span class="keyword">COPY</span><span class="bash">        ./jre-8u65-linux-x64.rpm /tmp/jre-8u65-linux-x64.rpm</span></div><div class="line"><span class="keyword">RUN</span><span class="bash">         rpm -ivh /tmp/jre-8u65-linux-x64.rpm &amp;&amp; rm <span class="_">-f</span> /tmp/jre-8u65-linux-x64.rpm</span></div></pre></td></tr></table></figure>
-<p><strong>build Searchcode Server Community 1.0.0 image</strong></p>
-<figure class="highlight docker"><table><tr><td class="code"><pre><div class="line"><span class="keyword">FROM</span>        arkii/centos6-jre-<span class="number">8</span>u65</div><div class="line"><span class="keyword">MAINTAINER</span>  Arkii sqy6@<span class="number">163</span>.com</div><div class="line"><span class="keyword">COPY</span><span class="bash">        ./searchcode-server-community/release /srv</span></div><div class="line"><span class="keyword">WORKDIR</span><span class="bash">     /srv</span></div><div class="line"><span class="keyword">CMD</span><span class="bash">         /usr/bin/java -jar searchcode-1.0.0.jar</span></div><div class="line"><span class="keyword">EXPOSE</span>      <span class="number">8080</span>/tcp</div></pre></td></tr></table></figure>
+        <h2 id="migration-from-subversion-svn-to-git"><a href="#migration-from-subversion-svn-to-git" class="headerlink" title="migration from subversion(svn) to git"></a>migration from subversion(svn) to git</h2><p>git officiall documents<br><a href="https://git-scm.com/docs/git-svn" target="_blank" rel="external">https://git-scm.com/docs/git-svn</a><br><a href="https://git-scm.com/book/en/v2/Git-and-Other-Systems-Migrating-to-Git" target="_blank" rel="external">https://git-scm.com/book/en/v2/Git-and-Other-Systems-Migrating-to-Git</a><br><a href="https://git-scm.com/book/zh/v2/Git-%E4%B8%8E%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F-%E4%BD%9C%E4%B8%BA%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84-Git" target="_blank" rel="external">https://git-scm.com/book/zh/v2/Git-与其他系统-作为客户端的-Git</a>  </p>
+<p>install the latest git  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum -y install subversion subversion-perl perl-TermReadKey curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc xmlto docbook2x docbook2X</div><div class="line"></div><div class="line">wget https://www.kernel.org/pub/software/scm/git/git-2.7.3.tar.gz</div><div class="line">tar xvf git-2.7.3.tar.gz </div><div class="line"><span class="built_in">cd</span> git-2.7.3</div><div class="line">make configure</div><div class="line">./configure --prefix=/usr/<span class="built_in">local</span>/git2.7.3</div><div class="line">make -j8 all doc info</div><div class="line">ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/git2.7.3/bin/git /usr/bin/</div><div class="line"></div><div class="line">vim ~/.subversion/servers</div><div class="line"><span class="comment"># let store-passwords = yes</span></div><div class="line"></div><div class="line">git svn <span class="built_in">clone</span> --username dev https://svn.yourdomain.com/yourrepo</div><div class="line"></div><div class="line"><span class="built_in">cd</span> yourrepo</div><div class="line"></div><div class="line"><span class="comment"># 首次 first time</span></div><div class="line">git branch <span class="_">-a</span> </div><div class="line">git show-ref</div><div class="line"><span class="comment"># push to gitlab server</span></div><div class="line">git remote add origin ssh://git@gitlab.yourdomain.com/svn/yourrepo.git</div><div class="line">git push -u origin master</div><div class="line"></div><div class="line"><span class="comment"># 更新 update</span></div><div class="line">git svn fetch &amp;&amp; git svn rebase</div><div class="line">git push</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.wuliwala.net/2016/03/08/searchcode-server-community-deploy/" data-id="ciy431rd40013k25omgphqikz" class="article-share-link">Share</a>
+      <a data-url="http://blog.wuliwala.net/2016/03/14/migrate-to-git-from-svn/" data-id="cj0c4vuy3001avo5osrkr5oxh" class="article-share-link">Share</a>
       
-        <a href="http://blog.wuliwala.net/2016/03/08/searchcode-server-community-deploy/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.wuliwala.net/2016/03/14/migrate-to-git-from-svn/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dev/">dev</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devops/">devops</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dev/">dev</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 
     </footer>
   </div>
@@ -149,7 +128,7 @@ ga('send', 'pageview');
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -160,6 +139,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/03/16/logstash-cpu-percent-100/">logstash CPU high</a>
+          </li>
         
           <li>
             <a href="/2016/04/21/dcos_installation/">DC/OS Deployment</a>
@@ -177,10 +160,6 @@ ga('send', 'pageview');
             <a href="/2016/04/07/supermicro_auto_deploy/">SuperMicro Auto Deploy</a>
           </li>
         
-          <li>
-            <a href="/2016/03/29/can_not_add_lun_device_in_vsphere_client/">can not add lun device in vsphere client</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -190,7 +169,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dcos/" style="font-size: 10px;">dcos</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 15px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 15px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/mesos/" style="font-size: 10px;">mesos</a> <a href="/tags/monitoring/" style="font-size: 15px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/nxlog/" style="font-size: 10px;">nxlog</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 15px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+      <a href="/tags/app/" style="font-size: 10px;">app</a> <a href="/tags/dcos/" style="font-size: 10px;">dcos</a> <a href="/tags/dev/" style="font-size: 20px;">dev</a> <a href="/tags/devops/" style="font-size: 13.33px;">devops</a> <a href="/tags/dhcp/" style="font-size: 10px;">dhcp</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elk/" style="font-size: 16.67px;">elk</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/graphing/" style="font-size: 10px;">graphing</a> <a href="/tags/influxdb/" style="font-size: 10px;">influxdb</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/ipmi/" style="font-size: 10px;">ipmi</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/mesos/" style="font-size: 10px;">mesos</a> <a href="/tags/monitoring/" style="font-size: 13.33px;">monitoring</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/nxlog/" style="font-size: 10px;">nxlog</a> <a href="/tags/pxe/" style="font-size: 10px;">pxe</a> <a href="/tags/search/" style="font-size: 10px;">search</a> <a href="/tags/sysops/" style="font-size: 13.33px;">sysops</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
     </div>
   </div>
 
@@ -199,7 +178,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcos/">dcos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logstash/">logstash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mesos/">mesos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nxlog/">nxlog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/app/">app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcos/">dcos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dhcp/">dhcp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elk/">elk</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graphing/">graphing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/influxdb/">influxdb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ipmi/">ipmi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logstash/">logstash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mesos/">mesos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/monitoring/">monitoring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nxlog/">nxlog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pxe/">pxe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/search/">search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysops/">sysops</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -209,7 +188,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 

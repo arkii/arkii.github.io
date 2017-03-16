@@ -4,6 +4,23 @@
   
     
     <entry>
+      <title><![CDATA[logstash CPU high]]></title>
+      <url>http://blog.wuliwala.net/2017/03/16/logstash-cpu-percent-100/</url>
+      <content type="html"><![CDATA[<h1 id="Logstash-CPU-使用率高"><a href="#Logstash-CPU-使用率高" class="headerlink" title="Logstash CPU 使用率高"></a>Logstash CPU 使用率高</h1><p>好久没更新blog了。<br>最近搭ELK，遇到logstash的几个坑。<br>特别特别坑，忍无可忍，赶紧记录下来。</p>
+<p>CPU使用100%的情况：<br>/etc/init.d/logstash中有一行nice=19<br>在系统中使用top命令会看到CPU每个核心使用率100%。按1键会看到，并不是%us高，而是100%ni。</p>
+<p><code>Timeout executing grok &#39;%{NGINXMAIN}&#39; against field &#39;message&#39; with value &#39;Value too large to output (587 bytes)! First 255 chars are:</code></p>
+<p><code>Timeout executing grok &#39;%{NGINXMAIN}&#39; against field &#39;message&#39; with value &#39;</code>  </p>
+<p>这两个错误绝对不是超时，而是正则表达式没匹配。</p>
+<p>当我把问题解决完之后，才发现，CPU使用率高的最终原因是传来的日志格式不能匹配，所以grok就会找默认的n多正则，一直到超时(貌似默认30秒)，这个时间内CPU就会特别繁忙。</p>
+<p>总结:</p>
+<ol>
+<li>当你无法确认所接受到的数据都能在你的自定义正则匹配时，建议删除grok插件自带的正则模板</li>
+<li>写正则表达式时，多思考，要兼容意外情况。</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[DC/OS Deployment]]></title>
       <url>http://blog.wuliwala.net/2016/04/21/dcos_installation/</url>
       <content type="html"><![CDATA[<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p><strong>Every system operator always dreaming an infrastructure management tool like <a href="https://dcos.io" target="_blank" rel="external">DCOS</a>, makes job easier and more spare time.</strong><br>As you know, mesosphere.com released it as <a href="https://mesosphere.com/blog/2016/04/19/open-source-dcos/" target="_blank" rel="external">Open Source project</a> on 2016/04/19.<br>So I tried it the first time.<br>This post reords my steps followed the official <a href="https://dcos.io/get-started" target="_blank" rel="external">guide</a>.<br>In this example, all my node is running CentOS7(with <code>yum -y update</code>), I used 6 nodes(1 deploy, 1 master, 4 compute), and if you want master node High-Availability, 8 nodes(1 deploy, 3 master, 4 compute) is recommended.<br>After deployment, the deploy node can be destroyed, so it can be a temporary vm.</p>
